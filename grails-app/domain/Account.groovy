@@ -2,10 +2,17 @@ class Account {
 
     String username
     String passwordHash
-    
-    static hasMany = [ roles: Role, permissions: String ]
+  
+	String fullName
+	String email
+	boolean active
+	
+    static hasMany = [ roles: Role, permissions: String, virtueEntries: VirtueEntry]
 
     static constraints = {
         username(nullable: false, blank: false)
+		email(nullable:false, blank:false, email:true)
     }
+
+
 }
