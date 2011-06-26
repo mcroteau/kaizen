@@ -30,7 +30,7 @@
 		
 				<p>Check all virtues you successfully upheld today.  Unsure what each Virtue means, click <a href="#definitions" data-transition="flip">here</a></p>
 
-				<g:form action="save" name="virtueEntryForm" id="virtueEntryForm" method="post">
+				<g:form action="save" name="virtueEntryForm" id="virtueEntryForm" method="post" data-ajax="false">
 				
 					<div data-role="fieldcontain">
                 	
@@ -110,9 +110,10 @@
 			<div data-role="footer">
 				<div data-role="navbar">
 					<ul>
-						<li><a href="todaysEntry.html" class="ui-btn-active" data-icon="star" data-iconpos="top">Todays Entry</a>
-						<li><a href="dashboard.html" rel="external" class="" data-role="button" data-icon="grid" data-iconpos="top">Dashboard</a>
-						<li><a href="#definitions" class="" data-role="button" data-icon="info" data-iconpos="top" data-transition="slide" >Virtues Defined</a>
+						<li><a href="todaysEntry.html" class="ui-btn-active" data-icon="star" data-iconpos="top">Todays Entry</a></li>
+						<li><g:link controller="static" rel="external" data-icon="grid" data-iconpos="top" data-role="button" data-inline="true" action="dashboard">Dashboard</g:link></li>
+							<!-- <a href="dashboard.html" rel="external" class="" data-role="button" data-icon="grid" data-iconpos="top">Dashboard</a> -->
+						<li><a href="#definitions" class="" data-role="button" data-icon="info" data-iconpos="top" data-transition="slide" >Virtues Defined</a></li>
 					</ul>
 				</div>
 			</div><!-- /footer -->
@@ -123,6 +124,34 @@
 		<g:render template="/help/help"/>
 		
 		<g:render template="/help/definitions"/>
+		
+		<script type="text/javascript">
+			$(document).ready(function(){
+			
+				$('#submit').click(function(event){ ajaxItUp();});
+			});
+		
+			function ajaxItUp(){
+				var data = 
+				$.ajax({
+					type : post,
+					data : ,
+					url : 'http://localhost:8080/franklins13/virtueEntry/save'
+					success : success,
+					failuer : failure
+				});
+				
+			}
+			
+			function failure(){
+				console.log('failure');
+			}
+			
+			function success(){
+				
+			}
+		
+		</script>
 		
     </body>
 </html>

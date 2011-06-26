@@ -1,4 +1,4 @@
-<div data-role="page" id="definitions" data-theme="a">
+<div data-role="dialog" id="definitions" data-theme="a">
 
 	<div data-role="header" data-theme="a">
 		<a href="dashboard.html" data-rel="back" data-icon="arrow-l" rel="external">Back</a>

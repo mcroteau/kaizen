@@ -100,7 +100,7 @@
 				<!-- <h1>${virtueEntryInstance?.happinessScale}</h1> -->
 				<div data-role="fieldcontain">
 					<label for="happinessScale">Slide from 1 to 10, 10 being extemely happy/satisfied with your day</label>
-				 	<input type="range" name="happinessScale" id="happinessScale" value="0" min="0" max="10"  />
+				 	<input type="range" name="happinessScale" id="happinessScale" value="${virtueEntryInstance?.happinessScale}" min="0" max="10"  />
 				</div>
                 	
 

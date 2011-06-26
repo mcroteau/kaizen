@@ -20,5 +20,13 @@
 		</script>
 	</shiro:notAuthenticated> -->	
 	
+	<script type="text/javascript">
+	
+		$(document).bind("mobileinit", function(){
+	  		//$.mobile.foo = bar;
+			$.ajaxFormsEnabled = false;
+		});
+	
+	</script>
 </body>
 </html>

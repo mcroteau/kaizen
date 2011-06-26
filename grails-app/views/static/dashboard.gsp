@@ -47,7 +47,7 @@
 						<!-- <a href="virtueEntry/newEntry" rel="external" data-icon="star" data-iconpos="top">Todays Entry</a> -->
 					<li><g:link controller="static" rel="external" data-icon="star" data-iconpos="top" action="dashboard" class="ui-btn-active">Dashboard</g:link></li>
 						<!-- <a href="dashboard.html"  class="ui-btn-active" class="" data-role="button" data-icon="grid" data-iconpos="top">Dashboard</a>	 -->
-					<li><a href="#definitions" class="" data-role="button" data-icon="info" data-iconpos="top" data-transition="slide" >Virtues Defined</a>
+					<li><a href="#definitions" class="" data-role="button" data-icon="info" data-iconpos="top" data-transition="pop" >Virtues Defined</a>
 				</ul>
 			</div>
 		</div><!-- /footer -->
@@ -58,7 +58,6 @@
 	
 	<g:render template="/help/help"/>
 	<g:render template="/help/definitions"/>
-	
 	
 	
 	<script type="text/javascript" src="${resource(dir:'js/lib/jquery/jqplot/', 'jquery.jqplot.min.js')}"></script>
