@@ -24,7 +24,7 @@ class BootStrap {
 			adminRole = new Role(name : "ROLE_ADMIN").save(flush:true)
 			simpleRole = new Role(name : "ROLE_SIMPLE_USER").save(flush:true)
 		}
-		
+		print "making small change"		
 		println 'Roles : ' + Role.count()
 	}
 	
