@@ -8,4 +8,9 @@ class Role {
     static constraints = {
         name(nullable: false, blank: false, unique: true)
     }
+	
+	static mapping = {
+    	//id generator: 'sequence', params:[sequence:'ID_ROLE_PK_SEQ']
+  	}
+
 }

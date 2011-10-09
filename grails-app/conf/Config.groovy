@@ -34,17 +34,24 @@ grails.mime.types = [ html: ['text/html','application/xhtml+xml'],
 grails.views.default.codec = "none" // none, html, base64
 grails.views.gsp.encoding = "UTF-8"
 grails.converters.encoding = "UTF-8"
+
+
 // enable Sitemesh preprocessing of GSP pages
 grails.views.gsp.sitemesh.preprocess = true
+
+
 // scaffolding templates configuration
 grails.scaffolding.templates.domainSuffix = 'Instance'
 
 // Set to false to use the new Grails 1.2 JSONBuilder in the render method
 grails.json.legacy.builder = false
+
 // enabled native2ascii conversion of i18n properties files
 grails.enable.native2ascii = true
+
 // whether to install the java.util.logging bridge for sl4j. Disable for AppEngine!
 grails.logging.jul.usebridge = true
+
 // packages to include in Spring bean scanning
 grails.spring.bean.packages = []
 

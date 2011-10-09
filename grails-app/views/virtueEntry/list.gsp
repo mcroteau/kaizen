@@ -1,65 +1,116 @@
-
-
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'virtueEntry.label', default: 'VirtueEntry')}" />
-        <title><g:message code="default.list.label" args="[entityName]" /></title>
-    </head>
-    <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
-            <span class="menuButton"><g:link class="create" action="newEntry"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
-        </div>
-        <div class="body">
-            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
-            <div class="message">${flash.message}</div>
-            </g:if>
-            <div class="list">
-                <table>
-                    <thead>
-                        <tr>
-                        
-                            <g:sortableColumn property="id" title="${message(code: 'virtueEntry.id.label', default: 'Id')}" />
-                        
-                            <g:sortableColumn property="notes" title="${message(code: 'virtueEntry.notes.label', default: 'Notes')}" />
-                        
-                            <g:sortableColumn property="chastity" title="${message(code: 'virtueEntry.chastity.label', default: 'Chastity')}" />
-                        
-                            <g:sortableColumn property="cleanliness" title="${message(code: 'virtueEntry.cleanliness.label', default: 'Cleanliness')}" />
-                        
-                            <g:sortableColumn property="entryDate" title="${message(code: 'virtueEntry.entryDate.label', default: 'Entry Date')}" />
-                        
-                            <g:sortableColumn property="frugality" title="${message(code: 'virtueEntry.frugality.label', default: 'Frugality')}" />
-                        
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <g:each in="${virtueEntryInstanceList}" status="i" var="virtueEntryInstance">
-                        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-                        
-                            <td><g:link action="show" id="${virtueEntryInstance.id}">${fieldValue(bean: virtueEntryInstance, field: "id")}</g:link></td>
-                        
-                            <td>${fieldValue(bean: virtueEntryInstance, field: "notes")}</td>
-                        
-                            <td><g:formatBoolean boolean="${virtueEntryInstance.chastity}" /></td>
-                        
-                            <td><g:formatBoolean boolean="${virtueEntryInstance.cleanliness}" /></td>
-                        
-                            <td><g:formatDate date="${virtueEntryInstance.entryDate}" /></td>
-                        
-                            <td><g:formatBoolean boolean="${virtueEntryInstance.frugality}" /></td>
-                        
-                        </tr>
-                    </g:each>
-                    </tbody>
-                </table>
-            </div>
-            <div class="paginateButtons">
-                <g:paginate total="${virtueEntryInstanceTotal}" />
-            </div>
-        </div>
-    </body>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="layout" content="mobile" />
+    <g:set var="entityName" value="${message(code: 'virtueEntry.label', default: 'VirtueEntry')}" />
+    <title>Franklins 13 : Log Todays Entry</title>
+</head>
+
+<body>
+
+	<div data-role="page" class="type-interior">
+		<div data-role="header" data-theme="a">
+			<h1>All Virtue Entries</h1>
+		</div><!-- /header -->
+	
+	<div data-role="content">
+					
+		<div class="ui-bar ui-bar-f">
+			
+			<div data-role="controlgroup" data-type="horizontal" class="ui-corner-all ui-controlgroup ui-controlgroup-horizontal">
+				
+				<g:link controller="static" action="dashboard" id="" data-ajax="false" data-icon="plus" data-role="button" data-inline="true" data-theme="c" class="ui-btn ui-btn-inline ui-btn-icon-left ui-corner-left ui-btn-up-c">
+					<span class="ui-btn-inner ui-corner-left">
+						<span class="ui-btn-text">Dashboard</span>
+						<span class="ui-icon ui-icon-grid ui-icon-shadow"></span>
+					</span>
+				</g:link>
+				<g:link controller="virtueEntry" action="newEntry" id="" data-ajax="false" data-icon="plus" data-role="button" data-inline="true" data-theme="c" class="ui-btn ui-btn-inline ui-btn-icon-left ui-btn-up-c">
+					<span class="ui-btn-inner ui-corner-left">
+						<span class="ui-btn-text">Todays Entry</span>
+						<span class="ui-icon ui-icon-star ui-icon-shadow"></span>
+					</span>
+				</g:link>
+				<g:link controller="virtueEntry" action="list" id="" data-ajax="false" data-icon="plus" data-role="button" data-inline="true" data-theme="c" class="ui-btn ui-btn-inline ui-btn-icon-left ui-btn-up-c ui-btn-active">
+					<span class="ui-btn-inner ui-corner-left">
+						<span class="ui-btn-text">History</span>
+						<span class="ui-icon ui-icon-search ui-icon-shadow"></span>
+					</span>
+				</g:link>
+
+			</div><!-- /controlgroup -->
+		</div>			
+					
+		<br class="clear"/>			
+					
+		<div class="content-primary">
+			
+			<ul data-role="listview">
+				
+				<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-btn ui-bar-b ui-li-has-count ui-btn-down-undefined ui-btn-up-undefined"></li>
+				
+		    	<g:each in="${virtueEntryInstanceList}" status="i" var="virtueEntryInstance">
+            		<li>
+						<g:link action="show" id="${virtueEntryInstance.id}" class="ui-link-inherit" data-ajax="false">
+							<h3><g:formatDate format="dd MMM yyyy" date="${virtueEntryInstance.entryDate}"/></h3>
+							<p><strong>${virtueEntryInstance.performanceDescription}</strong></p>
+							<span class="ui-li-count ui-btn-up-c ui-btn-corner-all">
+								Virtues: ${virtueEntryInstance.totalCompleted}/13&nbsp;&nbsp;&nbsp;Happiness: ${virtueEntryInstance.happinessScale}	
+							</span>
+						</g:link>
+					</li>
+				</g:each>
+			</ul>
+	
+	
+	
+		</div><!--/content-primary -->		
+		
+		</div><!-- /content -->
+
+		<style type="text/css">
+			span.currentStep{margin:0px 5px;}
+			a.step{margin:0px 5px; border:solid 1px #ddd;}
+			a.ui-link{margin:0px 5px; border:solid 1px #ddd;}
+			a.nextLink{margin:0px 5px; border:solid 1px #ddd;}
+		</style>
+		
+		<div data-role="footer" data-position="fixed">
+			
+			<div class="ui-bar ui-bar-a">
+				<div data-role="controlgroup" data-type="horizontal" class="ui-corner-all ui-controlgroup ui-controlgroup-horizontal">
+					<a href="#definitions" data-inline="true" data-role="button" data-icon="info" data-theme="a" class="ui-btn ui-btn-up-a ui-btn-inline ui-corner-left">
+						<span class="ui-btn-inner ui-corner-left">
+							<span class="ui-btn-text">Virtues Defined</span>
+							<span class=""></span>
+						</span>
+					</a>
+					<a href="#help" data-inline="true" data-role="button" data-theme="a" data-icon="alert" class="ui-btn ui-btn-up-a ui-btn-inline ui-corner-right ui-controlgroup-last">
+						<span class="ui-btn-inner ui-corner-right ui-controlgroup-last">
+							<span class="ui-btn-text">Help</span>
+						</span>
+					</a>
+				</div><!-- /controlgroup -->
+			</div>
+
+		</div><!-- /footer -->
+
+	</div><!-- end of page-->
+
+	
+	<g:render template="/help/help"/>
+	
+	<g:render template="/help/definitions"/>
+	
+	<script type="text/javascript">
+		$(document).bind("mobileinit", function(){
+		  	//Disable ajax link
+			console.log('here..');
+		  	$('.disable-ajax').click(function(event){
+				console.log('disable')
+		    	$.mobile.ajaxFormsEnabled = false;
+		  	});
+		});
+	</script>	
+</body>
 </html>

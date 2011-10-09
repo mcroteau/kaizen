@@ -10,14 +10,38 @@
 	
 	<div data-role="page">
 	
-		<div data-role="header" data-theme="b">
-			<a href="login.html" rel="external">login</a>
+		<div data-role="header" data-theme="a">
 			<h1>Dashboard</h1>
-			<a href="#help" data-icon="alert" class="ui-btn-right" data-transition="pop">Help</a>
 		</div><!-- /header -->
 
 		<div data-role="content">	
-										
+			
+			<div class="ui-bar ui-bar-f">
+				
+				<div data-role="controlgroup" data-type="horizontal" class="ui-corner-all ui-controlgroup ui-controlgroup-horizontal">
+					
+					<g:link controller="static" action="dashboard" id="" data-ajax="false" data-icon="plus" data-role="button" data-inline="true" data-theme="c" class="ui-btn ui-btn-inline ui-btn-icon-left ui-corner-left ui-btn-up-c ui-btn-active">
+						<span class="ui-btn-inner ui-corner-left">
+							<span class="ui-btn-text">Dashboard</span>
+							<span class="ui-icon ui-icon-grid ui-icon-shadow"></span>
+						</span>
+					</g:link>
+					<g:link controller="virtueEntry" action="newEntry" id="" data-ajax="false" data-icon="plus" data-role="button" data-inline="true" data-theme="c" class="ui-btn ui-btn-inline ui-btn-icon-left ui-btn-up-c">
+						<span class="ui-btn-inner ui-corner-left">
+							<span class="ui-btn-text">Todays Entry</span>
+							<span class="ui-icon ui-icon-star ui-icon-shadow"></span>
+						</span>
+					</g:link>
+					<g:link controller="virtueEntry" action="list" id="" data-ajax="false" data-icon="plus" data-role="button" data-inline="true" data-theme="c" class="ui-btn ui-btn-inline ui-btn-icon-left ui-btn-up-c">
+						<span class="ui-btn-inner ui-corner-left">
+							<span class="ui-btn-text">History</span>
+							<span class="ui-icon ui-icon-search ui-icon-shadow"></span>
+						</span>
+					</g:link>
+
+				</div><!-- /controlgroup -->
+			</div>
+												
 			<div id="chart1"></div>
 										
 			<div data-role="fieldcontain">
@@ -41,15 +65,23 @@
 		</div><!-- /content -->
 
 		<div data-role="footer">
-			<div data-role="navbar">
-				<ul>
-					<li><g:link controller="virtueEntry" rel="external" data-icon="star" data-iconpos="top" action="newEntry">Todays Entry</g:link></li>
-						<!-- <a href="virtueEntry/newEntry" rel="external" data-icon="star" data-iconpos="top">Todays Entry</a> -->
-					<li><g:link controller="static" rel="external" data-icon="star" data-iconpos="top" action="dashboard" class="ui-btn-active">Dashboard</g:link></li>
-						<!-- <a href="dashboard.html"  class="ui-btn-active" class="" data-role="button" data-icon="grid" data-iconpos="top">Dashboard</a>	 -->
-					<li><a href="#definitions" class="" data-role="button" data-icon="info" data-iconpos="top" data-transition="pop" >Virtues Defined</a>
-				</ul>
+			
+			<div class="ui-bar ui-bar-a">
+				<div data-role="controlgroup" data-type="horizontal" class="ui-corner-all ui-controlgroup ui-controlgroup-horizontal">
+					<a href="#definitions" data-inline="true" data-role="button" data-icon="info" data-theme="a" class="ui-btn ui-btn-up-a ui-btn-inline ui-corner-left">
+						<span class="ui-btn-inner ui-corner-left">
+							<span class="ui-btn-text">Virtues Defined</span>
+							<span class=""></span>
+						</span>
+					</a>
+					<a href="#help" data-inline="true" data-role="button" data-theme="a" data-icon="alert" class="ui-btn ui-btn-up-a ui-btn-inline ui-corner-right ui-controlgroup-last">
+						<span class="ui-btn-inner ui-corner-right ui-controlgroup-last">
+							<span class="ui-btn-text">Help</span>
+						</span>
+					</a>
+				</div><!-- /controlgroup -->
 			</div>
+
 		</div><!-- /footer -->
 			
 	</div>

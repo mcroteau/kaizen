@@ -19,6 +19,10 @@ class VirtueEntry {
 	int happinessScale
 	String notes
 	
+	int totalCompleted
+	String performanceDescription
+	
+	Account account
 	static belongsTo = Account
 	
     static constraints = {
@@ -26,6 +30,6 @@ class VirtueEntry {
     }
  	
 	static mapping = {
-    	id generator: 'sequence', params:[sequence:'ID_VIRTUE_ENTRY_PK_SEQ']
+    	//id generator: 'sequence', params:[sequence:'ID_VIRTUE_ENTRY_PK_SEQ']
   	}
 }

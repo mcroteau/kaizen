@@ -2,10 +2,15 @@
 <html> 
 	<head> 
 	<title>Franklins 13 : Log Virtues Entry</title> 
-    <link rel="stylesheet" href="${resource(dir:'css/lib/jquery/',file:'jquery.mobile-1.0a4.1.css')}" />
-	<!-- <link rel="stylesheet" href="css/lib/jquery/jquery.mobile.valencia.css" /> -->
+    <link rel="stylesheet" href="${resource(dir:'js/lib/jquery/jquerymobile/jquery.mobile-1.0b3/',file:'jquery.mobile-1.0b3.min.css')}" /> 
 	<script type="text/javascript" src="${resource(dir:'js/lib/jquery/', 'jquery-1.6.1.min.js')}"></script>
-	<script type="text/javascript" src="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>
+	<script type="text/javascript" src="${resource(dir:'js/lib/jquery/jquerymobile/jquery.mobile-1.0b3/', 'jquery.mobile-1.0b3.min.js')}"></script>
+	
+	<!--
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.css" />
+	<script src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.js"></script>
+	-->
 </head> 
 <body>
 

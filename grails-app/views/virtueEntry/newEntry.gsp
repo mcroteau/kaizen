@@ -10,18 +10,43 @@
 	
 		<div data-role="page">
 
-			<div data-role="header" data-theme="b">
-				<a href="#" data-icon="arrow-l" rel="external" data-rel="back">Back</a>
-				<h1>Todays Entry ${new Date()}</h1>
-				<a href="#help" data-icon="alert" class="ui-btn-right" data-transition="pop">Help</a>
+			<div data-role="header" data-theme="a">
+				
+				<h1>Todays Entry : <g:formatDate format="dd MMM yyyy" date="${new Date()}"/></h1>
 
 			</div><!-- /header -->
 
 			<div data-role="content">	
+				<div class="ui-bar ui-bar-f">
 
-	            <g:if test="${flash.message}">
+					<div data-role="controlgroup" data-type="horizontal" class="ui-corner-all ui-controlgroup ui-controlgroup-horizontal">
+
+						<g:link controller="static" action="dashboard" id="" data-ajax="false" data-icon="plus" data-role="button" data-inline="true" data-theme="c" class="ui-btn ui-btn-inline ui-btn-icon-left ui-corner-left ui-btn-up-c">
+							<span class="ui-btn-inner ui-corner-left">
+								<span class="ui-btn-text">Dashboard</span>
+								<span class="ui-icon ui-icon-grid ui-icon-shadow"></span>
+							</span>
+						</g:link>
+						<g:link controller="virtueEntry" action="newEntry" id="" data-ajax="false" data-icon="plus" data-role="button" data-inline="true" data-theme="c" class="ui-btn ui-btn-inline ui-btn-icon-left ui-btn-up-c ui-btn-active">
+							<span class="ui-btn-inner ui-corner-left">
+								<span class="ui-btn-text">Todays Entry</span>
+								<span class="ui-icon ui-icon-star ui-icon-shadow"></span>
+							</span>
+						</g:link>
+						<g:link controller="virtueEntry" action="list" id="" data-ajax="false" data-icon="plus" data-role="button" data-inline="true" data-theme="c" class="ui-btn ui-btn-inline ui-btn-icon-left ui-btn-up-c">
+							<span class="ui-btn-inner ui-corner-left">
+								<span class="ui-btn-text">History</span>
+								<span class="ui-icon ui-icon-search ui-icon-shadow"></span>
+							</span>
+						</g:link>
+
+					</div><!-- /controlgroup -->
+				</div>
+				
+				
+	            <!-- <g:if test="${flash.message}">
 	            <div class="message">${flash.message}</div>
-	            </g:if>
+	            </g:if> -->
 	            <g:hasErrors bean="${virtueEntryInstance}">
 	            <div class="errors">
 	                <g:renderErrors bean="${virtueEntryInstance}" as="list" />
@@ -107,18 +132,29 @@
 
 			</div><!-- /content -->
 
+
+
 			<div data-role="footer">
-				<div data-role="navbar">
-					<ul>
-						<li><a href="todaysEntry.html" class="ui-btn-active" data-icon="star" data-iconpos="top">Todays Entry</a></li>
-						<li><g:link controller="static" rel="external" data-icon="grid" data-iconpos="top" data-role="button" data-inline="true" action="dashboard">Dashboard</g:link></li>
-							<!-- <a href="dashboard.html" rel="external" class="" data-role="button" data-icon="grid" data-iconpos="top">Dashboard</a> -->
-						<li><a href="#definitions" class="" data-role="button" data-icon="info" data-iconpos="top" data-transition="slide" >Virtues Defined</a></li>
-					</ul>
+
+				<div class="ui-bar ui-bar-a">
+					<div data-role="controlgroup" data-type="horizontal" class="ui-corner-all ui-controlgroup ui-controlgroup-horizontal">
+						<a href="#definitions" data-inline="true" data-role="button" data-icon="info" data-theme="a" class="ui-btn ui-btn-up-a ui-btn-inline ui-corner-left">
+							<span class="ui-btn-inner ui-corner-left">
+								<span class="ui-btn-text">Virtues Defined</span>
+								<span class=""></span>
+							</span>
+						</a>
+						<a href="#help" data-inline="true" data-role="button" data-theme="a" data-icon="alert" class="ui-btn ui-btn-up-a ui-btn-inline ui-corner-right ui-controlgroup-last">
+							<span class="ui-btn-inner ui-corner-right ui-controlgroup-last">
+								<span class="ui-btn-text">Help</span>
+							</span>
+						</a>
+					</div><!-- /controlgroup -->
 				</div>
+
 			</div><!-- /footer -->
 
-		</div><!-- end of page-->
+			</div><!-- end of page-->
 
 		
 		<g:render template="/help/help"/>
@@ -128,20 +164,9 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 			
-				$('#submit').click(function(event){ ajaxItUp();});
+				// $('#submit').click(function(event){ ajaxItUp();});
 			});
 		
-			function ajaxItUp(){
-				var data = 
-				$.ajax({
-					type : post,
-					data : ,
-					url : 'http://localhost:8080/franklins13/virtueEntry/save'
-					success : success,
-					failuer : failure
-				});
-				
-			}
 			
 			function failure(){
 				console.log('failure');

@@ -10,16 +10,38 @@
 	
 		<div data-role="page">
 
-			<div data-role="header" data-theme="b">
-				<a href="#" data-icon="arrow-l" rel="external" data-rel="back">Back</a>
-				<h1>Todays Entry ${new Date()}</h1>
-				<a href="#help" data-icon="alert" class="ui-btn-right" data-transition="pop">Help</a>
-
+			<div data-role="header" data-theme="a">
+				<h1>Entry Date : <g:formatDate format="dd MMM yyyy" date="${virtueEntryInstance?.entryDate}"/></h1>
 			</div><!-- /header -->
 
 			<div data-role="content" id="showEntry">	
 
-		
+				<div class="ui-bar ui-bar-f">
+
+					<div data-role="controlgroup" data-type="horizontal" class="ui-corner-all ui-controlgroup ui-controlgroup-horizontal">
+
+						<g:link controller="static" action="dashboard" id="" data-ajax="false" data-icon="plus" data-role="button" data-inline="true" data-theme="c" class="ui-btn ui-btn-inline ui-btn-icon-left ui-corner-left ui-btn-up-c">
+							<span class="ui-btn-inner ui-corner-left">
+								<span class="ui-btn-text">Dashboard</span>
+								<span class="ui-icon ui-icon-grid ui-icon-shadow"></span>
+							</span>
+						</g:link>
+						<g:link controller="virtueEntry" action="newEntry" id="" data-ajax="false" data-icon="plus" data-role="button" data-inline="true" data-theme="c" class="ui-btn ui-btn-inline ui-btn-icon-left ui-btn-up-c">
+							<span class="ui-btn-inner ui-corner-left">
+								<span class="ui-btn-text">Todays Entry</span>
+								<span class="ui-icon ui-icon-star ui-icon-shadow"></span>
+							</span>
+						</g:link>
+						<g:link controller="virtueEntry" action="list" id="" data-ajax="false" data-icon="plus" data-role="button" data-inline="true" data-theme="c" class="ui-btn ui-btn-inline ui-btn-icon-left ui-btn-up-c ui-btn-active">
+							<span class="ui-btn-inner ui-corner-left">
+								<span class="ui-btn-text">History</span>
+								<span class="ui-icon ui-icon-search ui-icon-shadow"></span>
+							</span>
+						</g:link>
+
+					</div><!-- /controlgroup -->
+				</div>
+						
 				<p>Check all virtues you successfully upheld today.  Unsure what each Virtue means, click <a href="#definitions" data-transition="flip">here</a></p>
 
 					<div data-role="fieldcontain">
@@ -68,7 +90,8 @@
                 	
                 	
 			  		<div  data-role="fieldcontain">
-			  		<h3>Social Virtues</h3>
+				
+			  			<h3>Social Virtues</h3>
                 	
 						<fieldset data-role="controlgroup" >
                 	
@@ -96,25 +119,37 @@
 					</div>
                 	
 
-			    <h3>How happy are you now the day is done?</h3>
-				<!-- <h1>${virtueEntryInstance?.happinessScale}</h1> -->
-				<div data-role="fieldcontain">
-					<label for="happinessScale">Slide from 1 to 10, 10 being extemely happy/satisfied with your day</label>
-				 	<input type="range" name="happinessScale" id="happinessScale" value="${virtueEntryInstance?.happinessScale}" min="0" max="10"  />
+			    <h3>You rated your happiness/satisfaction level a : ${virtueEntryInstance?.happinessScale}</h3>
+               	
+				<div data-inline="true" style="text-align:center">
+					<g:link controller="static" rel="external" data-role="button" data-inline="true" action="dashboard">Edit</g:link>
+					<!-- <a href="dashboard.html" data-role="button" rel="external" data-inline="true" style="margin:10px auto">Cancel</a> -->
+					<button type="submit" data-theme="b" data-inline="true" name="submit" value="submit-value" class="ui-btn-hidden" aria-disabled="false"
+					rel="external">Delete</button>
 				</div>
-                	
 
 			</div><!-- /content -->
 
 			<div data-role="footer">
-				<div data-role="navbar">
-					<ul>
-						<li><a href="todaysEntry.html" class="ui-btn-active" data-icon="star" data-iconpos="top">Todays Entry</a>
-						<li><a href="dashboard.html" rel="external" class="" data-role="button" data-icon="grid" data-iconpos="top">Dashboard</a>
-						<li><a href="#definitions" class="" data-role="button" data-icon="info" data-iconpos="top" data-transition="slide" >Virtues Defined</a>
-					</ul>
+
+				<div class="ui-bar ui-bar-a">
+					<div data-role="controlgroup" data-type="horizontal" class="ui-corner-all ui-controlgroup ui-controlgroup-horizontal">
+						<a href="#definitions" data-inline="true" data-role="button" data-icon="info" data-theme="a" class="ui-btn ui-btn-up-a ui-btn-inline ui-corner-left">
+							<span class="ui-btn-inner ui-corner-left">
+								<span class="ui-btn-text">Virtues Defined</span>
+								<span class=""></span>
+							</span>
+						</a>
+						<a href="#help" data-inline="true" data-role="button" data-theme="a" data-icon="alert" class="ui-btn ui-btn-up-a ui-btn-inline ui-corner-right ui-controlgroup-last">
+							<span class="ui-btn-inner ui-corner-right ui-controlgroup-last">
+								<span class="ui-btn-text">Help</span>
+							</span>
+						</a>
+					</div><!-- /controlgroup -->
 				</div>
+
 			</div><!-- /footer -->
+
 
 		</div><!-- end of page-->
 

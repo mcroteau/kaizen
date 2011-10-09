@@ -34,13 +34,17 @@ class BootStrap {
 		
 			setPasswords()
 			
-			def adminAccount = new Account(fullName : "Admin User", username : 'admin', passwordHash : adminPass, email : 'admin@franklins13app.com', active : true)
+			def adminAccount = new Account(fullName : "Admin User", username : 'admin', passwordHash : adminPass, email : 'admin@franklins13app.com', active : true, isMale : true)
 			adminAccount.addToRoles(adminRole)
 			adminAccount.save(flush:true)
 			
-			def simpleAccount = new Account(fullName : "Simple User", username : 'simple', passwordHash : simpleUserPass, email : 'simple@franklins13app.com', active : true)
-			simpleAccount.addToRoles(simpleRole)
-			simpleAccount.save(flush:true)
+			def simpleAccountFemale = new Account(fullName : "Simple Woman", username : 'woman', passwordHash : simpleUserPass, email : 'woman@franklins13app.com', active : true, isMale : false)
+			simpleAccountFemale.addToRoles(simpleRole)
+			simpleAccountFemale.save(flush:true)
+			
+			def simpleAccountMale = new Account(fullName : "Simple Man", username : 'man', passwordHash : simpleUserPass, email : 'man@franklins13app.com', active : true, isMale : true)
+			simpleAccountMale.addToRoles(simpleRole)
+			simpleAccountMale.save(flush:true)
 
 		
 		}

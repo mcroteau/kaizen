@@ -7,7 +7,7 @@ class ShiroSecurityFilters {
     	roleMaintenance(controller: "role", action: "(create|edit|save|update|delete)") {
     	    before = {
     	        accessControl {
-    	            role("Administrator")
+    	            role("ROLE_ADMIN")
     	        }
     	    }
     	}
@@ -15,8 +15,7 @@ class ShiroSecurityFilters {
     	    before = {
     	        accessControl {
     	            role("ROLE_ADMIN")
-    	            role("ROLE_PAYING_MEMBER")
-    	            role("ROLE_NON_PAYING_MEMBER")
+    	            role("ROLE_SIMPLE_USER")
     	        }
     	    }
     	}
@@ -27,5 +26,13 @@ class ShiroSecurityFilters {
     	        }
     	    }
     	}
+	    virtueEntryMaintenance(controller: "virtueEntry", action: "(create|edit|save|update|delete|newEntry)") {
+	        before = {
+	            accessControl {
+	                role("ROLE_ADMIN")
+    	            role("ROLE_SIMPLE_USER")
+	            }
+	        }
+	    }
     }
 }

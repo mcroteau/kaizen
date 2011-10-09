@@ -1,12 +1,22 @@
+
+import org.apache.shiro.SecurityUtils
+
 class VirtueEntryController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
-
+	def utilitiesService
+	
     def index = {
         redirect(action: "list", params: params)
     }
 
     def list = {
+        params.max = Math.min(params.max ? params.int('max') : 5, 100)
+        [virtueEntryInstanceList: VirtueEntry.list(params), virtueEntryInstanceTotal: VirtueEntry.count()]
+    }
+	
+
+    def listOLD = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [virtueEntryInstanceList: VirtueEntry.list(params), virtueEntryInstanceTotal: VirtueEntry.count()]
     }
@@ -24,47 +34,93 @@ class VirtueEntryController {
 	}
 
     def save = {
-		println 'saving ... '
-        def virtueEntryInstance = new VirtueEntry(params)
-		def reformattedParms = onOffToBoolean(params)
-		println reformattedParms
+		
+		println params
+		def subject = SecurityUtils.getSubject();
+		def account = Account.findByUsername(subject?.getPrincipal())
+		println 'isMale:' + account?.isMale
+		def totalCompleted = getTotalVirtuesFollowed(params)
+		def performanceDescription = getPerformanceDescription(totalCompleted, Integer.parseInt(params.happinessScale), account)
+		println 'totalCompleted:'+ totalCompleted
+		def virtueEntryInstance = new VirtueEntry(params)
+		virtueEntryInstance.account = account
 		
 		def today = getTodaysDate()
 		virtueEntryInstance.entryDate = today
+		virtueEntryInstance.totalCompleted = totalCompleted
+		virtueEntryInstance.performanceDescription = performanceDescription
 		
 		def todaysEntry = VirtueEntry.findByEntryDate(today)
-		println todaysEntry
 		if(todaysEntry){ 
-			println 'today has already been entered'
-			redirect(action : 'show', id:todaysEntry.id)
-			return
+			//redirect(action : 'show', id:todaysEntry.id)
+			//return
 		}
 		
         if (virtueEntryInstance.save(flush: true)) {
-			println 'really saving  ... '
-            flash.message = "${message(code: 'default.created.message', args: [message(code: 'virtueEntry.label', default: 'VirtueEntry'), virtueEntryInstance.id])}"
-            redirect(action: "show", id: virtueEntryInstance.id)
-			println 'here.. '
-        }
-        else {
-			println 'redisplay create'
-            render(view: "newEntry", model: [virtueEntryInstance: virtueEntryInstance])
+			
+			flash.message = "${message(code: 'default.created.message', args: [message(code: 'virtueEntry.label', default: 'VirtueEntry'), virtueEntryInstance.id])}"
+            
+            render view: "confirmation", model: [virtueEntryInstance: virtueEntryInstance]
+			return
+        } else {
+			render(view: "newEntry", model: [virtueEntryInstance: virtueEntryInstance])
         }
     }
 
-	def onOffToBoolean(params){
-		def reformattedParams = {}
-		params.each{ key, value ->
-			println key + ':' + value
-		    if(value == 'on'){
-				println 'turn to true'
-				//reformattedParams[key] = true
-			}
-		}
+
 	
-		return reformattedParams
+
+	def confirmation = {
+		println 'confirmation'
 	}
+
+
+	def getTotalVirtuesFollowed(params){
+		println 'here...'
+		def totalCompleted = 0
+		params.each{
+			println it.value
+			if(it.value == 'on'){totalCompleted++}
+		}
+		return totalCompleted
+	}
+		
 	
+	def getPerformanceDescription(totalCompleted, happiness, account){
+		println 'getting performanceDescription'
+		def description = ''
+		def slangTerm = utilitiesService.getRandomSlangTerm(account.isMale)
+		println 'slangTerm: ' + slangTerm
+		if(totalCompleted == 0 && happiness > 5){
+			description = 'You are happy with today?  Not judging but maybe you should rethink...' + slangTerm
+		}else if(totalCompleted == 0){
+			description = 'Tomorrow is a new day ' + slangTerm
+		}else if(totalCompleted <= 5){
+			if(happiness > 7){
+				description = 'You are easily pleased... you must realize that there is no such thing as perfect. Tomorrow is a new day' + slangTerm
+			}
+			if(happiness < 7 && happiness > 4){
+				description = 'No Saint... but at least you are trying.  '
+			}
+			if(happiness < 4){
+				description = 'Dont beat yourself up.. no such thing as perfect ' + slangTerm
+			}
+		}else if(totalCompleted <= 10){
+			description = 'Franklin would approve ' + slangTerm
+			if(happiness < 9 && happiness > 7){
+				description = 'Franklin would approve!  Well done.. Doing good is Feeling Good ' + slangTerm
+			}
+			
+		}else if(totalCompleted == 13){
+			//if()
+			description = 'Franklin status! Nice work '  + slangTerm
+		}
+		
+		return description
+
+	}
+
+
     def show = {
         def virtueEntryInstance = VirtueEntry.get(params.id)
         if (!virtueEntryInstance) {
@@ -140,5 +196,11 @@ class VirtueEntryController {
 		date.clearTime()
 		println 'new date : ' + date
 		return date
+	}
+	
+	
+	def getRandomNumber(){
+		random = new Random()
+		randomInt = random.nextInt(200-100+1)+100
 	}
 }
