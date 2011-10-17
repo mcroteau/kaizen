@@ -18,8 +18,8 @@ environments {
 		    dialect = org.hibernate.dialect.MySQL5InnoDBDialect
             url = "jdbc:mysql://localhost:8889/franklin13Test1"
             //url = "jdbc:mysql://franklin13.cz5gbshogmpq.us-east-1.rds.amazonaws.com:3306/franklin13"
-            username = "franklin13"
-            password = "franklin13"
+            username = "root"
+            password = "baseball03"
 		    properties {
 		        maxActive = 50
 		        maxIdle = 25

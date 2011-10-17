@@ -1,0 +1,18 @@
+15 Oct 2011
+
+Started working through flow of the app.  Both the mobile version and the website will run off the same grails application.
+
+Downloaded Android SDK.  Installed latest packages
+
+- Android SDK Tools, revision 13
+- Android SDK Platform-tools, revision 7
+- Documentation for Android SDK, API 13, revision 1
+- SDK Platform Android 3.2, API 13, revision 1
+- Samples for SDK API 13, revision 1
+- Android Compatibility package, revision 3
+
+Created a new Android Virtual Device
+
+
+**** RETHOUGHT APPROACH -> no mobile download first release.  Going with invite only, can access via mobile or desktop device, will detect user agent then display appropriate view
+

@@ -1,0 +1,22 @@
+* Website *
+Splash Page
+About the Experiment
+13 Principles Defined
+How to Use
+
+
+
+
+
+* Mobile App *
+Sign In 
+Sign Up
+Help
+How To
+Definitions
+Log Results
+Edit Results
+Delete Results
+View Logged Principles
+# Calendar View
+Dashboard

@@ -6,6 +6,11 @@
 	<script type="text/javascript" src="${resource(dir:'js/lib/jquery/', 'jquery-1.6.1.min.js')}"></script>
 	<script type="text/javascript" src="${resource(dir:'js/lib/jquery/jquerymobile/jquery.mobile-1.0b3/', 'jquery.mobile-1.0b3.min.js')}"></script>
 	
+	<style type="text/css">
+		.clear{clear:both !important;}
+		.message{font-weight:bold !important; color:#ff0000;}
+	</style>
+	
 	<!--
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.css" />
 	<script src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
@@ -28,10 +33,11 @@
 	<script type="text/javascript">
 	
 		$(document).bind("mobileinit", function(){
-	  		//$.mobile.foo = bar;
 			$.ajaxFormsEnabled = false;
 		});
 	
+		//$('.ui-select ').parent().par.attr('')
+			
 	</script>
 </body>
 </html>

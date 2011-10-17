@@ -11,9 +11,31 @@ class VirtueEntryController {
     }
 
     def list = {
+
+		def account
         params.max = Math.min(params.max ? params.int('max') : 5, 100)
-        [virtueEntryInstanceList: VirtueEntry.list(params), virtueEntryInstanceTotal: VirtueEntry.count()]
-    }
+
+		def subject = SecurityUtils.getSubject();
+		if(subject?.getPrincipal()){
+			account = Account.findByUsername(subject?.getPrincipal())
+		}
+		
+		if(account){
+			
+			println 'account -> ' + account
+			def virtueEntryInstanceList = VirtueEntry.findAllByAccount(account, [max:params.max])
+			def virtueEntryInstanceTotal = VirtueEntry.countByAccount(account)
+        	
+			[virtueEntryInstanceList: virtueEntryInstanceList, virtueEntryInstanceTotal: virtueEntryInstanceTotal]
+			
+		}else{
+		
+			flash.message = "No entries logged yet"
+			redirect action:"newEntry"
+		
+		}
+	
+	}
 	
 
     def listOLD = {
@@ -39,6 +61,7 @@ class VirtueEntryController {
 		def subject = SecurityUtils.getSubject();
 		def account = Account.findByUsername(subject?.getPrincipal())
 		println 'isMale:' + account?.isMale
+		
 		def totalCompleted = getTotalVirtuesFollowed(params)
 		def performanceDescription = getPerformanceDescription(totalCompleted, Integer.parseInt(params.happinessScale), account)
 		println 'totalCompleted:'+ totalCompleted
@@ -58,11 +81,17 @@ class VirtueEntryController {
 		
         if (virtueEntryInstance.save(flush: true)) {
 			
+			println "virtueEntry:" + virtueEntryInstance.id
+			account.addToPermissions("virtueEntry:show,edit,delete,update:" + virtueEntryInstance.id)
+			account.save(flush:true)
+			println 'updated account'
+			
 			flash.message = "${message(code: 'default.created.message', args: [message(code: 'virtueEntry.label', default: 'VirtueEntry'), virtueEntryInstance.id])}"
             
             render view: "confirmation", model: [virtueEntryInstance: virtueEntryInstance]
 			return
-        } else {
+        
+		} else {
 			render(view: "newEntry", model: [virtueEntryInstance: virtueEntryInstance])
         }
     }
@@ -133,60 +162,96 @@ class VirtueEntryController {
     }
 
     def edit = {
-        def virtueEntryInstance = VirtueEntry.get(params.id)
-        if (!virtueEntryInstance) {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'virtueEntry.label', default: 'VirtueEntry'), params.id])}"
-            redirect(action: "list")
-        }
-        else {
-            return [virtueEntryInstance: virtueEntryInstance]
-        }
+		if(params.id && SecurityUtils.subject.isPermitted("virtueEntry:update:"+params.id)){
+		
+        	def virtueEntryInstance = VirtueEntry.get(params.id)
+        	if (!virtueEntryInstance) {
+        	    flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'virtueEntry.label', default: 'VirtueEntry'), params.id])}"
+        	    redirect(action: "list")
+        	}
+        	else {
+        	    return [virtueEntryInstance: virtueEntryInstance]
+        	}
+		
+		}else{
+         
+			flash.message = "You are not authorized to Edit this Virtue Entry"
+		 	redirect action:"show", id:params.id
+         
+		}
     }
 
     def update = {
-        def virtueEntryInstance = VirtueEntry.get(params.id)
-        if (virtueEntryInstance) {
-            if (params.version) {
-                def version = params.version.toLong()
-                if (virtueEntryInstance.version > version) {
-                    
-                    virtueEntryInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'virtueEntry.label', default: 'VirtueEntry')] as Object[], "Another user has updated this VirtueEntry while you were editing")
-                    render(view: "edit", model: [virtueEntryInstance: virtueEntryInstance])
-                    return
-                }
-            }
-            virtueEntryInstance.properties = params
-            if (!virtueEntryInstance.hasErrors() && virtueEntryInstance.save(flush: true)) {
-                flash.message = "${message(code: 'default.updated.message', args: [message(code: 'virtueEntry.label', default: 'VirtueEntry'), virtueEntryInstance.id])}"
-                redirect(action: "show", id: virtueEntryInstance.id)
-            }
-            else {
-                render(view: "edit", model: [virtueEntryInstance: virtueEntryInstance])
-            }
-        }
-        else {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'virtueEntry.label', default: 'VirtueEntry'), params.id])}"
-            redirect(action: "list")
-        }
+
+		println 'update ' + params.id
+		
+		if(params.id && SecurityUtils.subject.isPermitted("virtueEntry:update:"+params.id)){
+
+			println 'is permitted to virtueEntry:update:' + params.id
+			
+       		def virtueEntryInstance = VirtueEntry.get(params.id)
+       		if (virtueEntryInstance) {
+       		    if (params.version) {
+       		        def version = params.version.toLong()
+       		        if (virtueEntryInstance.version > version) {
+       		            
+       		            virtueEntryInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'virtueEntry.label', default: 'VirtueEntry')] as Object[], "Another user has updated this VirtueEntry while you were editing")
+       		            render(view: "edit", model: [virtueEntryInstance: virtueEntryInstance])
+       		            return
+       		        }
+       		    }
+       		    virtueEntryInstance.properties = params
+       		    if (!virtueEntryInstance.hasErrors() && virtueEntryInstance.save(flush: true)) {
+       		        flash.message = "${message(code: 'default.updated.message', args: [message(code: 'virtueEntry.label', default: 'VirtueEntry'), virtueEntryInstance.id])}"
+       		        redirect(action: "show", id: virtueEntryInstance.id)
+       		    }
+       		    else {
+       		        render(view: "edit", model: [virtueEntryInstance: virtueEntryInstance])
+       		    }
+       		}
+       		else {
+       		    flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'virtueEntry.label', default: 'VirtueEntry'), params.id])}"
+       		    redirect(action: "list")
+       		}
+		
+		}else{
+			
+			flash.message = "You are not authorized to update this Virtue Entry"
+			redirect action:"show", id:params.id
+			
+		}
     }
 
     def delete = {
-        def virtueEntryInstance = VirtueEntry.get(params.id)
-        if (virtueEntryInstance) {
-            try {
-                virtueEntryInstance.delete(flush: true)
-                flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'virtueEntry.label', default: 'VirtueEntry'), params.id])}"
-                redirect(action: "list")
-            }
-            catch (org.springframework.dao.DataIntegrityViolationException e) {
-                flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'virtueEntry.label', default: 'VirtueEntry'), params.id])}"
-                redirect(action: "show", id: params.id)
-            }
-        }
-        else {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'virtueEntry.label', default: 'VirtueEntry'), params.id])}"
-            redirect(action: "list")
-        }
+
+		if(params.id && SecurityUtils.subject.isPermitted("virtueEntry:update:"+params.id)){
+		
+        	def virtueEntryInstance = VirtueEntry.get(params.id)
+        	if (virtueEntryInstance) {
+        	    try {
+        	        virtueEntryInstance.delete(flush: true)
+        	        flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'virtueEntry.label', default: 'VirtueEntry'), params.id])}"
+        	        redirect(action: "list")
+        	    }
+        	    catch (org.springframework.dao.DataIntegrityViolationException e) {
+        	        flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'virtueEntry.label', default: 'VirtueEntry'), params.id])}"
+        	        redirect(action: "show", id: params.id)
+        	    }
+        	}
+        	else {
+        	    flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'virtueEntry.label', default: 'VirtueEntry'), params.id])}"
+        	    redirect(action: "list")
+        	}
+
+
+		}else{
+         
+			flash.message = "You are not authorized to Delete this Virtue Entry"
+		 	redirect action:"show", id:params.id
+         
+		}
+		
+		
     }
 
 	def getTodaysDate(){
@@ -200,7 +265,7 @@ class VirtueEntryController {
 	
 	
 	def getRandomNumber(){
-		random = new Random()
-		randomInt = random.nextInt(200-100+1)+100
+		def random = new Random()
+		def randomInt = random.nextInt(200-100+1)+100
 	}
 }

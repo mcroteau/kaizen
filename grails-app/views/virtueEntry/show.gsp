@@ -42,6 +42,11 @@
 					</div><!-- /controlgroup -->
 				</div>
 						
+				<g:if test="${flash.message}">
+	            	<div class="message">${flash.message}</div>
+	            </g:if>
+			
+						
 				<p>Check all virtues you successfully upheld today.  Unsure what each Virtue means, click <a href="#definitions" data-transition="flip">here</a></p>
 
 					<div data-role="fieldcontain">
@@ -122,33 +127,16 @@
 			    <h3>You rated your happiness/satisfaction level a : ${virtueEntryInstance?.happinessScale}</h3>
                	
 				<div data-inline="true" style="text-align:center">
-					<g:link controller="static" rel="external" data-role="button" data-inline="true" action="dashboard">Edit</g:link>
-					<!-- <a href="dashboard.html" data-role="button" rel="external" data-inline="true" style="margin:10px auto">Cancel</a> -->
-					<button type="submit" data-theme="b" data-inline="true" name="submit" value="submit-value" class="ui-btn-hidden" aria-disabled="false"
-					rel="external">Delete</button>
+					
+					<g:link id="${virtueEntryInstance.id}" action="edit" rel="external" data-role="button" data-inline="true">Edit</g:link>
+					
+					
 				</div>
 
 			</div><!-- /content -->
 
-			<div data-role="footer">
-
-				<div class="ui-bar ui-bar-a">
-					<div data-role="controlgroup" data-type="horizontal" class="ui-corner-all ui-controlgroup ui-controlgroup-horizontal">
-						<a href="#definitions" data-inline="true" data-role="button" data-icon="info" data-theme="a" class="ui-btn ui-btn-up-a ui-btn-inline ui-corner-left">
-							<span class="ui-btn-inner ui-corner-left">
-								<span class="ui-btn-text">Virtues Defined</span>
-								<span class=""></span>
-							</span>
-						</a>
-						<a href="#help" data-inline="true" data-role="button" data-theme="a" data-icon="alert" class="ui-btn ui-btn-up-a ui-btn-inline ui-corner-right ui-controlgroup-last">
-							<span class="ui-btn-inner ui-corner-right ui-controlgroup-last">
-								<span class="ui-btn-text">Help</span>
-							</span>
-						</a>
-					</div><!-- /controlgroup -->
-				</div>
-
-			</div><!-- /footer -->
+			
+			<g:render template="/common/mobile/footer"/>
 
 
 		</div><!-- end of page-->

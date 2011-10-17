@@ -18,4 +18,6 @@ class Account {
 	static mapping = {
     	//id generator: 'sequence', params:[sequence:'ID_ACCOUNT_PK_SEQ']
   	}
+
+
 }

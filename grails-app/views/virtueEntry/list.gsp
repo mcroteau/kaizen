@@ -41,13 +41,24 @@
 			</div><!-- /controlgroup -->
 		</div>			
 					
+					
+					
+					
 		<br class="clear"/>			
+		
+		
+		<g:if test="${flash.message}">
+        	<div class="message">${flash.message}</div>
+        </g:if>
+		
+<br class="clear"/>			
+		
 					
 		<div class="content-primary">
 			
 			<ul data-role="listview">
 				
-				<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-btn ui-bar-b ui-li-has-count ui-btn-down-undefined ui-btn-up-undefined"></li>
+				<!--<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-btn ui-bar-b ui-li-has-count ui-btn-down-undefined ui-btn-up-undefined"></li>-->
 				
 		    	<g:each in="${virtueEntryInstanceList}" status="i" var="virtueEntryInstance">
             		<li>
@@ -75,25 +86,7 @@
 			a.nextLink{margin:0px 5px; border:solid 1px #ddd;}
 		</style>
 		
-		<div data-role="footer" data-position="fixed">
-			
-			<div class="ui-bar ui-bar-a">
-				<div data-role="controlgroup" data-type="horizontal" class="ui-corner-all ui-controlgroup ui-controlgroup-horizontal">
-					<a href="#definitions" data-inline="true" data-role="button" data-icon="info" data-theme="a" class="ui-btn ui-btn-up-a ui-btn-inline ui-corner-left">
-						<span class="ui-btn-inner ui-corner-left">
-							<span class="ui-btn-text">Virtues Defined</span>
-							<span class=""></span>
-						</span>
-					</a>
-					<a href="#help" data-inline="true" data-role="button" data-theme="a" data-icon="alert" class="ui-btn ui-btn-up-a ui-btn-inline ui-corner-right ui-controlgroup-last">
-						<span class="ui-btn-inner ui-corner-right ui-controlgroup-last">
-							<span class="ui-btn-text">Help</span>
-						</span>
-					</a>
-				</div><!-- /controlgroup -->
-			</div>
-
-		</div><!-- /footer -->
+		<g:render template="/common/mobile/footer"/>
 
 	</div><!-- end of page-->
 
