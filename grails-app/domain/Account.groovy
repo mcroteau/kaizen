@@ -11,8 +11,8 @@ class Account {
     static hasMany = [ roles: Role, permissions: String, virtueEntries: VirtueEntry]
 
     static constraints = {
-        username(nullable: false, blank: false)
-		email(nullable:false, blank:false, email:true)
+        username(unique:true, nullable: false, blank: false)
+		email(unique:true, nullable:false, blank:false, email:true)
     }
 	
 	static mapping = {

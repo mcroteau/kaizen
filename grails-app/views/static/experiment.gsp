@@ -14,15 +14,27 @@
 
 	<p class="medium">How do I join?</p>  
 	<p>First, promise to be honest and treat this with respect.  Your account will be disabled if we believe you are being foolish or bashing the idea.</p>  
-	<p>Second, download the Mobile App.  Currently only available on Android.  It is a simple app..  and very new, so there might be a few quirks.  If you run into any quirckiness, please let us know.</p>
+	<p>Second, request an invite.</p>
 
 
 	<p class="medium">Request Invite</p>
 	<p class="medium"><a href="mailto:franklins13app@gmail.com">franklins13app@gmail.com</a></p>
 	
+	<br/>
+	<p class="medium">When given an account</p>
+	<p>When granted access, we will send you some instructions on how to use this app.  Once you have been given an account, you will be able to log in and start entering in your daily virtue progress.</p>
+	
 	
 	<p class="note">
 		<em>Note : </em> This is a small development project, so any bugs, questions and thoughts might not be responded to in the most timely manner.  
 	</p>
+	
+	<style type="text/css">
+		
+	</style>
+	<p class="note">
+		<em>One last thing : </em> Lets be honest here.  Do we really need an app to tell us what we already know?  It's simple... do good, be good, work hard, be honest, laugh, make others laugh... and hope for the best for yourself and those around you.
+	</p>
+	
 </body>
 </html>

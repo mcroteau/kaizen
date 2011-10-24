@@ -13,4 +13,7 @@ class Role {
     	//id generator: 'sequence', params:[sequence:'ID_ROLE_PK_SEQ']
   	}
 
+	def String toString(){
+		return name
+	}
 }

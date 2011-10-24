@@ -19,7 +19,7 @@
 			
 			<shiro:authenticated>
 			
-				<g:link controller="auth" action="signOut" data-inline="true" data-role="button" data-theme="b" class="ui-btn ui-btn-up-a ui-corner-right ui-corner-left">
+				<g:link controller="auth" action="signOut" data-inline="true" data-ajax="false" data-role="button" data-theme="b" class="ui-btn ui-btn-up-a ui-corner-right ui-corner-left">
 					<span class="ui-btn-inner ui-corner-right ui-corner-left" data-th>
 						<span class="ui-btn-text">Logout</span>
 					</span>

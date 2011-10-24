@@ -64,3 +64,26 @@ p.medium{
 	background:#f8f8f8;
 	border:solid 1px #efefef;
 }
+
+
+
+
+.wrapper.centeralign{
+	text-align:center;
+}
+.wrapper.centeralign div{
+	margin:auto;
+	text-align:left;
+}
+
+.loginForm{	
+	width:300px;
+	padding:15px;
+	background:#f8f8f8;
+	border:solid 1px #efefef;
+}
+
+.fourhundred{
+	width:400px;
+}
+

@@ -1,3 +1,5 @@
+import org.apache.shiro.SecurityUtils
+
 class StaticController {
 
     def index = { 
@@ -42,7 +44,60 @@ class StaticController {
 	
 	//users stats
 	def dashboard = {
+	
+		println 'dashboard -> '
+	
+		def account
+	
+		def subject = SecurityUtils.getSubject();
+		if(subject?.getPrincipal()){
+			account = Account.findByUsername(subject?.getPrincipal())
+		}
 		
+		def happiness = []
+		def virtues = []
+		
+		if(account){
+			
+			println 'account -> ' + account
+			def virtueEntryInstanceList = VirtueEntry.findAllByAccount(account, [sort:"entryDate", order:"desc"])
+    		
+
+			def i = 1;
+			virtueEntryInstanceList.each(){
+				
+				def dateInMillis = it.entryDate.getTime()
+				
+				def satisfactionValues = []
+				satisfactionValues.add(dateInMillis)
+				satisfactionValues.add(it.happinessScale)			
+				happiness.add(satisfactionValues)
+
+
+				def virtueValues = []
+				virtueValues.add(dateInMillis)
+				virtueValues.add(getTotalPrinciplesFollowed(it))
+				virtues.add(virtueValues)
+
+			 	i++
+			}
+
+			println "virtues -> ${virtues}"
+			println "happiness -> ${happiness}"
+			
+		}else{
+			
+		
+			happiness = null
+			virtues = null
+			flash.message = "No entries logged yet"
+		
+		}
+		
+			
+		request.happiness = happiness
+		request.virtues = virtues
+			
 	}
 
 	

@@ -44,56 +44,92 @@ class VirtueEntryController {
     }
 
     def create = {
-        def virtueEntryInstance = new VirtueEntry()
-        virtueEntryInstance.properties = params
-        return [virtueEntryInstance: virtueEntryInstance]
+		
+		def today = utilitiesService.getTodaysDate()
+		def todaysEntry = VirtueEntry.findByEntryDate(today)
+	
+		println 'todaysEntry -> ' + todaysEntry
+		
+		if(!todaysEntry){
+        	def virtueEntryInstance = new VirtueEntry()
+        	virtueEntryInstance.properties = params
+        	return [virtueEntryInstance: virtueEntryInstance]
+
+		}else{
+			
+			flash.message = "You've already logged a entry today..."
+			redirect controller:"static", action:"dashboard"
+		}
     }
 
 	def newEntry = {
+	def today = utilitiesService.getTodaysDate()
+	def todaysEntry = VirtueEntry.findByEntryDate(today)
+
+	println 'todaysEntry -> ' + todaysEntry
+	
+	if(!todaysEntry){
     	def virtueEntryInstance = new VirtueEntry()
     	virtueEntryInstance.properties = params
     	return [virtueEntryInstance: virtueEntryInstance]
+
+	}else{
+		
+		flash.message = "You've already logged a entry today..."
+		redirect controller:"static", action:"dashboard"
+	}
 	}
 
     def save = {
 		
-		println params
-		def subject = SecurityUtils.getSubject();
-		def account = Account.findByUsername(subject?.getPrincipal())
-		println 'isMale:' + account?.isMale
-		
-		def totalCompleted = getTotalVirtuesFollowed(params)
-		def performanceDescription = getPerformanceDescription(totalCompleted, Integer.parseInt(params.happinessScale), account)
-		println 'totalCompleted:'+ totalCompleted
-		def virtueEntryInstance = new VirtueEntry(params)
-		virtueEntryInstance.account = account
-		
-		def today = getTodaysDate()
-		virtueEntryInstance.entryDate = today
-		virtueEntryInstance.totalCompleted = totalCompleted
-		virtueEntryInstance.performanceDescription = performanceDescription
-		
+		def today = utilitiesService.getTodaysDate()
 		def todaysEntry = VirtueEntry.findByEntryDate(today)
-		if(todaysEntry){ 
-			//redirect(action : 'show', id:todaysEntry.id)
-			//return
+	
+		println 'todaysEntry -> ' + todaysEntry
+		
+		if(!todaysEntry){
+		
+			println 'No Entry Today -> '
+			
+			def subject = SecurityUtils.getSubject();
+			def account = Account.findByUsername(subject?.getPrincipal())
+			println 'isMale:' + account?.isMale
+			
+			def totalCompleted = getTotalVirtuesFollowed(params)
+			def performanceDescription = getPerformanceDescription(totalCompleted, Integer.parseInt(params.happinessScale), account)
+			println 'totalCompleted:'+ totalCompleted
+			def virtueEntryInstance = new VirtueEntry(params)
+			virtueEntryInstance.account = account
+			
+			//def today = getTodaysDate()
+			
+			virtueEntryInstance.entryDate = today
+			virtueEntryInstance.totalCompleted = totalCompleted
+			virtueEntryInstance.performanceDescription = performanceDescription
+
+			
+        	if (virtueEntryInstance.save(flush: true)) {
+				
+				println "virtueEntry:" + virtueEntryInstance.id
+				account.addToPermissions("virtueEntry:show,edit,delete,update:" + virtueEntryInstance.id)
+				account.save(flush:true)
+				println 'updated account'
+				
+				flash.message = "${message(code: 'default.created.message', args: [message(code: 'virtueEntry.label', default: 'VirtueEntry'), virtueEntryInstance.id])}"
+        	    
+        	    render view: "confirmation", model: [virtueEntryInstance: virtueEntryInstance]
+				return
+        	
+			} else {
+				render(view: "newEntry", model: [virtueEntryInstance: virtueEntryInstance])
+        	}
+		
+		}else{
+		
+			flash.message = "You've already logged a entry today..."
+			redirect controller:"static", action:"dashboard"
 		}
 		
-        if (virtueEntryInstance.save(flush: true)) {
-			
-			println "virtueEntry:" + virtueEntryInstance.id
-			account.addToPermissions("virtueEntry:show,edit,delete,update:" + virtueEntryInstance.id)
-			account.save(flush:true)
-			println 'updated account'
-			
-			flash.message = "${message(code: 'default.created.message', args: [message(code: 'virtueEntry.label', default: 'VirtueEntry'), virtueEntryInstance.id])}"
-            
-            render view: "confirmation", model: [virtueEntryInstance: virtueEntryInstance]
-			return
-        
-		} else {
-			render(view: "newEntry", model: [virtueEntryInstance: virtueEntryInstance])
-        }
     }
 
 
@@ -121,7 +157,7 @@ class VirtueEntryController {
 		def slangTerm = utilitiesService.getRandomSlangTerm(account.isMale)
 		println 'slangTerm: ' + slangTerm
 		if(totalCompleted == 0 && happiness > 5){
-			description = 'You are happy with today?  Not judging but maybe you should rethink...' + slangTerm
+			description = 'You are happy with today?  Not judging but maybe you should review...' + slangTerm
 		}else if(totalCompleted == 0){
 			description = 'Tomorrow is a new day ' + slangTerm
 		}else if(totalCompleted <= 5){

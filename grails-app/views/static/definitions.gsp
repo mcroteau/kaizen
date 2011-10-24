@@ -106,5 +106,9 @@
 	
 	<br class="clear"/>
 	
+	<p class="note">
+		<em>I think Franklin forgot one : </em> Take care of your body, in other words exercise, eat right... take it easy on the booze and other extracurricular party activities.  
+	</p>
+	
 </body>
 </html>

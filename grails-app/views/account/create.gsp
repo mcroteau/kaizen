@@ -46,14 +46,18 @@
                                 </td>
                             </tr>
                         
+							
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="active"><g:message code="account.active.label" default="Active" /></label>
+                                    <label for="isMale"><g:message code="account.isMale.label" default="IsMale" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean: accountInstance, field: 'active', 'errors')}">
-                                    <g:checkBox name="active" value="${accountInstance?.active}" />
+                                <td valign="top" class="value ${hasErrors(bean: accountInstance, field: 'isMale', 'errors')}">
+                                    <g:checkBox name="isMale" value="${accountInstance?.isMale}" />
                                 </td>
                             </tr>
+							
+							
+							<input type="hidden" name="active" value="true"/>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
@@ -66,7 +70,7 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="passwordHash"><g:message code="account.passwordHash.label" default="Password Hash" /></label>
+                                    <label for="passwordHash"><g:message code="account.passwordHash.label" default="Password" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: accountInstance, field: 'passwordHash', 'errors')}">
                                     <g:textField name="passwordHash" value="${accountInstance?.passwordHash}" />

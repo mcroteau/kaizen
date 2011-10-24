@@ -7,6 +7,10 @@
 
 <body>
 	
+	<g:if test="${flash.message}">
+		<p class="message error">${flash.message}</p>
+	</g:if>
+	
 	<p class="large">Will doing what is "right" make us happy?</p>
 	<p class="medium">Will we be happier if we follow principles that are simple yet require us to be thoughtful, disciplined & hard working?</p>
 	
@@ -17,7 +21,7 @@
 	
 	
 	
-	<p class="large">What we are looking for here...</p>
+	<p class="large">What we are looking for here?</p>
 	
 	<p class="medium">Total Virtues Followed/Completed vs how the person felt on a daily basis</p>
 	
@@ -125,11 +129,22 @@
 				    position: "bottom",
 				    
 					color: "#ddd",
-				    tickColor: "#e3e3e3",
+				    tickColor: "#efefef",
 				
 
 				    tickSize: 1,
 				    minTickSize: 1
+				},
+				
+				yaxis : {
+					show : true,
+					position: "left",
+					
+					color: "#efefef",
+					tickColor : "#f8f8f8",
+					min:0,
+					max:13,
+					tickSize :1
 				},
 				
 				crosshair: { mode: "x" }
@@ -181,7 +196,7 @@
 	    }
 	
 	    $("#basechart").bind("plothover",  function (event, pos, item) {
-			console.log('position -> ' + pos);
+			//console.log('position -> ' + pos);
 	        latestPosition = pos;
 	        if (!updateLegendTimeout)
 	            updateLegendTimeout = setTimeout(updateLegend, 50);

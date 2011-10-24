@@ -4,7 +4,7 @@ class UtilitiesService {
 
     static transactional = true
 	
-	def womanSlangWords = ["princess", "darling", "sugar", "miss thang", "love", "hot momma", "beautiful", "angel-face", "gorgeous", ]
+	def womanSlangWords = ["princess", "beautiful", "angel face", "gorgeous" ]
 	def manSlangWords = ["buddy", "brah", "mate", "ace", "amigo", "compadre", "friend"]
 	
     def serviceMethod() {
@@ -22,4 +22,14 @@ class UtilitiesService {
 		}
 		return womanSlangWords[getRandomNumber(womanSlangWords.size - 1, 0)]
 	}
+	
+	def getTodaysDate(){
+		def date = new Date()
+		println 'date : ' + date
+		
+		date.clearTime()
+		println 'new date : ' + date
+		return date
+	}
+	
 }

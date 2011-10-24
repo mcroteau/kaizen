@@ -41,13 +41,21 @@
 
 				</div><!-- /controlgroup -->
 			</div>
+				
+				<g:if test="${flash.message}">
+					<p class="message error">${flash.message}</p>
+				</g:if>
 												
-			<div id="chart1"></div>
+			<div id="progress" style="width:100%; height:200px;"></div>
 										
-			<div data-role="fieldcontain">
+										
+										
+
+										
+			<!-- <div data-role="fieldcontain">
 				
 				<fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
-				<!-- <legend>Choose a pet:</legend> -->
+					
 					<input type="radio" name="radio-choice-1" id="radio-choice-1" value="choice-1" checked="checked" />
 					<label for="radio-choice-1">Week</label>
 
@@ -59,7 +67,7 @@
 
 				</fieldset>
 			
-			</div>
+			</div> -->
 					
 					
 		</div><!-- /content -->
@@ -74,66 +82,122 @@
 	<g:render template="/help/definitions"/>
 	
 	
-	<script type="text/javascript" src="${resource(dir:'js/lib/jquery/jqplot/', 'jquery.jqplot.min.js')}"></script>
-	<script type="text/javascript" src="${resource(dir:'js/lib/jquery/jqplot/plugins/', 'jqplot.dateAxisRenderer.min.js')}"></script>
-	
-	<script type="text/javascript">
-	
-		$(document).ready(function(){
-			var line1=[['2008-09-30 4:00PM',4], ['2008-10-30 4:00PM',6.5], ['2008-11-30 4:00PM',5.7], ['2008-12-30 4:00PM',9], ['2009-01-30 4:00PM',8.2]];
-		  	var plot1 = $.jqplot('chart1', [line1], {
-		    	title:'Default Date Axis',
-		    	axes:{
-		        	xaxis:{
-		        	  	renderer:$.jqplot.DateAxisRenderer, 
-		        	  	tickOptions:{formatString:'%b %#d, %y'},
-		        	  	tickInterval:'1 month'
-		        	}		
-				},
 
-			    // seriesDefaults: {
-			    //     show: true,     // wether to render the series.
-			    //     xaxis: 'xaxis', // either 'xaxis' or 'x2axis'.
-			    //     yaxis: 'yaxis', // either 'yaxis' or 'y2axis'.
-			    //     label: '',      // label to use in the legend for this line.
-			    //     color: '',      // CSS color spec to use for the line.  Determined automatically.
-			    //     lineWidth: 2.5, // Width of the line in pixels.
-			    //     shadow: true,   // show shadow or not.
-			    //     shadowAngle: 45,    // angle (degrees) of the shadow, clockwise from x axis.
-			    //     shadowOffset: 1.25, // offset from the line of the shadow.
-			    //     shadowDepth: 3,     // Number of strokes to make when drawing shadow.  Each
-			    //                         // stroke offset by shadowOffset from the last.
-			    //     shadowAlpha: 0.1,   // Opacity of the shadow.
-			    //     showLine: true,     // whether to render the line segments or not.
-			    //     showMarker: true,   // render the data point markers or not.
-			    //     fill: false,        // fill under the line,
-			    //     fillAndStroke: false,       // *stroke a line at top of fill area.
-			    //     fillColor: undefined,       // *custom fill color for filled lines (default is line color).
-			    //     fillAlpha: undefined,       // *custom alpha to apply to fillColor.
-			    //     renderer: $.jqplot.LineRenderer],    // renderer used to draw the series.
-			    //     rendererOptions: {}, // options passed to the renderer.  LineRenderer has no options.
-			    //     markerRenderer: $.jqplot.MarkerRenderer,    // renderer to use to draw the data
-			    //                                                 // point markers.
-			    //     markerOptions: {
-			    //         show: true,             // wether to show data point markers.
-			    //         style: 'filledCircle',  // circle, diamond, square, filledCircle.
-			    //                                 // filledDiamond or filledSquare.
-			    //         lineWidth: 2,       // width of the stroke drawing the marker.
-			    //         size: 9,            // size (diameter, edge length, etc.) of the marker.
-			    //         color: '#666666'    // color of marker, set to color of line by default.
-			    //         shadow: true,       // wether to draw shadow on marker or not.
-			    //         shadowAngle: 45,    // angle of the shadow.  Clockwise from x axis.
-			    //         shadowOffset: 1,    // offset from the line of the shadow,
-			    //         shadowDepth: 3,     // Number of strokes to make when drawing shadow.  Each stroke
-			    //                             // offset by shadowOffset from the last.
-			    //         shadowAlpha: 0.07   // Opacity of the shadow
-			    //     }
-			    // },
-		    	series:[{lineWidth:4, markerOptions:{style:'square'}}]
-		  	});
-		});
-	
-	</script>
+
+	<script type="text/javascript" src="${resource(dir:'js/lib/jquery/flot/', 'flot.js')}"></script>
+
+	<script type="text/javascript">
+
+	$(function () {
+
+		// var virtue = ${virtues}
+		// var d5 = ${happiness}
+		var virtues = ${virtues};
+		var happiness = ${happiness};
+
+		if(happiness && virtues){
+		var virtueSeries = {
+	    	color: '#11eb53',
+	    	data: virtues,
+	    	label: "Virtues Followed = 0",
+	    	// clickable: true,
+			points: {
+				show: true,
+			    radius: 2,
+			    symbol: "circle"
+			},
+	    	hoverable: true,
+	    	shadowSize: 3
+	  	};
+
+
+		var happinessSeries = {
+	    	color: '#0F5D7E',
+	    	data: happiness,
+	    	label: "Happiness/Satisfaction = 0",
+	    	// clickable: true,
+			points: {
+				show : true,
+			    radius: 2,
+			    symbol: "circle"
+			},
+	    	hoverable: true,
+	    	shadowSize: 3
+	  	};
+
+	    var stack = 0, bars = false, lines = true, steps = false;
+
+	    //function plotWithOptions() {
+	    var plot = $.plot($("#progress"), 
+				[ 
+					virtueSeries, 
+					happinessSeries 
+				], 
+				{
+	            series: {
+	               // stack: stack,
+	                lines: { 
+						show: lines, 
+						fill: false,
+						lineWidth: 2
+					},
+					points: {
+				      radius: 3,
+				      symbol: "circle"
+				    },
+					shadowSize: 3
+	            },
+				//colors: [ '#11eb53','#0F5D7E' ],
+				grid: {
+			    	show: true,
+			    	aboveData: false,
+			    	color: "#777",
+			    	backgroundColor: "#fff",
+			    	labelMargin: 10,
+			    	axisMargin: 10,
+			    	//markings: array of markings or (fn: axes -> array of markings)
+			    	borderWidth: 1,
+			    	borderColor: "#e3e3e3",
+			    	minBorderMargin: 10,
+			    	clickable: true,
+			    	hoverable: true,
+			    	autoHighlight: true,
+			    	mouseActiveRadius: 10
+			  	},
+
+				legend: {
+			    	show: true,
+			    	labelBoxBorderColor: "#efefef",
+			    	//noColumns: number
+			    	position: "ne",
+			    	margin: [10, 10],
+			    	backgroundColor: "#f8f8f8",
+			    	backgroundOpacity: 1.0
+			  	},
+
+				xaxis : {
+				    show: true,
+				    position: "bottom",
+
+					color: "#ddd",
+				    tickColor: "#e3e3e3",
+
+
+				    tickSize: 1,
+				    minTickSize: 1
+				},
+				xaxis: { mode: "time" }
+
+	        });
+	    // }
+
+		}
+
+	  
+
+	});
+</script>
+
 		
 	</body>
 	

@@ -11,11 +11,10 @@ class ShiroSecurityFilters {
     	        }
     	    }
     	}
-    	accountMaintenance(controller: "account", action: "(edit|update)") {
+    	accountMaintenance(controller: "account", action: "(edit|update|delete|save|create)") {
     	    before = {
     	        accessControl {
     	            role("ROLE_ADMIN")
-    	            role("ROLE_SIMPLE_USER")
     	        }
     	    }
     	}
