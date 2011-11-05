@@ -13,7 +13,7 @@ class VirtueEntryController {
     def list = {
 
 		def account
-        params.max = Math.min(params.max ? params.int('max') : 5, 100)
+        //params.max = Math.min(params.max ? params.int('max') : 5, 100)
 
 		def subject = SecurityUtils.getSubject();
 		if(subject?.getPrincipal()){
@@ -23,7 +23,7 @@ class VirtueEntryController {
 		if(account){
 			
 			println 'account -> ' + account
-			def virtueEntryInstanceList = VirtueEntry.findAllByAccount(account, [max:params.max])
+			def virtueEntryInstanceList = VirtueEntry.findAllByAccount(account)
 			def virtueEntryInstanceTotal = VirtueEntry.countByAccount(account)
         	
 			[virtueEntryInstanceList: virtueEntryInstanceList, virtueEntryInstanceTotal: virtueEntryInstanceTotal]
