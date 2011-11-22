@@ -24,6 +24,15 @@ How do I join?  First, promise to be honest and treat this with respect.  Your a
 
 
 
+*** Tagline work ***
+Will doing what is right make you feel more fulfilled?
+Social Experiment in measuring the satisfaction of doing what needs to be done
+Measuring the level of Satisfaction of following Simple Principles
+Measuring Satisfaction with Following Simple Principles (No religion involved)
+A Measurement of Satisfaction with Following Simple Principles
+
+
+
 
 
 if((navigator.userAgent.match(/iPhone/i)) || 

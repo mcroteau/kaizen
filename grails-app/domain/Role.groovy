@@ -10,7 +10,7 @@ class Role {
     }
 	
 	static mapping = {
-    	//id generator: 'sequence', params:[sequence:'ID_ROLE_PK_SEQ']
+    	id generator: 'sequence', params:[sequence:'ID_ROLE_PK_SEQ']
   	}
 
 	def String toString(){

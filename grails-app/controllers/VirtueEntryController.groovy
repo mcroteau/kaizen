@@ -1,5 +1,7 @@
 
 import org.apache.shiro.SecurityUtils
+import grails.converters.*
+
 
 class VirtueEntryController {
 
@@ -63,21 +65,22 @@ class VirtueEntryController {
     }
 
 	def newEntry = {
-	def today = utilitiesService.getTodaysDate()
-	def todaysEntry = VirtueEntry.findByEntryDate(today)
-
-	println 'todaysEntry -> ' + todaysEntry
-	
-	if(!todaysEntry){
-    	def virtueEntryInstance = new VirtueEntry()
-    	virtueEntryInstance.properties = params
-    	return [virtueEntryInstance: virtueEntryInstance]
-
-	}else{
+		def today = utilitiesService.getTodaysDate()
+		def todaysEntry = VirtueEntry.findByEntryDate(today)
+    	
+		println 'todaysEntry -> ' + todaysEntry
 		
-		flash.message = "You've already logged a entry today..."
-		redirect controller:"static", action:"dashboard"
-	}
+		if(!todaysEntry){
+    		def virtueEntryInstance = new VirtueEntry()
+    		virtueEntryInstance.properties = params
+    		return [virtueEntryInstance: virtueEntryInstance]
+    	
+		}else{
+			
+			flash.message = "You've already logged a entry today..."
+			redirect action:"show", params:[id: todaysEntry.id]
+		
+		}
 	}
 
     def save = {
@@ -304,4 +307,37 @@ class VirtueEntryController {
 		def random = new Random()
 		def randomInt = random.nextInt(200-100+1)+100
 	}
+	
+
+	def calendar = {}
+	
+	def entries = {
+		
+		println 'retrieving events ->'
+		
+		
+		def allEnties = VirtueEntry.list()
+		def entries = []
+		allEnties.each{ 
+		
+			def day = it.entryDate.getAt(Calendar.DAY_OF_MONTH)
+			def month = it.entryDate.getAt(Calendar.MONTH) +1
+			def year = it.entryDate.getAt(Calendar.YEAR)
+			
+			def entry = [
+				id: it.id.toString(),
+				title : it.totalCompleted.toString() + " completed, \n" + it.happinessScale + " happiness \n" + it.totalPoints + " points" ,
+				url : 'show/' + it.id,
+				start : year + '-' + month + '-' + day
+			]
+
+			println it.totalCompleted
+			entries.add(entry)
+		}
+		
+		render entries as JSON 
+		
+	}	
+	
+	
 }

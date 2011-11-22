@@ -84,5 +84,18 @@
 		
 		</dl>
 
+
+		<h2>Modern Day Personal Virtue</h2>
+		
+		<dl title="Definition list">
+		
+			<dt><em>Well Being</em></dt>
+			<dd>Take care of your body by exercising regularly & following a healthy diet.  If you can say that you did at least 20 mins of exercise or followed a healthy diet for the day, then you can check this off your list.</dd>		
+			<br/>	
+		
+		
+		</dl>
+
+
 	</div>
 </div>

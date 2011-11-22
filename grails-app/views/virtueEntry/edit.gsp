@@ -147,6 +147,22 @@ Car Payment
                 	
 						</fieldset>
 					</div>
+					
+					
+					
+					<div  data-role="fieldcontain">
+				
+			  			<h3>+ Modern Day Personal Virtue</h3>
+                	
+						<fieldset data-role="controlgroup" >
+                	
+							<g:checkBox name="wellBeing" value="${virtueEntryInstance?.wellBeing}" id="chk-wellBeing" />
+			  				<label for="chk-wellBeing">Well Being</label>
+   
+						</fieldset>
+					</div>
+					
+					
                 	
 					<h3>How happy are you now the day is done?</h3>
 					<div data-role="fieldcontain">

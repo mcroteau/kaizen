@@ -5,8 +5,18 @@ class Account {
   
 	String fullName
 	String email
+	
 	boolean active
-	boolean isMale 
+	//boolean publicProfile
+	
+	boolean isMale
+	
+	//String location
+	
+	//int totalEntries
+	//int totalScore
+	 
+	
 	
     static hasMany = [ roles: Role, permissions: String, virtueEntries: VirtueEntry]
 
@@ -16,7 +26,7 @@ class Account {
     }
 	
 	static mapping = {
-    	//id generator: 'sequence', params:[sequence:'ID_ACCOUNT_PK_SEQ']
+    	id generator: 'sequence', params:[sequence:'ID_ACCOUNT_PK_SEQ']
   	}
 
 

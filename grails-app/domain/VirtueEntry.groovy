@@ -16,11 +16,22 @@ class VirtueEntry {
 	boolean humility
 	boolean sincerity
 	
+	//added wellbeing to encompass healthy lifestyles
+	boolean wellBeing
+	
+	//boolean exercise
+	//boolean healthyDiet
+	
+	
+	//happinessScale = satisfaction
 	int happinessScale
 	String notes
 	
 	int totalCompleted
 	String performanceDescription
+	
+	int totalPoints
+	
 	
 	Account account
 	static belongsTo = Account
@@ -30,6 +41,7 @@ class VirtueEntry {
     }
  	
 	static mapping = {
-    	//id generator: 'sequence', params:[sequence:'ID_VIRTUE_ENTRY_PK_SEQ']
+    	id generator: 'sequence', params:[sequence:'ID_VIRTUE_ENTRY_PK_SEQ']
   	}
+
 }

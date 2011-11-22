@@ -1,3 +1,5 @@
+
+import org.apache.shiro.authc.UsernamePasswordToken
 import org.apache.shiro.crypto.hash.Sha512Hash
 import org.apache.shiro.crypto.hash.Sha256Hash
 import org.apache.shiro.crypto.hash.Sha1Hash
@@ -5,10 +7,13 @@ import org.apache.shiro.crypto.hash.Sha1Hash
 
 import org.apache.shiro.SecurityUtils
 
+
+
 class AccountController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 	def utilitiesService
+	def emailerService
 
     def index = {
         redirect(action: "list", params: params)
@@ -148,4 +153,82 @@ class AccountController {
             redirect(action: "list")
         }
     }
+
+
+	def userWelcome = {
+	
+		
+		def subject = SecurityUtils.getSubject();
+		def account = Account.findByUsername(subject?.getPrincipal())
+		
+		def entries = VirtueEntry.findByAccount(account)
+		
+		if(!entries){
+			render view : 'noEntriesLogged'
+		}
+	
+	}
+	
+	
+	def noEntriesLogged = {
+	
+		
+	
+	}
+	
+	
+	def newMember = {
+	
+	
+	}
+	
+	def registrationPage = {
+		
+	}
+	
+	def register = {
+	
+		println 'trying to register '
+		
+		def accountInstance = new Account(params)
+		
+		def passwordHash = new Sha256Hash(params.passwordHash).toHex()
+		accountInstance.passwordHash = passwordHash
+		
+		def simpleRole = Role.findByName("ROLE_SIMPLE_USER")
+		accountInstance.addToRoles(simpleRole)
+		
+		println 'pass -> ' + params.passwordHash + '  hash->' + passwordHash 
+		
+    	if (accountInstance.save(flush: true)) {
+    		
+			//sendMail {     
+		  	//	to "croteau.mike+franklins13app@gmail.com"     
+		  	//	subject "Thank you for registering"     
+		  	//	body 'You have registered' 
+			//}
+			
+		
+			
+			//def email = [
+			//    to: [ "croteau.mike+franklins13app@gmail.com" ],        // "to" expects a List, NOT a single email address
+			//    subject: "testing",
+			//    text: "body text"         // "text" is the email body
+			//]
+			// sendEmails expects a List
+			//emailerService.sendEmails([email])
+			
+			
+		
+    		redirect(controller : 'auth', action: 'signIn', params : [accountInstance: accountInstance, username : params.username, password : params.passwordHash, newRegistration : true])
+
+
+    	} else {
+    		flash.message = "something went wrong while trying to save the user"
+			render(view: "registrationPage", model: [accountInstance: accountInstance])
+    	}
+    	
+	
+	}
+	
 }

@@ -202,6 +202,8 @@
 	            updateLegendTimeout = setTimeout(updateLegend, 50);
 	    });
 	
+	
+	
 	});
 
 

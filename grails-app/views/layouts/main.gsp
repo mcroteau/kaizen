@@ -68,7 +68,22 @@
 		</div>
 	</shiro:hasRole>
 	
+	<g:link controller="virtueEntry" action="calendar">Calendar Dev</g:link>
+	<g:link controller="account" action="registrationPage">Register</g:link>
 	
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-23684175-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
 
 	
 </body>

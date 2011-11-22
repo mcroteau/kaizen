@@ -21,14 +21,17 @@ environments {
 	        //username = "root"
 	        //password = "z23xe7rGwh"
 
-
 		   	pooled = false
 			dialect = org.hibernate.dialect.PostgreSQLDialect // honestly, not sure what
 		    dbCreate = "create-drop" // one of 'create', 'create-drop','update'
-		    url = "jdbc:postgresql://72.9.254.53:5432/franklins13_dev"
+		    //url = "jdbc:postgresql://72.9.254.53:5432/franklins13_dev"
+		
+			url = "jdbc:postgresql://localhost:5432/franklins13"
 		    driverClassName = "org.postgresql.Driver"
 		    username = "postgres"
-		    password = "z23xe7rGwh"
+			password = "postgres"
+			
+		    //password = "z23xe7rGwh"
 
 		    // NOTE: both of these dialects have worked for me. But some people
 		    // recommend using the net.sf version and not the org.hibernate version.

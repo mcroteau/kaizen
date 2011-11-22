@@ -186,7 +186,8 @@
 				    tickSize: 1,
 				    minTickSize: 1
 				},
-				xaxis: { mode: "time" }
+				xaxis: { mode: "time" },
+				yaxis: { max:14, min: 0}
 
 	        });
 	    // }

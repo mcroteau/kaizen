@@ -40,10 +40,23 @@ class AuthController {
             // password is incorrect.
             SecurityUtils.subject.login(authToken)
 
+			println "Redirecting to '${targetUri}'."
+			
+			if(targetUri == '/'){
+				//add in hook to send to users welcome screen
+				targetUri = '/account/userWelcome'
+			}
+
+			if(params.newRegistration){
+				targetUri = '/account/newMember'
+			}
+
+
             log.info "Redirecting to '${targetUri}'."
             redirect(uri: targetUri)
-        }
-        catch (AuthenticationException ex){
+        
+		}catch (AuthenticationException ex){
+		
             // Authentication failed, so display the appropriate message
             // on the login page.
             log.info "Authentication failure for user '${params.username}'."

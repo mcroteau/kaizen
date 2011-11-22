@@ -119,7 +119,21 @@
                 	
 						</fieldset>
 					</div>
+ 
+
+			  		<div  data-role="fieldcontain">
+				
+			  			<h3>+ Modern Day Personal Virtue</h3>
                 	
+						<fieldset data-role="controlgroup" >
+                	
+							<g:checkBox name="wellBeing" value="${virtueEntryInstance?.wellBeing}" id="chk-wellBeing" />
+			  				<label for="chk-wellBeing">Well Being</label>
+   
+						</fieldset>
+					</div>
+					
+					               	
 
 			    <h3>You rated your happiness/satisfaction level a : ${virtueEntryInstance?.happinessScale}</h3>
                	

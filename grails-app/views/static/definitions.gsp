@@ -104,11 +104,38 @@
 
 	</div>
 	
+	
+	
+	
+	
+	<div class="virtueDefinitions socialVirtues">	
+		<h2>+ Modern Day Personal Virtue</h2>
+		
+		<dl title="Definition list">
+			
+			<dt><em>Well Being</em></dt>
+			<dd>Take care of your body. Exercise regularly, concentrate on consuming a healthy diet</dd>		
+			<br/>	
+
+		
+		</dl>
+
+	</div>
+	
 	<br class="clear"/>
 	
 	<p class="note">
-		<em>I think Franklin forgot one : </em> Take care of your body, in other words exercise, eat right... take it easy on the booze and other extracurricular party activities.  
+		<em>A Note About the "Modern Day Personal Virtue" : </em> In using this app for a little over a week, I found that even with the best of days I still felt like I was missing something.  That thing was living a healthy lifestyle.   This new virtue (if you want to call it that) overlaps with others Franklin listed.  However, Franklin never mentioned exercise and I think people underestimate the value of regular exercise.
+		
+		<br/>
+		<br/>
+		This doesn't mean become a gym rat or a health nut.. use your best judgement.  Remember, moderation is a virtue and should be applied to all areas of life, including the amount of effort/energy you put into being "Healthy" 
+		
+		<br/>
+		<br/>
+		One more thing, you should take it easy on the booze and other extracurricular party activities
 	</p>
+	
 	
 </body>
 </html>

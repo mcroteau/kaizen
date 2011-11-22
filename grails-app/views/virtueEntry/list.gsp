@@ -66,7 +66,7 @@
 							<h3><g:formatDate format="dd MMM yyyy" date="${virtueEntryInstance.entryDate}"/></h3>
 							<p><strong>${virtueEntryInstance.performanceDescription}</strong></p>
 							<span class="ui-li-count ui-btn-up-c ui-btn-corner-all">
-								Virtues: ${virtueEntryInstance.totalCompleted}/13&nbsp;&nbsp;&nbsp;Happiness: ${virtueEntryInstance.happinessScale}	
+								Virtues: ${virtueEntryInstance.totalCompleted}/14&nbsp;&nbsp;&nbsp;Happiness: ${virtueEntryInstance.happinessScale}	
 							</span>
 						</g:link>
 					</li>

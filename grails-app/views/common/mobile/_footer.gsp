@@ -3,6 +3,9 @@
 
 	<div class="ui-bar ui-bar-a">
 		<div data-role="controlgroup" data-type="horizontal" class="ui-corner-all ui-controlgroup ui-controlgroup-horizontal">
+			
+			
+			<!--
 			<a href="#definitions" data-inline="true" data-role="button" data-icon="info" class="ui-btn ui-btn-up-a ui-btn-inline ui-corner-left">
 				<span class="ui-btn-inner ui-corner-left">
 					<span class="ui-btn-text">Virtues Defined</span>
@@ -14,8 +17,15 @@
 					<span class="ui-btn-text">Help</span>
 				</span>
 			</a>
+			-->
 			
-			
+			<a href="#definitions" data-inline="true" data-role="button" data-icon="info" class="ui-btn ui-btn-up-a ui-btn-inline ui-corner-left ui-corner-right">
+				<span class="ui-btn-inner ui-corner-left ui-corner-right">
+					<span class="ui-btn-text">Virtues Defined</span>
+					<span class=""></span>
+				</span>
+			</a>
+						
 			
 			<shiro:authenticated>
 			
