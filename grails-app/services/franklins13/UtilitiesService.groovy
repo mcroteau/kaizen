@@ -4,8 +4,8 @@ class UtilitiesService {
 
     static transactional = true
 	
-	def womanSlangWords = ["princess", "beautiful", "angel face", "gorgeous" ]
-	def manSlangWords = ["buddy", "mate", "ace", "amigo", "compadre", "friend"]
+	def womanSlangWords = ["princess", "beautiful", "angel", "gorgeous" ]
+	def manSlangWords = ["buddy", "mate", "ace", "amigo", "compadre", "friend" ]
 	
     def serviceMethod() {
 

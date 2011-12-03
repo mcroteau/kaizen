@@ -95,16 +95,13 @@ log4j = {
     warn   'org.mortbay.log'
 }
 
-//mail.protocol = 'aws'
-
-
-	//mail {
-    	//props = [ 
-        //	'mail.transport.protocol': 'aws', 
-        //	'mail.aws.class': 'com.amazonaws.services.simpleemail.AWSJavaMailTransport',
-        //	'mail.aws.user': 'AKIAIY5RZN2GXMVHHPUQ',
-        //	'mail.aws.password': 'uEQ/JRXERx/rdqjz7ZCiqJZ83jROr4OAi+KQrSBL' 
-    	//]
-	//}
+grails {
+   mail {
+     host = "relay.jangosmtp.net"
+     port = 25
+     username = "mikecroteau"
+     password = "611604ZX"
+   }
+}
 	
 

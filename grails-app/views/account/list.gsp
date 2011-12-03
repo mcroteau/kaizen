@@ -30,9 +30,8 @@
                         
                             <g:sortableColumn property="active" title="${message(code: 'account.active.label', default: 'Active')}" />
                         
-                            <g:sortableColumn property="fullName" title="${message(code: 'account.fullName.label', default: 'Full Name')}" />
+           
                         
-                            <g:sortableColumn property="passwordHash" title="${message(code: 'account.passwordHash.label', default: 'Password Hash')}" />
                         
                         </tr>
                     </thead>
@@ -47,10 +46,6 @@
                             <td>${fieldValue(bean: accountInstance, field: "email")}</td>
                         
                             <td><g:formatBoolean boolean="${accountInstance.active}" /></td>
-                        
-                            <td>${fieldValue(bean: accountInstance, field: "fullName")}</td>
-                        
-                            <td>${fieldValue(bean: accountInstance, field: "passwordHash")}</td>
                         
                         </tr>
                     </g:each>

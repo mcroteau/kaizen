@@ -51,7 +51,7 @@
 	    	label: "Virtues Followed = 0",
 	    	// clickable: true,
 			points: {
-				show: true,
+				show: false,
 			    radius: 2,
 			    symbol: "circle"
 			},
@@ -66,7 +66,7 @@
 	    	label: "Happiness/Satisfaction = 0",
 	    	// clickable: true,
 			points: {
-				show : true,
+				show : false,
 			    radius: 2,
 			    symbol: "circle"
 			},
@@ -132,8 +132,8 @@
 				    tickColor: "#efefef",
 				
 
-				    tickSize: 1,
-				    minTickSize: 1
+				    tickSize: 50,
+				    minTickSize: 5
 				},
 				
 				yaxis : {
@@ -144,7 +144,7 @@
 					tickColor : "#f8f8f8",
 					min:0,
 					max:13,
-					tickSize :1
+					tickSize :5
 				},
 				
 				crosshair: { mode: "x" }
