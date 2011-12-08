@@ -4,10 +4,12 @@ import org.apache.shiro.authc.UsernamePasswordToken
 import org.apache.shiro.web.util.SavedRequest
 import org.apache.shiro.web.util.WebUtils
 
+import franklins13.UtilitiesService
 
 class AuthController {
 
     def shiroSecurityManager
+	def utilitiesService
 
     def index = { redirect(action: "login", params: params) }
 
@@ -53,6 +55,10 @@ class AuthController {
 
 
             log.info "Redirecting to '${targetUri}'."
+
+			//recently added to hold stats in session
+			setSessionStats()
+			
             redirect(uri: targetUri)
         
 		}catch (AuthenticationException ex){
@@ -90,4 +96,23 @@ class AuthController {
     def unauthorized = {
         render "You do not have permission to access this page."
     }
+
+	def setSessionStats(){
+		def account
+    	
+		def subject = SecurityUtils.getSubject();
+		if(subject?.getPrincipal()){
+			account = Account.findByUsername(subject?.getPrincipal())
+		}
+		
+		if(account){
+			session.totalScore = account.totalScore
+			session.totalEntries = account.totalEntries
+			
+			println "sessions stats ->  score : ${session.totalScore}  /  entries : ${session.totalEntries}"
+		
+		}
+		
+	}
+	
 }

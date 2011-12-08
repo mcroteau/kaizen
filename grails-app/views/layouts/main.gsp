@@ -13,7 +13,6 @@
 	<div id="outer-wrapper">
 		
 		<div id="container">
-			
 		
 			<div id="top">
 				
@@ -29,6 +28,32 @@
 				
 			</div>
 			
+			<style type="text/css">
+				#userMenu{background:#f8f8f8; border:dotted 1px #ddd; padding:4px; color:#999;}
+				#userMenu span{color:#333;}
+				#userMenu a{display:inline-block; margin:5px;}				
+			</style>
+			
+			<shiro:isLoggedIn>
+				<div id="stats">
+					<span>score : ${session.totalScore} </span>        
+					<span>total entries : ${session.totalEntries}</span>
+				</div>
+				
+				<div id="userMenu" style="text-align:left;">
+				
+					<span class="right">
+						<g:link controller="virtueEntry" action="logEntry">Todays Entry</g:link>| 
+						<g:link controller="static" action="dashboard">Dashboard</g:link>|
+						<g:link controller="virtueEntry" action="calendar">Calendar</g:link>|
+						<g:link controller="virtueEntry" action="listview">All Progress</g:link>
+					</span>
+					
+					<br class="clear"/>
+				</div>
+			</shiro:isLoggedIn>
+			
+			
 			<div id="maincontent">
 				<g:layoutBody />
 			</div>
@@ -39,8 +64,6 @@
 				<shiro:isLoggedIn>
 					<div id="">
 						welcome back <shiro:principal/>&nbsp;&nbsp;|&nbsp;&nbsp;<g:link controller="auth" action="signOut">logout</g:link>
-						
-						&nbsp;&nbsp;|&nbsp;&nbsp;<g:link controller="static" action="dashboard">access mobile site, start logging daily virtues followed</g:link>
 					</div>
 				</shiro:isLoggedIn>
 				<shiro:notAuthenticated>

@@ -87,3 +87,17 @@ p.medium{
 	width:400px;
 }
 
+
+
+
+
+
+
+
+.slider{}
+.slider span{display:inline-block; margin:4px; font-size:8px; color:#955; font-weight:bold;}
+.slider span#happinessScaleValue{color:#434343; font-size:14px;}
+
+
+
+

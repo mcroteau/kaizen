@@ -71,7 +71,7 @@ class BootStrap {
 			println 'create mock virtue entry data -> '
 			
 			def account = Account.findByUsername("man")
-			def totalMockEntries = 50
+			def totalMockEntries = 30
 			
 			def minusDays = 0;
 			for(def i = 0; i < totalMockEntries; i++){
@@ -82,22 +82,22 @@ class BootStrap {
 				def ve = new VirtueEntry()
 					
 				ve.entryDate = new Date() - minusDays
-				
+				ve.fullEntryDateTime = ve.entryDate
      
-				ve.temperance = false
-				ve.orderVirtue = true
-				ve.resolution = false
-				ve.frugality = true
-				ve.moderation = true
-				ve.industry = true
-				ve.cleanliness = true
-				ve.tranquility = true
-				ve.silence = true
-				ve.justice = true
-				ve.chastity = true
-				ve.humility = true
-				ve.sincerity = true
-            	ve.wellBeing = true
+				ve.temperance = getRandomTrueFalse()
+				ve.orderVirtue = getRandomTrueFalse()
+				ve.resolution = getRandomTrueFalse()
+				ve.frugality = getRandomTrueFalse()
+				ve.moderation = getRandomTrueFalse()
+				ve.industry = getRandomTrueFalse()
+				ve.cleanliness = getRandomTrueFalse()
+				ve.tranquility = getRandomTrueFalse()
+				ve.silence = getRandomTrueFalse()
+				ve.justice = getRandomTrueFalse()
+				ve.chastity = getRandomTrueFalse()
+				ve.humility = getRandomTrueFalse()
+				ve.sincerity = getRandomTrueFalse()
+            	ve.wellBeing = getRandomTrueFalse()
 
 
 				ve.happinessScale = utilitiesService.getRandomNumber(10,0)
@@ -106,11 +106,17 @@ class BootStrap {
 				
 				ve.totalPoints = utilitiesService.getRandomNumber(15,-3)
 				
+				ve.notes = "In convallis porttitor nisi. Mauris et mi a diam pulvinar pellentesque. Morbi sed pede feugiat arcu"
+				
 				ve.account = account
 				
 				println ve.entryDate
 				
-				ve.save(flush:true)
+				if(ve.save(flush:true)){
+					account.addToPermissions("virtueEntry:show,edit,delete,update:" + ve.id)
+					//account.save(flush:true)
+					updateAccountStats(account, ve.totalPoints)
+				}
 				
 				
 			}
@@ -118,13 +124,36 @@ class BootStrap {
 			
 		//}
 		
+		
 		println 'VirtueEntries : ' + VirtueEntry.count()
 		
 	}
+	
+	def getRandomTrueFalse(){
+	
+		def randomNum = utilitiesService.getRandomNumber(50, 0)
+		
+		if(randomNum %2 == 0){
+			return true
+		}
+		return false
+	}
+	
+	def updateAccountStats(Account account, int totalPoints){
+		
+		account.totalScore = account.totalScore + totalPoints
+		account.totalEntries = VirtueEntry.countByAccount(account)
+		account.save(flush:true)
+		
+	}
+	
 	
 	def setPasswords = {
 		println 'setting passwords'
 		adminPass = new Sha256Hash('admin').toHex()
 		simpleUserPass = new Sha256Hash('simple').toHex()
 	}
+	
+
+	
 }

@@ -27,8 +27,13 @@ class Account {
 	
 	
 	static mapping = {
+		sort totalScore:"desc"
     	id generator: 'sequence', params:[sequence:'ID_ACCOUNT_PK_SEQ']
   	}
 
+	def String toString(){
+		return this.username + " - " + this.totalScore		
+	}
 
 }
+

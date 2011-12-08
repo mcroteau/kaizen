@@ -1,99 +1,87 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="layout" content="mobile" />
+        <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'virtueEntry.label', default: 'VirtueEntry')}" />
         <title>Franklins 13 : Log Todays Entry</title>
     </head>
     
 	<body>
-	
-	<div data-role="page">
-	
-		<div data-role="header" data-theme="a">
-			<h1>Dashboard</h1>
-		</div><!-- /header -->
+		<style type="text/css">
 
-		<div data-role="content">	
+		.virtueDefinitions{
+			float:left;
+			width:300px;
+			margin:10px 30px;
+			padding:15px;
+			background:#f8f8f8;
+			border:solid 1px #efefef;
+		}
+		
+		h3{
+			font-weight:bold;
+			font-size:12px;
+		}
+
+		</style>
+    
+	 	<g:if test="${flash.message}">
+	 		<p class="message error">${flash.message}</p>
+	 	</g:if>
+	 	
+		<h2>Dashboard</h2>
+		
+		<p class="large">How does your progress look?  Do you see a trend?</p>
+	 	<div id="progress" style="width:100%; height:200px;"></div>
+
+		<h2>Stats</h2>
+		<h3 style="text-align:center">Total Score : ${session.totalScore}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total Entries : ${session.totalEntries}</h3>
+		<div class="virtueDefinitions personVirtues">
+			<h3>Personal Virtues</h3>
+			<p>Temperance : <em>${virtuesSummaryMap.temperance}</em> - <em>${temperancePercent}</em></p>
+			<p>Order : <em>${virtuesSummaryMap.orderVirtue}</em> - <em>${orderVirtuePercent}</em></p>
+			<p>Resolution : <em>${virtuesSummaryMap.resolution}</em> - <em>${resolutionPercent}</em></p>
+			<p>Frugality : <em>${virtuesSummaryMap.frugality}</em> - <em>${frugalityPercent}</em></p>
+			<p>Moderation : <em>${virtuesSummaryMap.moderation}</em> - <em>${moderationPercent}</em></p>
+			<p>Industry : <em>${virtuesSummaryMap.industry}</em> - <em>${industryPercent}</em></p>
+			<p>Cleanliness : <em>${virtuesSummaryMap.cleanliness}</em> - <em>${cleanlinessPercent}</em></p>
+			<p>Tranquility : <em>${virtuesSummaryMap.tranquility}</em> - <em>${tranquilityPercent}</em></p>
+			<br />
+		</div>
+		
+		<div class="virtueDefinitions socialVirtues">			
+			<h3>Social Virtues</h3>
+			<p>Silence : <em>${virtuesSummaryMap.silence}</em> - <em>${silencePercent}</em></p>
+			<p>Sincerity : <em>${virtuesSummaryMap.sincerity}</em> - <em>${sincerityPercent}</em></p>
+			<p>Justice : <em>${virtuesSummaryMap.justice}</em> - <em>${justicePercent}</em></p>
+			<p>Chastity : <em>${virtuesSummaryMap.chastity}</em> - <em>${chastityPercent}</em></p>
+			<p>Humility : <em>${virtuesSummaryMap.humility}</em> - <em>${humilityPercent}</em></p>
 			
-			<div class="ui-bar ui-bar-f">
-				
-				<div data-role="controlgroup" data-type="horizontal" class="ui-corner-all ui-controlgroup ui-controlgroup-horizontal">
-					
-					<g:link controller="static" action="dashboard" id="" data-ajax="false" data-icon="plus" data-role="button" data-inline="true" data-theme="c" class="ui-btn ui-btn-inline ui-btn-icon-left ui-corner-left ui-btn-up-c ui-btn-active">
-						<span class="ui-btn-inner ui-corner-left">
-							<span class="ui-btn-text">Dashboard</span>
-							<span class="ui-icon ui-icon-grid ui-icon-shadow"></span>
-						</span>
-					</g:link>
-					<g:link controller="virtueEntry" action="newEntry" id="" data-ajax="false" data-icon="plus" data-role="button" data-inline="true" data-theme="c" class="ui-btn ui-btn-inline ui-btn-icon-left ui-btn-up-c">
-						<span class="ui-btn-inner ui-corner-left">
-							<span class="ui-btn-text">Todays Entry</span>
-							<span class="ui-icon ui-icon-star ui-icon-shadow"></span>
-						</span>
-					</g:link>
-					<g:link controller="virtueEntry" action="list" id="" data-ajax="false" data-icon="plus" data-role="button" data-inline="true" data-theme="c" class="ui-btn ui-btn-inline ui-btn-icon-left ui-btn-up-c">
-						<span class="ui-btn-inner ui-corner-left">
-							<span class="ui-btn-text">History</span>
-							<span class="ui-icon ui-icon-search ui-icon-shadow"></span>
-						</span>
-					</g:link>
-
-				</div><!-- /controlgroup -->
-			</div>
-				
-				<g:if test="${flash.message}">
-					<p class="message error">${flash.message}</p>
-				</g:if>
-												
-			<div id="progress" style="width:100%; height:200px;"></div>
-										
-										
-										
-
-										
-			<!-- <div data-role="fieldcontain">
-				
-				<fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
-					
-					<input type="radio" name="radio-choice-1" id="radio-choice-1" value="choice-1" checked="checked" />
-					<label for="radio-choice-1">Week</label>
-
-					<input type="radio" name="radio-choice-1" id="radio-choice-2" value="choice-2"  />
-					<label for="radio-choice-2">Month</label>
-
-					<input type="radio" name="radio-choice-1" id="radio-choice-3" value="choice-3"  />
-					<label for="radio-choice-3">All Time</label>
-
-				</fieldset>
-			
-			</div> -->
-					
-					
-		</div><!-- /content -->
-
-		<g:render template="/common/mobile/footer"/>
-			
-	</div>
-
-
+		</div>
+		
+		<div class="virtueDefinitions socialVirtues">
+			<h3>+ Modern Day Personal Virtue</h3>
+			<p>Well Being : <em>${virtuesSummaryMap.wellBeing}</em> - <em>${wellBeingPercent}</em></p>
+		</div>
 	
-	<g:render template="/help/help"/>
-	<g:render template="/help/definitions"/>
-	
-	
-
-
+		
+		<br class="clear"/>
+	 	
+	<script type="text/javascript" src="${resource(dir:'js/lib/jquery/', 'jquery-1.6.1.min.js')}"></script>
 	<script type="text/javascript" src="${resource(dir:'js/lib/jquery/flot/', 'flot.js')}"></script>
 
 	<script type="text/javascript">
 
+	function roundNumber(num, dec) {
+		var result = Math.round(num*Math.pow(10,dec))/Math.pow(10,dec);
+		return result;
+	}
+	
 	$(function () {
 
-		// var virtue = ${virtues}
-		// var d5 = ${happiness}
 		var virtues = ${virtues};
 		var happiness = ${happiness};
+		var scores = ${scores};
 
 		if(happiness && virtues){
 		var virtueSeries = {
@@ -125,13 +113,28 @@
 	    	shadowSize: 3
 	  	};
 
+		var scoresSeries = {
+	    	color: '#C8330F',
+	    	data: scores,
+	    	label: "Score = 0",
+	    	// clickable: true,
+			points: {
+				show : true,
+			    radius: 2,
+			    symbol: "circle"
+			},
+	    	hoverable: true,
+	    	shadowSize: 3
+	  	};
+	
 	    var stack = 0, bars = false, lines = true, steps = false;
 
 	    //function plotWithOptions() {
 	    var plot = $.plot($("#progress"), 
 				[ 
 					virtueSeries, 
-					happinessSeries 
+					happinessSeries,
+					scoresSeries 
 				], 
 				{
 	            series: {
@@ -142,7 +145,7 @@
 						lineWidth: 2
 					},
 					points: {
-				      radius: 3,
+				      radius: 1,
 				      symbol: "circle"
 				    },
 					shadowSize: 3
@@ -187,7 +190,7 @@
 				    minTickSize: 1
 				},
 				xaxis: { mode: "time" },
-				yaxis: { max:14, min: 0}
+				yaxis: {}
 
 	        });
 	    // }

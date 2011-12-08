@@ -1,6 +1,7 @@
 class VirtueEntry {
 
 	Date entryDate
+	Date fullEntryDateTime
 	
 	boolean temperance
 	boolean orderVirtue
@@ -36,12 +37,14 @@ class VirtueEntry {
 	Account account
 	static belongsTo = Account
 	
+	
     static constraints = {
 		notes(nullable:true)
     }
  	
 	static mapping = {
+		sort entryDate:"desc"
     	id generator: 'sequence', params:[sequence:'ID_VIRTUE_ENTRY_PK_SEQ']
   	}
-
+	
 }

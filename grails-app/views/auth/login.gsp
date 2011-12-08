@@ -38,7 +38,8 @@
 	</div>
 	
 	<p class="note fourhundred">
-		<em>Forgot Password ? </em> Sorry, but you will need to send a request for a new password.  Send an email with subject line "RESET MY PASSWORD" to <a href="mailto:franklins13app@gmail.com">franklins13app@gmail.com</a>
+		
+		<g:link controller="account" action="beginResetPage">Reset Password ? </g:link>
 	</p>
 			
 </body>

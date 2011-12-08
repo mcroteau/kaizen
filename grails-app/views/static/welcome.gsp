@@ -14,24 +14,37 @@
 	<p class="large">Will doing what is "right" make us happy?</p>
 	<p class="medium">Will we be happier if we follow principles that are simple yet require us to be thoughtful, disciplined & hard working?</p>
 	
-	<p class="medium">Franklin's 13 might help us answer that question</p>
+	<p class="medium">Franklin's 13 might help us answer that question... lets make a game of it</p>
 	
 	
 	<div id="basechart" style="width:100%; height:200px; position:relative"></div>
 	
+	<div class="left">
 	
-	
-	<p class="large">What we are looking for here?</p>
+	<p class="large">What are we looking for here?</p>
 	
 	<p class="medium">Total Virtues Followed/Completed vs how the person felt on a daily basis</p>
 	
 	<p>If there is a correlation between doing whats "right" and our overall happiness/satisfaction with our day, then both lines plotted should follow a similar path.  </p>
 
+	</div>
+	
+	<div class="right">
+		
+		<h1>Leaderboard</h1>
+		
+		<ul>
+		<g:each in="${leaderBoard}" status="i" var="user">
+			<g:if test="${user.totalScore != 0}">
+				<li>${user.username} -> ${user.totalScore}</li>		
+			</g:if>	
+		</g:each>
+		
+	</div>
 
 
 	<style type="text/css">
-		.tickLabel{color:#777 !important;}
-		
+		.tickLabel{color:#777 !important;}	
 		.legend table{width:200px; text-align:left; font-weight:bold; color:#777;}
 	</style>
 	

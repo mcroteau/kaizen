@@ -239,7 +239,41 @@ class AccountController {
     	
 		}else{
 			redirect(controller : 'static', action : 'welcome' )
+		}		
+	}
+	
+	
+	def beginResetPage = {
+		
+	}
+	
+	
+	def sendResetEmail = {
+		def email = params.email
+		def acount = Account.findByEmail(email)
+		if(acount){
+			def url = "http://localhost:8080/franklins13/account/resetPage?username=${account.username}&pass=${account.passwordHash}"
+			try{
+				mailService.sendMail {
+				   to account.email
+				   from "franklins13app@gmail.com"
+				   subject "[Franklins 13 App] Reset Password"
+				   body "<a href=\"${url}\">Click to confirm reset password</a>"
+				}
+			}catch (Exception e){
+				println e.printStackTrace();
+				flash.message = "there was a problem trying to send reset email, please try again or contact the administrator"
+				render beginResetPage
+			}
+			
+		}else{
+			flash.message = "Please enter a valid email address"
+			render beginResetPage
 		}
+		
+	}
+
+	def resetPage = {
 		
 	}
 	

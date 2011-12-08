@@ -10,6 +10,14 @@
     
 	<body>
 		
+		<style type="text/css">
+			.clickable{cursor:pointer !important;}
+		</style>
+		
+        <h1>My Progress</h1>
+
+		<g:link action="listview">List View</g:link>
+		
 		<div id="calendarWrapper" style="margin:auto;"></div>
 
 		<br class="clear"/>
@@ -29,24 +37,95 @@
 
 				$('#calendarWrapper').fullCalendar({
 
-					// header: {
-					// 	right: 'prev,next today',
-					// 	center: 'title'
-					// 	//right: 'month'
-					// },
+					editable : true,
 
-					editable: true,
+					events : "entries",
 
-					events: "entries",
-					//events :[{"id":"1","title":"12","url":"show/1","start":"2011-11-20"},{"id":"2","title":"12","url":"show/2","start":"2011-11-19"},{"id":"3","title":"12","url":"show/3","start":"2011-11-18"}],
+					disableDragging : true,
 
-
-					loading: function(bool) {
+					loading : function(bool) {
 						if (bool) $('#loading').show();
 						else $('#loading').hide();
+					},
+					
+					dayClick : function(date, allDay, jsEvent, view){
+						
+						console.log(date)
+						console.log(allDay)
+						console.log(jsEvent)
+						console.log(view)
+						
+						if($(this).hasClass('fc-today')){
+							
+							var todaysEntry = $(this).find('.fc-content div');
+							
+							var allEvents = $('#calendarWrapper').fullCalendar('clientEvents');
+							
+							console.log(allEvents);
+							var idString =  date.getFullYear() + '-' + (date.getMonth() + 1) + '-' +  zeroPad(date.getDate(), 2)
+							console.info(idString);
+							
+							$(allEvents).each(function(index, event){
+								
+								if(event.id === idString){
+									console.log(event)
+									alert('bingo');
+								}
+								
+							});							
+						}						
 					}
 
 				});
+				
+				
+				//function setTodayClickable(){
+					
+					console.info('set today clickable -> ')
+					
+					var date = $('#calendarWrapper').fullCalendar( 'getDate');
+
+					var allEvents = $('#calendarWrapper').fullCalendar('clientEvents');
+					
+					console.info(allEvents);
+					
+					var idString =  date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + zeroPad(date.getDate(), 2)
+					console.info(idString);
+
+					var hasEvent = false;
+					$(allEvents).each(function(index, event){
+						console.log(event)
+
+						if(event.id === idString){
+							console.info(' ====== ')
+							hasEvent = true;
+						}
+
+					});
+
+					if(!hasEvent){
+						console.info(' ! has event... ')
+						$('.fc-today').addClass('clickable').addClass('logEntry');
+					}
+
+
+					$('.logEntry').click(function(){
+						window.location = '/franklins13/virtueEntry/logEntry';
+					});
+				//}
+
+
+				
+				function zeroPad(num, count){
+					var numZeropad = num + '';
+					while(numZeropad.length < count) {
+						numZeropad = "0" + numZeropad;
+					}
+					return numZeropad;
+				}
+
+				//setTodayClickable();
+				
 
 			});
 

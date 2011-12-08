@@ -1,5 +1,10 @@
 package franklins13
 
+import java.text.SimpleDateFormat
+import org.apache.shiro.SecurityUtils
+import java.text.DecimalFormat
+
+
 class UtilitiesService {
 
     static transactional = true
@@ -31,5 +36,21 @@ class UtilitiesService {
 		println 'new date : ' + date
 		return date
 	}
+	
+	def getFormattedDateNoTimeOption1(Date date){
+		SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
+		return formatter.format(date)
+	}
+	
+	def getFormattedDateNoTimeOption2(Date date){
+		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+		return formatter.format(date)
+	}
+	
+	def roundTwoDecimals(number){
+		DecimalFormat percent = new DecimalFormat("0%");	
+		return percent.format(number);
+	}
+
 	
 }
