@@ -101,13 +101,14 @@ class StaticController {
 				
 				println "happiness -> ${happiness}"
 			
+				println "map -> ${virtuesSummaryMap}    totalEntries -> ${totalEntries}"
 				setPercents(virtuesSummaryMap, totalEntries);
 			
-			}//else{
-				
-			//	redirect(controller : "account", action : "noEntriesLogged")
+			}else{
 			
-			//}
+				redirect(controller:'account', action:'noEntriesLogged')
+			
+			}
 			
 			
 		}else{
@@ -159,7 +160,11 @@ class StaticController {
 				virtuesSummaryMap.temperance = 1
 			}
 			
+		}else{
+			virtuesSummaryMap.temperance = 0
 		}
+		
+		
 		
 		if(entry.orderVirtue){
 			if(virtuesSummaryMap.orderVirtue){
@@ -170,6 +175,8 @@ class StaticController {
 				virtuesSummaryMap.orderVirtue = 1
 			}
 			
+		}else{
+			virtuesSummaryMap.orderVirtue = 0
 		}
 		
 		
@@ -184,6 +191,8 @@ class StaticController {
 				virtuesSummaryMap.resolution = 1
 			}
 			
+		}else{
+			virtuesSummaryMap.resolution = 0
 		}
 		
 		
@@ -196,6 +205,8 @@ class StaticController {
 				virtuesSummaryMap.frugality = 1
 			}
 			
+		}else{
+			virtuesSummaryMap.frugality = 0
 		}
 		
 		
@@ -208,6 +219,8 @@ class StaticController {
 				virtuesSummaryMap.moderation = 1
 			}
 			
+		}else{
+			virtuesSummaryMap.moderation = 0
 		}
 		
 		
@@ -223,6 +236,8 @@ class StaticController {
 				virtuesSummaryMap.industry = 1
 			}
 			
+		}else{
+			virtuesSummaryMap.industry = 0
 		}
 		
 		
@@ -233,8 +248,9 @@ class StaticController {
 			}else{
 				println 'first time setting cleanliness'
 				virtuesSummaryMap.cleanliness = 1
-			}
-			
+			}	
+		}else{
+			virtuesSummaryMap.cleanliness = 0
 		}
 		
 		
@@ -247,6 +263,8 @@ class StaticController {
 				virtuesSummaryMap.tranquility = 1
 			}
 			
+		}else{
+			virtuesSummaryMap.tranquility = 0
 		}
 		
 
@@ -259,7 +277,9 @@ class StaticController {
 				virtuesSummaryMap.silence = 1
 			}
 			
-		}
+	   	}else{
+	   		virtuesSummaryMap.silence = 0
+	   	}	
 		
 		
 		if(entry.justice){
@@ -271,6 +291,8 @@ class StaticController {
 				virtuesSummaryMap.justice = 1
 			}
 			
+		}else{
+			virtuesSummaryMap.justice = 0
 		}
 		
 		
@@ -283,6 +305,8 @@ class StaticController {
 				virtuesSummaryMap.chastity = 1
 			}
 			
+		}else{
+			virtuesSummaryMap.chastity = 0
 		}
 		
 		
@@ -295,7 +319,10 @@ class StaticController {
 				virtuesSummaryMap.humility = 1
 			}
 			
+		}else{
+			virtuesSummaryMap.humility = 0
 		}
+		
 		
 
 		if(entry.sincerity){
@@ -307,7 +334,11 @@ class StaticController {
 				virtuesSummaryMap.sincerity = 1
 			}
 			
+		}else{
+			virtuesSummaryMap.sincerity = 0
 		}
+		
+		
 		
 		
 		if(entry.wellBeing){
@@ -319,7 +350,10 @@ class StaticController {
 				virtuesSummaryMap.wellBeing = 1
 			}
 			
+		}else{
+			virtuesSummaryMap.wellBeing = 0
 		}
+		
 
 		
 		println 'set mapped virtues -> '

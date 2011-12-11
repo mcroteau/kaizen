@@ -3,6 +3,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'virtueEntry.label', default: 'VirtueEntry')}" />
+
+	    <link rel="stylesheet" href="${resource(dir:'css',file:'jquery.qtip.min.css')}" />
+		
         <title>Franklins 13 : Log Todays Entry</title>
     </head>
     
@@ -69,6 +72,8 @@
 	 	
 	<script type="text/javascript" src="${resource(dir:'js/lib/jquery/', 'jquery-1.6.1.min.js')}"></script>
 	<script type="text/javascript" src="${resource(dir:'js/lib/jquery/flot/', 'flot.js')}"></script>
+	<script type="text/javascript" src="${resource(dir:'js/lib/jquery/', 'jquery.qtip.js')}"></script>
+	<script type="text/javascript" src="${resource(dir:'js/util/', 'utilities.js')}"></script>
 
 	<script type="text/javascript">
 
@@ -87,7 +92,7 @@
 		var virtueSeries = {
 	    	color: '#11eb53',
 	    	data: virtues,
-	    	label: "Virtues Followed = 0",
+	    	label: "Virtues Followed",
 	    	// clickable: true,
 			points: {
 				show: true,
@@ -102,7 +107,7 @@
 		var happinessSeries = {
 	    	color: '#0F5D7E',
 	    	data: happiness,
-	    	label: "Happiness/Satisfaction = 0",
+	    	label: "Happiness/Satisfaction",
 	    	// clickable: true,
 			points: {
 				show : true,
@@ -116,13 +121,14 @@
 		var scoresSeries = {
 	    	color: '#C8330F',
 	    	data: scores,
-	    	label: "Score = 0",
+	    	label: "Score",
 	    	// clickable: true,
 			points: {
 				show : true,
 			    radius: 2,
 			    symbol: "circle"
 			},
+			clickable : true,
 	    	hoverable: true,
 	    	shadowSize: 3
 	  	};
@@ -169,7 +175,7 @@
 			  	},
 
 				legend: {
-			    	show: true,
+			    	show: false,
 			    	labelBoxBorderColor: "#efefef",
 			    	//noColumns: number
 			    	position: "ne",
@@ -190,14 +196,43 @@
 				    minTickSize: 1
 				},
 				xaxis: { mode: "time" },
-				yaxis: {}
+				yaxis: {},
+				plotclick : function(){
+					console.log('plot clicked')
+				}
 
 	        });
 	    // }
 
 		}
 
-	  
+	    $("#progress").bind("plotclick", function (event, pos, item) {
+
+	        if (item) {
+				var value = item.datapoint[1];
+				var label = item.series.label
+				var date = new Date(item.datapoint[0]);
+				var dateString = date.getFullYear() + '-' + util.zeroPad((date.getMonth() + 1),2) + '-' + util.zeroPad(date.getDate(), 2);
+				
+				var htmlString = '<em style="color:#fff">' + label + '</em><br/>Date : <em style="color:#fff">' + dateString + '</em><br/>Value : <em style="color:#fff">' + value + '</em>';  
+
+				$('#progress').qtip({
+					content: {
+						text: htmlString
+					},
+				   	position: {
+				    	my: 'bottom center',  // Position my top left...
+				      	at: 'top center', // at the bottom right of...
+				    },
+					style: {
+						classes: 'ui-tooltip-youtube'
+					}
+				});
+				$('#progress').qtip().show();
+				
+	        }
+	    });
+
 
 	});
 </script>

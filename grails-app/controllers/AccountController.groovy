@@ -20,8 +20,13 @@ class AccountController {
     }
 
     def list = {
-        params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [accountInstanceList: Account.list(params), accountInstanceTotal: Account.count()]
+		if(SecurityUtils.subject.hasRole("ROLE_ADMIN")){
+        	params.max = Math.min(params.max ? params.int('max') : 10, 100)
+        	[accountInstanceList: Account.list(params), accountInstanceTotal: Account.count()]
+		}else{
+			flash.message = "yo, you dont have permissions to that man... what are you trying to pull here?  bad move!"
+			redirect controller:"static", action:"welcome"		
+		}
     }
 
     def create = {
@@ -77,100 +82,171 @@ class AccountController {
     }
 
     def edit = {
-
-
-		if(SecurityUtils.subject.isPermitted("account:edit:"+ params.id) || 
-			SecurityUtils.subject.hasRole("ROLE_ADMIN")){
 		
-        	def accountInstance = Account.get(params.id)
-        	if (!accountInstance) {
-        	    flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'account.label', default: 'Account'), params.id])}"
-        	    redirect(action: "list")
-        	}
-        	else {
-        	    return [accountInstance: accountInstance]
-        	}
-		}else{
-			flash.message = "yo, you dont have permissions to that man... what are you trying to pull here?  bad move!"
-			redirect controller:"static", action:"welcome"
+		println "EDIT ACCOUNT"
+		def account
+    	
+		def subject = SecurityUtils.getSubject();
+		if(subject?.getPrincipal()){
+			account = Account.findByUsername(subject?.getPrincipal())
+		}
+		
+		if(account){
+		
+			//println 'permissions -> ' + account.hasPermission("account:edit:${account.id}")
+        	
+			if(SecurityUtils.subject.isPermitted("account:edit:${account.id}") || 
+				SecurityUtils.subject.hasRole("ROLE_ADMIN")){
+
+        		    return [accountInstance: account]
+
+			}else{
+				flash.message = "yo, you dont have permissions to that man... what are you trying to pull here?  bad move!"
+				redirect controller:"static", action:"welcome"
+			}
+		
+		} else{
+			flash.message = "You must be logged in to view your profile"
+			redirect controller:"auth", action:"login"
+		}
+
+    }
+
+    def info = {
+		
+		println "info"
+		def account
+    	
+		def subject = SecurityUtils.getSubject();
+		if(subject?.getPrincipal()){
+			account = Account.findByUsername(subject?.getPrincipal())
+		}
+		
+		if(account){
+		
+			if(SecurityUtils.subject.isPermitted("account:edit:${account.id}") || 
+				SecurityUtils.subject.hasRole("ROLE_ADMIN")){
+
+        		    return [accountInstance: account]
+
+			}else{
+				flash.message = "yo, you dont have permissions to that man... what are you trying to pull here?  bad move!"
+				redirect controller:"static", action:"welcome"
+			}
+		
+		} else{
+			flash.message = "You must be logged in to view your profile"
+			redirect controller:"auth", action:"login"
 		}
 
     }
 
     def update = {
 
+		println "Update account"
+		def accountInstance
 		
-		if(SecurityUtils.subject.isPermitted("account:edit:"+ params.id) || 
-			SecurityUtils.subject.hasRole("ROLE_ADMIN")){
+		def subject = SecurityUtils.getSubject();
+		if(subject?.getPrincipal()){
+			accountInstance = Account.findByUsername(subject?.getPrincipal())
+		}
+		
+		if(accountInstance){
 			
-        	def accountInstance = Account.get(params.id)
-        	if (accountInstance) {
-        	    if (params.version) {
-        	        def version = params.version.toLong()
-        	        if (accountInstance.version > version) {
-        	            
-        	            accountInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'account.label', default: 'Account')] as Object[], "Another user has updated this Account while you were editing")
-        	            render(view: "edit", model: [accountInstance: accountInstance])
-        	            return
-        	        }
-        	    }
-        	    accountInstance.properties = params
-        	
-				def passwordHash = new Sha256Hash(params.passwordHash).toHex()
-				accountInstance.passwordHash = passwordHash
-        	    
-			 	//def simpleRole = Role.findByName("ROLE_SIMPLE_USER")
-				//accountInstance.addToRoles(simpleRole)
-        	    
-				println 'pass -> ' + params.passwordHash + '  hash->' + passwordHash 
-        	   
+			if(SecurityUtils.subject.isPermitted("account:edit:${accountInstance.id}") || 
+				SecurityUtils.subject.hasRole("ROLE_ADMIN")){
+				
+					println "updating..... "
+					
+    	    	    if (params.version) {
+    	    	        def version = params.version.toLong()
+    	    	        if (accountInstance.version > version) {
+    	    	            
+    	    	            accountInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'account.label', default: 'Account')] as Object[], "Another user has updated this Account while you were editing")
+    	    	            redirect(action: "info", params: [id: accountInstance.id])
+    	    	            return
+    	    	        }
+    	    	    }
 
-        	    if (!accountInstance.hasErrors() && accountInstance.save(flush: true)) {
-        	        flash.message = "${message(code: 'default.updated.message', args: [message(code: 'account.label', default: 'Account'), accountInstance.id])}"
-        	        redirect(action: "show", id: accountInstance.id)
-        	    } else {
-		    	    flash.message = "something went wrong while trying to update the user"
-        	        render(view: "edit", model: [accountInstance: accountInstance])
-        	    }
 
-        	} else {
+					def isMale = params.isMale
+    	    	    accountInstance.isMale = isMale
 
-        	    flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'account.label', default: 'Account'), params.id])}"
-        	    redirect(action: "list")
-        	
+    	    	    accountInstance.properties = params
+    	    		
+					println "gentleman -> ${isMale}  -> ${accountInstance.isMale}"
+					def passwordHash = new Sha256Hash(params.passwordHash).toHex()
+					accountInstance.passwordHash = passwordHash
+    	    	    
+					println 'pass -> ' + params.passwordHash + '  hash->' + passwordHash 
+
+					
+    	    	    if (!accountInstance.hasErrors() && accountInstance.save(flush: true)) {
+
+    	    	        flash.message = "Successfully updated account : ${accountInstance.username}"
+    	    	        render(view: "info", model: [accountInstance: accountInstance])
+
+    	    	    } else {
+			    	    flash.message = "something went wrong while trying to update the user"
+    	    	        render(view: "info", model: [accountInstance: accountInstance])
+    	    	    }
+    	
+    	    	
+			}else{
+				flash.message = "yo, you dont have permissions to that man... what are you trying to pull here?  bad move!"
+				redirect controller:"static", action:"welcome"
 			}
-        	
-		}else{
-			flash.message = "yo, you dont have permissions to that man... what are you trying to pull here?  bad move!"
-			redirect controller:"static", action:"welcome"
+		
+		} else{
+			flash.message = "You must be logged in to update your account info"
+			redirect controller:"auth", action:"login"
 		}
     }
 
 
 
     def delete = {
-        def accountInstance = Account.get(params.id)
-        if (accountInstance) {
-            try {
-                accountInstance.delete(flush: true)
-                flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'account.label', default: 'Account'), params.id])}"
-                redirect(action: "list")
-            }
-            catch (org.springframework.dao.DataIntegrityViolationException e) {
-                flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'account.label', default: 'Account'), params.id])}"
-                redirect(action: "show", id: params.id)
-            }
-        }
-        else {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'account.label', default: 'Account'), params.id])}"
-            redirect(action: "list")
-        }
+
+		println "Delete account"
+		def accountInstance
+		
+		def subject = SecurityUtils.getSubject();
+		if(subject?.getPrincipal()){
+			accountInstance = Account.findByUsername(subject?.getPrincipal())
+		}
+		
+		if(accountInstance){
+		
+			if(SecurityUtils.subject.hasRole("ROLE_ADMIN")){
+        	
+        	    try {
+        	    
+    				accountInstance.delete(flush: true)
+        	        flash.message = "Successfully Deleted ${accountInstance.username}"
+        	        redirect(action: "list")
+        	    
+				} catch (org.springframework.dao.DataIntegrityViolationException e) {
+        	        flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'account.label', default: 'Account'), params.id])}"
+        	        redirect(action: "show", id: params.id)
+        	    }
+
+        	} else {
+
+				flash.message = "yo, you dont have permissions to that man... what are you trying to pull here?  bad move!"
+				redirect controller:"static", action:"welcome"
+
+        	}
+
+		} else{
+			flash.message = "You must be logged in to update your account info"
+			redirect controller:"auth", action:"login"
+		}
+		
     }
 
 
 	def userWelcome = {
 	
-		
 		def subject = SecurityUtils.getSubject();
 		def account = Account.findByUsername(subject?.getPrincipal())
 		
@@ -183,11 +259,7 @@ class AccountController {
 	}
 	
 	
-	def noEntriesLogged = {
-	
-		
-	
-	}
+	def noEntriesLogged = {}
 	
 	
 	def newMember = {
@@ -241,6 +313,8 @@ class AccountController {
 					println e.printStackTrace();
 				}
 				
+				accountInstance.addToPermissions("account:show,edit,update:" + accountInstance.id)
+				accountInstance.save(flush:true)
 				
     			redirect(controller : 'auth', action: 'signIn', params : [accountInstance: accountInstance, username : params.username, password : params.passwordHash, newRegistration : true])
         	

@@ -17,7 +17,7 @@
 	background-position: 0px -6px;
 }
 
-.message .header{
+.message{
 	display:block;
 	font-weight:bold;
 }
@@ -28,7 +28,7 @@
 	background:#ceeece;
 	border:solid 1px #a7d5a7;
 }
-.message.success span{
+.message.success{
 	color:#286228;
 }
 
@@ -39,7 +39,7 @@
 	background:#cde6f3;
 	border:solid 1px #5ab6dd;
 }
-.message.info span{
+.message.info{
 	color:#04638f;
 }
 
@@ -50,7 +50,7 @@
 	background:#ffd6d6;
 	border:solid 1px #e5a4a4;
 }
-.message.error span{
+.message.error{
 	color:#681414;
 }
 
@@ -62,7 +62,7 @@
 	background:#fffff0;
 	border:solid 1px #e7e7c9;
 }
-.message.warn span{
+.message.warn{
 	color:#69695b;
 }
 
@@ -74,7 +74,7 @@
 	background:#ebe8e8;
 	border:solid 1px #c4c1c1;
 }
-.message.note span{
+.message.note{
 	color:#5c5c5c;
 }
 

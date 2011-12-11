@@ -46,7 +46,8 @@
 						<g:link controller="virtueEntry" action="logEntry">Todays Entry</g:link>| 
 						<g:link controller="static" action="dashboard">Dashboard</g:link>|
 						<g:link controller="virtueEntry" action="calendar">Calendar</g:link>|
-						<g:link controller="virtueEntry" action="listview">All Progress</g:link>
+						<g:link controller="virtueEntry" action="listview">All Progress</g:link>|
+						<g:link controller="account" action="info">Account</g:link>
 					</span>
 					
 					<br class="clear"/>

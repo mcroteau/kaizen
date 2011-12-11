@@ -68,6 +68,7 @@ class BootStrap {
 			def simpleAccountMale = new Account(fullName : "Simple Man", username : 'man', passwordHash : simpleUserPass, email : 'croteau.mike@gmail.com', active : true, isMale : true)
 			simpleAccountMale.addToRoles(simpleRole)
 			simpleAccountMale.save(flush:true)
+			println "simpleAccountMale -> ${simpleAccountMale.id}"
 
 		
 		}
@@ -89,7 +90,7 @@ class BootStrap {
 			def minusDays = 0;
 			for(def i = 0; i < totalMockEntries; i++){
 			
-				println 'start creating a new virtue entry ' + i
+				//println 'start creating a new virtue entry ' + i
 				minusDays = minusDays + (utilitiesService.getRandomNumber(5, 0))
 				
 				def ve = new VirtueEntry()
@@ -125,11 +126,12 @@ class BootStrap {
 				
 				ve.account = account
 				
-				println ve.entryDate
+				//println ve.entryDate
 				
 				if(ve.save(flush:true)){
 					account.addToPermissions("virtueEntry:show,edit,delete,update:" + ve.id)
-					//account.save(flush:true)
+					println "account.id -> ${account.id}"
+					account.addToPermissions("account:show,edit,update:" + account.id)
 					updateAccountStats(account, ve.totalPoints)
 				}
 				
@@ -158,6 +160,7 @@ class BootStrap {
 		
 		account.totalScore = account.totalScore + totalPoints
 		account.totalEntries = VirtueEntry.countByAccount(account)
+		
 		account.save(flush:true)
 		
 	}

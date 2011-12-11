@@ -9,7 +9,7 @@
         <title><g:message code="default.edit.label" args="[entityName]" /></title>
     </head>
     <body>
-            <h1>Edit Account</h1>
+            <h1>Update Account Info</h1>
 
             <g:if test="${flash.message}">
             	<div class="message">${flash.message}</div>
@@ -17,84 +17,160 @@
             <g:hasErrors bean="${accountInstance}">
             	<div class="errors">
                 	<g:renderErrors bean="${accountInstance}" as="list" />
-            		</div>
+            	</div>
             </g:hasErrors>
 
-            <g:form method="post" >
-                <g:hiddenField name="id" value="${accountInstance?.id}" />
-                <g:hiddenField name="version" value="${accountInstance?.version}" />
-                <div class="dialog">
-                    <table>
-                        <tbody>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="username"><g:message code="account.username.label" default="Username" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: accountInstance, field: 'username', 'errors')}">
-                                    <g:textField name="username" value="${accountInstance?.username}" />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="email"><g:message code="account.email.label" default="Email" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: accountInstance, field: 'email', 'errors')}">
-                                    <g:textField name="email" value="${accountInstance?.email}" />
-                                </td>
-                            </tr>
-                        
-							<shiro:hasRole name="ROLE_ADMIN">
-                            	<tr class="prop">
-                            	    <td valign="top" class="name">
-                            	      <label for="active"><g:message code="account.active.label" default="Active" /></label>
-                            	    </td>
-                            	    <td valign="top" class="value ${hasErrors(bean: accountInstance, field: 'active', 'errors')}">
-                            	        <g:checkBox name="active" value="${accountInstance?.active}" />
-                            	    </td>
-                            	</tr>
-							</shiro:hasRole>
-							
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="passwordHash"><g:message code="account.passwordHash.label" default="Password Hash" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: accountInstance, field: 'passwordHash', 'errors')}">
-                                    <g:textField name="passwordHash" value="${accountInstance?.passwordHash}" />
-                                </td>
-                            </tr>
-                        
 
-							<shiro:hasRole name="ROLE_ADMIN">
-                            	<tr class="prop">
-                            	    <td valign="top" class="name">
-                            	      <label for="permissions"><g:message code="account.permissions.label" default="Permissions" /></label>
-                            	    </td>
-                            	    <td valign="top" class="value ${hasErrors(bean: accountInstance, field: 'permissions', 'errors')}">
-                            	    </td>
-                            	</tr>
+			<form id="editAccountForm" name="editAccountForm" action="update" method="post" >
+				<div id="validationSummary"></div>
+            	
+		    	<g:hiddenField name="id" value="${accountInstance?.id}" />
+		    	<g:hiddenField name="version" value="${accountInstance?.version}" />
+            	
+				<p>
+	        		<label for="username">Username</label> : ${accountInstance?.username}
+	        	</p>
+            	
+				<p>
+	        		<label for="email">Email</label>
+	        		<g:textField name="email" id="email" value="${accountInstance.email}"/>
+				</p>
+            	
+				<p>
+	        		<label for="passwordHash">New Password</label>             	
+	        		<input type="password" name="passwordHash" value="${accountInstance.passwordHash}" id="passwordHash"/>
+	        	</p>
+            	
+				<p>
+	     			<label for="confirmPassword">Confirm Password</label>
+	        		<input type="password" name="confirmPassword" value="${accountInstance.passwordHash}" id="confirmPassword"/>
+	        	</p>          
+            	
+				<p>
+					<label for="isMale">Gender</label>
+					<g:select name="isMale"
+					          from="${['Gentleman', 'Lovely Lady']}"
+							  keys="${['true', 'false']}"
+					          value="${accountInstance.isMale}" />
+					
+				</p>
+            	
+				<shiro:hasRole name="ROLE_ADMIN">
+            		<p>
+            			<label for="active"><g:message code="account.active.label" default="Active" /></label>
+            		    <g:checkBox name="active" value="${accountInstance?.active}" />
+					</p>
+					
+					<p>
+						<label for="roles"><g:message code="account.roles.label" default="Roles" /></label>
+            		    <g:select name="roles" from="${Role.list()}" multiple="yes" optionKey="id" size="5" value="${accountInstance?.roles*.id}" />
+					</p>
+            	</shiro:hasRole>
+            	
+				<input type="button" id="edit" name="edit" value="Edit"/>
+				<input type="button" id="cancel" name="cancel" value="Cancel"/>
+				
+				<input type="submit" name="update" class="update" id="update" value="Update"/>
+					
+				<shiro:hasRole name="ROLE_ADMIN">
+					<g:actionSubmit class="delete" action="delete" value="Delete" id="${accountInstance.id}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+				</shiro:hasRole>
+					
+			</form>
 
-                            	<tr class="prop">
-                            	    <td valign="top" class="name">
-                            	      <label for="roles"><g:message code="account.roles.label" default="Roles" /></label>
-                            	    </td>
-                            	    <td valign="top" class="value ${hasErrors(bean: accountInstance, field: 'roles', 'errors')}">
-                            	        <g:select name="roles" from="${Role.list()}" multiple="yes" optionKey="id" size="5" value="${accountInstance?.roles*.id}" />
-                            	    </td>
-                            	</tr>
-                    
-                    		</shiro:hasRole>
-                    
-    					</tbody>
-                    </table>
-                </div>
-                <div class="buttons">
-                    <span class="button"><g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" /></span>
-                    <span class="button"><g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" /></span>
-                </div>
-            </g:form>
-        </div>
+			<script type="text/javascript" src="${resource(dir:'js/lib/jquery/', 'jquery-1.6.1.min.js')}"></script>
+			<script type="text/javascript" src="${resource(dir:'js/lib/jquery/', 'jquery-validation.min.js')}"></script>
+
+			<script type="text/javascript">
+
+		   		// this one requires the value to be the same as the first parameter
+		   		$.validator.methods.equal = function(value, element, param) {
+					console.info('value ->' + value + '    param ->'  +  param);
+		   			return value == param;
+		   		};
+				$.validator.methods.confirm = function(value, element){
+					return ($('#passwordHash').val() === value)
+				};
+
+
+				var processing = false;
+				$(document).ready(function(){
+					
+					var password = "${accountInstance.passwordHash}";
+					
+					function disableForm(){
+						$('input[type="text"]').attr('disabled', 'true');
+						$('select').attr('disabled', 'true');
+						$('#passwordHash').val(password);	
+						$('#confirmPassword').val(password);
+					};
+					
+					function enableForm(){
+						$('input[type="text"]').removeAttr('disabled');
+						$('select').removeAttr('disabled');		
+						$('#passwordHash').val('');	
+						$('#confirmPassword').val('');		
+					};
+
+					$('#edit').click(function(){
+						$('#update').show();
+						$('#cancel').show();
+						$('#edit').hide();
+						enableForm();
+					});
+					$('#cancel').click(function(){
+						$('#cancel').hide();
+						$('#update').hide();
+						$('#edit').show();
+						disableForm();
+					});
+					
+					$('#cancel').click()
+					
+					$("#editAccountForm").validate({
+						debug: false,
+						errorElement: "em",
+						errorContainer: $("#validationSummary"),
+						errorPlacement: function(error, element) {
+							error.appendTo( element.parent() );
+						},
+						success: function(label) {
+							label.text("ok!").addClass("valid");
+						},
+						rules: {
+							email: {
+								required : true,
+								email : true
+							},
+							passwordHash : {
+								minlength : 5,
+								required : true,
+							},
+							confirmPassword : {
+								required : true,
+								minlength : 5,
+								confirm : true
+							}
+						},
+						messages : {
+							passwordHash : 'password must be at least 5 characters',
+							email : 'enter a valid email address',
+							confirmPassword : 'your passwords must match',
+						}
+
+					});
+
+
+					$('#update').click(function(){
+						if($('#editAccountForm').valid()){
+							document.editAccountForm.submit();					
+						}
+					});
+
+
+				});
+
+			</script>
+				
     </body>
 </html>

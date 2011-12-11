@@ -11,13 +11,6 @@ class ShiroSecurityFilters {
     	        }
     	    }
     	}
-    	accountMaintenance(controller: "account", action: "(delete|save|create|list)") {
-    	    before = {
-    	        accessControl {
-    	            role("ROLE_ADMIN")
-    	        }
-    	    }
-    	}
 	    virtueEntryMaintenance(controller: "virtueEntry", action: "(create|edit|save|update|delete|newEntry)") {
 	        before = {
 	            accessControl {
