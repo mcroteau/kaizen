@@ -81,14 +81,20 @@ class VirtueEntryController {
 			def virtueEntryInstanceList = VirtueEntry.findAllByAccount(account, params)
 			def virtueEntryInstanceTotal = VirtueEntry.countByAccount(account)
         	
-			[virtueEntryInstanceList: virtueEntryInstanceList, virtueEntryInstanceTotal: virtueEntryInstanceTotal]
+			if(virtueEntryInstanceList){
+			
+				[virtueEntryInstanceList: virtueEntryInstanceList, virtueEntryInstanceTotal: virtueEntryInstanceTotal]
+			
+			}else{
+				redirect(controller : "account", action : "noEntriesLogged")
+			}
 			
 		}else{
 		
-			flash.message = "No entries logged yet"
-			redirect action:"newEntry"
+			redirect(controller : "account", action : "noEntriesLogged")
 		
 		}
+		
 	
 	}
 		
@@ -102,20 +108,30 @@ class VirtueEntryController {
 		
 		if(account){
 		
-			def today = utilitiesService.getTodaysDate()
-			def todaysEntry = VirtueEntry.findByEntryDateAndAccount(today, account)
+			def date
+			if(params.date){
+				date = Date.parse("yyyy-MM-dd", params.date)
+				date.clearTime()
+			}else{
+				date = utilitiesService.getTodaysDate()
+			}
+			//def today = utilitiesService.getTodaysDate()
+			println "date -> ${date}"
+			def entry = VirtueEntry.findByEntryDateAndAccount(date, account)
+
 			
-			println 'todaysEntry -> ' + todaysEntry
+			if(!entry){
 			
-			if(!todaysEntry){
     			def virtueEntryInstance = new VirtueEntry()
     			virtueEntryInstance.properties = params
+				virtueEntryInstance.entryDate = date
+				
     			return [virtueEntryInstance: virtueEntryInstance]
     		
 			}else{
 				
-				flash.message = "You've already logged a entry today..."
-				redirect action:"show", params:[id: todaysEntry.id]
+				flash.message = "You've already logged a entry for ${utilitiesService.getFormattedDateNoTimeOption1(date)}"
+				redirect action:"show", params:[id: entry.id]
 			
 			}
 		}else{
@@ -157,12 +173,14 @@ class VirtueEntryController {
 		
 		if(account){
 		
-			def today = utilitiesService.getTodaysDate()
-			def todaysEntry = VirtueEntry.findByEntryDateAndAccount(today, account)
+			//def today = utilitiesService.getTodaysDate()
+			def date = params.entryDate
+			
+			def todaysEntry = VirtueEntry.findByEntryDateAndAccount(date, account)
 			
 			def fullDateTime = new Date()
 			
-			println "today -> ${today}"
+			println "today -> ${date}"
 			println 'todaysEntry -> ' + todaysEntry
 			
 			if(!todaysEntry){
@@ -175,7 +193,7 @@ class VirtueEntryController {
 				def virtueEntryInstance = new VirtueEntry(params)
 				virtueEntryInstance.account = account
 				
-				virtueEntryInstance.entryDate = today
+				virtueEntryInstance.entryDate = date
 				virtueEntryInstance.fullEntryDateTime = fullDateTime
 				virtueEntryInstance.totalCompleted = totalCompleted
 				virtueEntryInstance.performanceDescription = performanceDescription
@@ -197,7 +215,7 @@ class VirtueEntryController {
 					//recently added to hold stats in session
 					setSessionStats()
 					
-					flash.message = "Successfully logged your virtues for the day..."
+					flash.message = "Successfully logged your virtues for  ${utilitiesService.getFormattedDateNoTimeOption1(date)}"
         		    
         		    render view: "confirmation", model: [virtueEntryInstance: virtueEntryInstance]
 					return
@@ -208,7 +226,7 @@ class VirtueEntryController {
 			
 			}else{
 			
-				flash.message = "You've already logged a entry today..."
+				flash.message = "You've already logged a entry for ${utilitiesService.getFormattedDateNoTimeOption1(date)}"
 				redirect controller:"static", action:"dashboard"
 			}
 			
@@ -461,15 +479,18 @@ class VirtueEntryController {
 
 	def updateAccountStats(Account account, int totalPoints, int previousTotalPoints){
 		
+		println "${account.totalScore + totalPoints - previousTotalPoints} = ${account.totalScore} + ${totalPoints} - ${previousTotalPoints}"
 		account.totalScore = account.totalScore + totalPoints - previousTotalPoints
 		account.totalEntries = VirtueEntry.countByAccount(account)
 		account.save(flush:true)
+		setSessionStats()
 		
 	}
 
 
     def delete = {
-
+	
+		println 'here...'
 		if(params.id && SecurityUtils.subject.isPermitted("virtueEntry:update:"+params.id)){
 		
         	def virtueEntryInstance = VirtueEntry.get(params.id)
@@ -477,8 +498,15 @@ class VirtueEntryController {
         	    try {
 					
 					def date = virtueEntryInstance.entryDate
+					def totalPointsToRemove = virtueEntryInstance.totalPoints
 					
+					println "totalPointsToRemove -> ${totalPointsToRemove}"
         	        virtueEntryInstance.delete(flush: true)
+					
+					def account = Account.findByUsername(SecurityUtils.subject?.getPrincipal())
+					updateAccountStats(account, 0, totalPointsToRemove)
+					
+					
         	        flash.message = "Successfully deleted entry for ${utilitiesService.getFormattedDateNoTimeOption1(date)}"
         	        redirect(action: "list")
         	    }
@@ -505,10 +533,7 @@ class VirtueEntryController {
 
 	def getTodaysDate(){
 		def date = new Date()
-		println 'date : ' + date
-		
 		date.clearTime()
-		println 'new date : ' + date
 		return date
 	}
 	
@@ -522,17 +547,29 @@ class VirtueEntryController {
 	def calendar = {
 		
 		def subject = SecurityUtils.getSubject();
-	
+		
+		/**
+		def account = Account.findByUsername(subject?.getPrincipal())
+		def virtueEntries = VirtueEntry.countByAccount(account)
+		
+		if(virtueEntries){
+		
+		}else{
+			flash.message = "You have yet to log any Virtue Entries... start now by cli"
+		}
+		**/
+		
+		
 		if(!subject.authenticated){		
 			flash.message = "You must be logged in to view your Calendar"
 			redirect(controller:"auth", action:"login")			
 		}
-
+		
 	}
 	
 	def entries = {
 		
-		println 'retrieving events ->'
+		//println 'retrieving events ->'
 		def entries = []
 				
 		def subject = SecurityUtils.getSubject();
@@ -544,7 +581,7 @@ class VirtueEntryController {
 			if(account){
 				def allEntries = VirtueEntry.findAllByAccount(account)
 
-        		println 'allEntries -> ' + allEntries
+        		//println 'allEntries -> ' + allEntries
 
 				allEntries.each{ 
 				
@@ -554,7 +591,7 @@ class VirtueEntryController {
 					def month = it.entryDate.getAt(Calendar.MONTH) +1
 					def year = it.entryDate.getAt(Calendar.YEAR)
 					
-					println "entryDate -> ${it.entryDate}  :   ${year + '-' + month + '-' + String.format("%02d", day)}"
+					//println "entryDate -> ${it.entryDate}  :   ${year + '-' + month + '-' + String.format("%02d", day)}"
 					
 					def entry = [
 						id:  year + '-' + month + '-' + day,

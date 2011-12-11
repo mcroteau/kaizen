@@ -52,6 +52,11 @@ class AuthController {
 			if(params.newRegistration){
 				targetUri = '/account/newMember'
 			}
+			
+			if(params.reset){
+				flash.message = "successfully changed password"
+				targetUri = '/static/dashboard'
+			}
 
 
             log.info "Redirecting to '${targetUri}'."

@@ -4,6 +4,7 @@
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'virtueEntry.label', default: 'VirtueEntry')}" />
 
+	    <link rel="stylesheet" href="${resource(dir:'css',file:'jquery.qtip.min.css')}" />
 	
         <title>Franklins 13 : Progress</title>
     </head>
@@ -18,6 +19,7 @@
 
 		<g:link action="listview">List View</g:link>
 		
+		<div id="loading">loading....</div>
 		<div id="calendarWrapper" style="margin:auto;"></div>
 
 		<br class="clear"/>
@@ -30,92 +32,60 @@
 		
 		<script type="text/javascript" src="${resource(dir:'js/lib/jquery/', 'jquery-1.6.1.min.js')}"></script>
 		<script type="text/javascript" src="${resource(dir:'js/lib/jquery/fullcalendar/', 'fullcalendar.min.js')}"></script>
-	
+		<script type="text/javascript" src="${resource(dir:'js/lib/jquery/', 'jquery.qtip.js')}"></script>
+		<script type="text/javascript" src="${resource(dir:'js/util/', 'utilities.js')}"></script>
+			
 		<script type='text/javascript'>
 
 			$(document).ready(function() {
-
+				
 				$('#calendarWrapper').fullCalendar({
-
-					editable : true,
-
-					events : "entries",
-
-					disableDragging : true,
-
-					loading : function(bool) {
-						if (bool) $('#loading').show();
-						else $('#loading').hide();
-					},
 					
-					dayClick : function(date, allDay, jsEvent, view){
+					events : "entries",
+					disableDragging : true,
+					selectable : true,
+					select : function(start, end, allDay, jsEvent, view, onevent){
 						
-						console.log(date)
-						console.log(allDay)
-						console.log(jsEvent)
-						console.log(view)
+						var dateString = start.getFullYear() + '-' + (start.getMonth() + 1) + '-' + start.getDate();
+						var today = new Date();
+						var result = util.dates.compare(start, today);
 						
-						if($(this).hasClass('fc-today')){
+						if(result === 1){
+							var message = 'Cannot log entry for the future... what are you trying to pull here...';
 							
-							var todaysEntry = $(this).find('.fc-content div');
-							
-							var allEvents = $('#calendarWrapper').fullCalendar('clientEvents');
-							
-							console.log(allEvents);
-							var idString =  date.getFullYear() + '-' + (date.getMonth() + 1) + '-' +  zeroPad(date.getDate(), 2)
-							console.info(idString);
-							
-							$(allEvents).each(function(index, event){
-								
-								if(event.id === idString){
-									console.log(event)
-									alert('bingo');
+							$('.fc-cell-overlay').qtip({
+								content: {
+									text: message
+								},
+							   	position: {
+							    	my: 'bottom center',  // Position my top left...
+							      	at: 'top center', // at the bottom right of...
+							    },
+								style: {
+									classes: 'ui-tooltip-youtube'
 								}
-								
-							});							
-						}						
-					}
+							});
+							$('.fc-cell-overlay').qtip().show();
+							
+						}else{
+							window.location = '/franklins13/virtueEntry/logEntry?date=' + dateString;
+						}
+						
+					},
+					loading : function(bool) {
+						if (bool){
+							$('#loading').show();	
+						} else {
+							$('#loading').hide();
+						}
+					},
+					eventRender: function(event, element) {}
 
 				});
 				
-				
-				//function setTodayClickable(){
-					
-					console.info('set today clickable -> ')
-					
-					var date = $('#calendarWrapper').fullCalendar( 'getDate');
-
-					var allEvents = $('#calendarWrapper').fullCalendar('clientEvents');
-					
-					console.info(allEvents);
-					
-					var idString =  date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + zeroPad(date.getDate(), 2)
-					console.info(idString);
-
-					var hasEvent = false;
-					$(allEvents).each(function(index, event){
-						console.log(event)
-
-						if(event.id === idString){
-							console.info(' ====== ')
-							hasEvent = true;
-						}
-
-					});
-
-					if(!hasEvent){
-						console.info(' ! has event... ')
-						$('.fc-today').addClass('clickable').addClass('logEntry');
-					}
+				$('.fc-widget-content').addClass('clickable');
 
 
-					$('.logEntry').click(function(){
-						window.location = '/franklins13/virtueEntry/logEntry';
-					});
-				//}
-
-
-				
 				function zeroPad(num, count){
 					var numZeropad = num + '';
 					while(numZeropad.length < count) {
@@ -123,9 +93,6 @@
 					}
 					return numZeropad;
 				}
-
-				//setTodayClickable();
-				
 
 			});
 

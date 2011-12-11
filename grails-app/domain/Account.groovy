@@ -15,14 +15,18 @@ class Account {
 	//String fullName
 	//String location
 	
+	String recoveryUUID
+	int recoveries
 	
     static hasMany = [ roles: Role, permissions: String, virtueEntries: VirtueEntry]
 
     static constraints = {
         username(unique:true, nullable: false, blank: false)
 		email(unique:true, nullable:false, blank:false, email:true)
-		totalEntries(nullable:true, blank:true)
-		totalScore(nullable:true, blank:true)
+		totalEntries(nullable:true, blank: true)
+		totalScore(nullable:true, blank: true)
+		recoveryUUID(nullable:true, blank: true)
+		recoveries(nullable:true, blank: true)
     }
 	
 	

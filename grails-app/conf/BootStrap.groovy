@@ -11,8 +11,10 @@ class BootStrap {
 	def simpleRole
 
 	def utilitiesService
-	
+	def mailService
+		
     def init = { servletContext ->
+	
 		createRoles()
     	createUsers()
 		createMockData()
@@ -31,19 +33,30 @@ class BootStrap {
 		println 'Roles : ' + Role.count()
 	}
 	
+	
+	def user1 = [username : "mikec", password : "mikec", email : "croteau.mike+franklins@gmail.com", isMale : true, admin : true]
+	//def users = [[username : "mikec", password : "mikec", email : "croteau.mike+franklins@gmail.com", isMale : true, admin : true], [username : "joebob", password : "joebob", email : "email@email.com", isMale : true, admin : false] ,[username : "admin", password : "mikec", email : "franklins13app@gmail.com', isMale : true, admin : false], [username : "giselle", password : "giselle", email : "giselle@email.com", isMale : false, admin : false], [username : "selfimproved", password : "selfimproved", email : "selfimproved@email.com", isMale: true, admin : false],[username : "jess123", password : "jess123", email : "jess123@email.com", isMale: false, admin : false]]
+	
+	def users = []
+	
+	def test = [[username : "mikec", password : "mikec", email : "croteau.mike+franklins@gmail.com", isMale : true, admin : true],[username : "mikec", password : "mikec", email : "croteau.mike+franklins@gmail.com", isMale : true, admin : true]]
+
 	def createUsers = {
+		
+		users.add(user1)
 		
 		if(Account.count() == 0){
 		
 			setPasswords()
 			
+			users.each{
+				println it
+			}
+			
+			
 			def adminAccount = new Account(fullName : "Admin User", username : 'admin', passwordHash : adminPass, email : 'admin@franklins13app.com', active : true, isMale : true)
 			adminAccount.addToRoles(adminRole)
-			adminAccount.addToPermissions("account:create")
-			adminAccount.addToPermissions("account:edit")
-			adminAccount.addToPermissions("account:save")
-			adminAccount.addToPermissions("account:delete")
-			adminAccount.addToPermissions("account:update")	
+			adminAccount.addToRoles(simpleRole)
 			adminAccount.save(flush:true)
 			
 			
@@ -52,7 +65,7 @@ class BootStrap {
 			simpleAccountFemale.addToRoles(simpleRole)
 			simpleAccountFemale.save(flush:true)
 			
-			def simpleAccountMale = new Account(fullName : "Simple Man", username : 'man', passwordHash : simpleUserPass, email : 'man@franklins13app.com', active : true, isMale : true)
+			def simpleAccountMale = new Account(fullName : "Simple Man", username : 'man', passwordHash : simpleUserPass, email : 'croteau.mike@gmail.com', active : true, isMale : true)
 			simpleAccountMale.addToRoles(simpleRole)
 			simpleAccountMale.save(flush:true)
 
@@ -80,8 +93,10 @@ class BootStrap {
 				minusDays = minusDays + (utilitiesService.getRandomNumber(5, 0))
 				
 				def ve = new VirtueEntry()
+				def entryDate = new Date() - minusDays
+				entryDate.clearTime()
 					
-				ve.entryDate = new Date() - minusDays
+				ve.entryDate = entryDate
 				ve.fullEntryDateTime = ve.entryDate
      
 				ve.temperance = getRandomTrueFalse()
@@ -153,7 +168,6 @@ class BootStrap {
 		adminPass = new Sha256Hash('admin').toHex()
 		simpleUserPass = new Sha256Hash('simple').toHex()
 	}
-	
 
 	
 }

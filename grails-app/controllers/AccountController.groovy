@@ -6,7 +6,7 @@ import org.apache.shiro.crypto.hash.Sha1Hash
 
 
 import org.apache.shiro.SecurityUtils
-
+import java.util.UUID
 
 
 class AccountController {
@@ -77,19 +77,32 @@ class AccountController {
     }
 
     def edit = {
-        def accountInstance = Account.get(params.id)
-        if (!accountInstance) {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'account.label', default: 'Account'), params.id])}"
-            redirect(action: "list")
-        }
-        else {
-            return [accountInstance: accountInstance]
-        }
+
+
+		if(SecurityUtils.subject.isPermitted("account:edit:"+ params.id) || 
+			SecurityUtils.subject.hasRole("ROLE_ADMIN")){
+		
+        	def accountInstance = Account.get(params.id)
+        	if (!accountInstance) {
+        	    flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'account.label', default: 'Account'), params.id])}"
+        	    redirect(action: "list")
+        	}
+        	else {
+        	    return [accountInstance: accountInstance]
+        	}
+		}else{
+			flash.message = "yo, you dont have permissions to that man... what are you trying to pull here?  bad move!"
+			redirect controller:"static", action:"welcome"
+		}
+
     }
 
     def update = {
 
-		if(SecurityUtils.subject.isPermitted("account:update")){
+		
+		if(SecurityUtils.subject.isPermitted("account:edit:"+ params.id) || 
+			SecurityUtils.subject.hasRole("ROLE_ADMIN")){
+			
         	def accountInstance = Account.get(params.id)
         	if (accountInstance) {
         	    if (params.version) {
@@ -243,37 +256,84 @@ class AccountController {
 	}
 	
 	
-	def beginResetPage = {
-		
+	def beginResetPage = {		
 	}
 	
 	
 	def sendResetEmail = {
 		def email = params.email
-		def acount = Account.findByEmail(email)
-		if(acount){
-			def url = "http://localhost:8080/franklins13/account/resetPage?username=${account.username}&pass=${account.passwordHash}"
-			try{
-				mailService.sendMail {
-				   to account.email
-				   from "franklins13app@gmail.com"
-				   subject "[Franklins 13 App] Reset Password"
-				   body "<a href=\"${url}\">Click to confirm reset password</a>"
+		println 'email -> ' + email
+		
+		
+		def account = Account.findByEmail(email)
+		def recoveryUUID = UUID.randomUUID();
+		
+		
+		if(account){
+			def url = "http://localhost:8080/franklins13/account/resetPage?username=${account?.username}&recoveryUUID=${recoveryUUID}"
+			
+			account.recoveryUUID = recoveryUUID
+			if(account.save(flush:true)){
+				try{
+					mailService.sendMail {
+					   to account.email
+					   from "franklins13app@gmail.com"
+					   subject "[Franklins 13 App] Reset Password"
+					   body "<a href=\"${url}\">Click to confirm reset password</a>"
+					}
+					flash.message = "Successfully sent recovery email.  Please check email for instructions on how to reset."
+					render view: "confirmation"					
+				}catch (Exception e){
+					println e.printStackTrace();
+					flash.message = "there was a problem trying to send reset email, please try again or contact the administrator"
+					 view: 'beginResetPage'
 				}
-			}catch (Exception e){
-				println e.printStackTrace();
-				flash.message = "there was a problem trying to send reset email, please try again or contact the administrator"
-				render beginResetPage
+				
+			}else{				
+				flash.message = "Something went wrong when trying to send recovery email.  Please try again"
+				render view: 'beginResetPage'
 			}
 			
 		}else{
-			flash.message = "Please enter a valid email address"
-			render beginResetPage
+			flash.message = "We could not find an account associated with ${email}.  Please try again.. or send an email to ${utilitiesService.getSupportLink()}"
+			redirect( action: 'beginResetPage' )
 		}
 		
 	}
 
-	def resetPage = {
+
+	def resetPage = {		
+		def account = Account.findByUsernameAndRecoveryUUID(params.username, params.recoveryUUID)
+		if(account){
+			println 'found account -> have them update their password'
+			
+			request.username = account.username
+			
+		}else{
+			flash.message = "Something went wrong, please try again."
+			render view: 'beginResetPage'
+		}		
+	}
+	
+	
+	def resetPassword = {
+		def username = params.username
+		def newPassword = params.password
+		
+		def account = Account.findByUsername(username)
+		
+		account.passwordHash = new Sha256Hash(newPassword).toHex()
+		if(account.save(flush:true)){
+		
+			def authToken = new UsernamePasswordToken(username, newPassword as String)
+			
+			redirect(controller : "auth", action : "signIn", params : [username : username, password : newPassword, reset : true])
+			
+		}else{
+			flash.message = ""
+			request.username = username
+			render view : 'resetPage'
+		}
 		
 	}
 	

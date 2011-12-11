@@ -6,7 +6,7 @@
 
 	    <link rel="stylesheet" href="${resource(dir:'css/jquery-ui/ui-lightness',file:'jquery-ui-1.8.16.custom.css')}" />
 	
-        <title><g:message code="default.create.label" args="[entityName]" /></title>
+        <title>Franklins 13 App : Log Virtues or the Day</title>
     </head>
     <body>
 
@@ -25,10 +25,9 @@
 
             <g:form action="save" >
 
+				<g:datePicker name="entryDate" value="${virtueEntryInstance?.entryDate}" precision="day" years="[2011,2012, 2013]"/>
                     <table>
                         <tbody>
-                        
-
                             <tr>
                                 <td>
                                     <label for="chastity">Chastity</label>
@@ -218,14 +217,12 @@
 							$('#happinessScaleValue').html(value);
 						},
 						create : function(event, ui){
-							console.log(ui)
 							var value = $('#happinessScaleSlider').slider('value');
 							$('#happinessScale').val(value);
 							$('#happinessScaleValue').html(value);
 						} 
 					});
 					
-					console.log($('#happinessScaleSlider').slider('value'));
 					
 				});
 

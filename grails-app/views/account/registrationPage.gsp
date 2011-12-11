@@ -30,7 +30,7 @@
 				
 			</style>
 			
-            <form id="registrationForm" name="registrationForm" action="http://localhost:8080/franklins13/account/register" method="post" >
+            <form id="registrationForm" name="registrationForm" action="franklins13/account/register" method="post" >
 				<div id="validationSummary"></div>
 				
 				<h2>Step One : Vow to be Honest</h2>

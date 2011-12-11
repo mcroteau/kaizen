@@ -52,5 +52,7 @@ class UtilitiesService {
 		return percent.format(number);
 	}
 
-	
+	def getSupportLink(){
+		return '<a href="mailto:franklins13app@gmail.com" title="Email Support at franklins13app@gmail.com">franklins13app@gmail.com</a>'
+	}
 }

@@ -98,9 +98,10 @@ log4j = {
 grails {
    mail {
      host = "relay.jangosmtp.net"
-     port = 25
+     port = 587
      username = "mikecroteau"
-     password = "611604ZX"
+     //password = "611604ZX"
+	 password = "baseball03"
    }
 }
 	

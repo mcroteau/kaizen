@@ -32,15 +32,61 @@
 			
             <form id="sendResetEmail" name="sendResetEmail" action="sendResetEmail" method="post" >
 	
+				<div id="validationSummary"></div>
+				
 				<h2>Step One : Enter Email</h2>
 				<input type="text" name="email" value="" >
-				<input type="submit" value="Send Reset Email"/>
+				<input type="submit" id="beginReset" value="Send Reset Email"/>
 				
 				<h2>Step Two : Click on confirmation to reset password in email</h2>
 				
 				<h2>Step 3 : Reset Password</h2>
 				
             </form>
+			<script type="text/javascript" src="${resource(dir:'js/lib/jquery/', 'jquery-1.6.1.min.js')}"></script>
+			<script type="text/javascript" src="${resource(dir:'js/lib/jquery/', 'jquery-validation.min.js')}"></script>
+
+			<script type="text/javascript">
+
+				var processing = false;
+				$(document).ready(function(){
+
+					console.log('reset page loaded ... ');
+					
+					$("#sendResetEmail").validate({
+						debug: true,
+						errorElement: "em",
+						errorContainer: $("#validationSummary"),
+						errorPlacement: function(error, element) {
+							error.appendTo( element.parent() );
+						},
+						success: function(label) {
+							label.text("ok!").addClass("valid");
+						},
+						rules: {
+							email : {
+								email : true,
+								required : true
+							}
+						},
+						messages : {
+							email : 'please enter the email that is associated to your account...'
+						}
+
+					});
+
+
+					$('#beginReset').click(function(){
+						console.info('submit form');
+						if($('#sendResetEmail').valid()){						
+							document.sendResetEmail.submit();					
+						}
+					});
+
+
+				});
+
+			</script>
 
 
 	

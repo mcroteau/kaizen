@@ -70,37 +70,45 @@ class StaticController {
     		
 			def totalEntries = VirtueEntry.countByAccount(account)
 
-			def i = 1;
-			virtueEntryInstanceList.each(){
+			if(totalEntries && totalEntries > 1){
+				def i = 1;
+				virtueEntryInstanceList.each(){
+					
+					def dateInMillis = it.entryDate.getTime()
+					
+					def satisfactionValues = []
+					satisfactionValues.add(dateInMillis)
+					satisfactionValues.add(it.happinessScale)			
+					happiness.add(satisfactionValues)
+            	
+            	
+					def virtueValues = []
+					virtueValues.add(dateInMillis)
+					virtueValues.add(getTotalPrinciplesFollowed(it))
+					virtues.add(virtueValues)
+					
+					
+					def scoresObj = []
+					scoresObj.add(dateInMillis)
+					scoresObj.add(it.totalPoints)
+					scores.add(scoresObj)
+					
+					setMappedVirtueValues(it, virtuesSummaryMap)
+            	
+				 	i++
+				}
+				println "virtues -> ${virtues}"
 				
-				def dateInMillis = it.entryDate.getTime()
-				
-				def satisfactionValues = []
-				satisfactionValues.add(dateInMillis)
-				satisfactionValues.add(it.happinessScale)			
-				happiness.add(satisfactionValues)
-
-
-				def virtueValues = []
-				virtueValues.add(dateInMillis)
-				virtueValues.add(getTotalPrinciplesFollowed(it))
-				virtues.add(virtueValues)
-				
-				
-				def scoresObj = []
-				scoresObj.add(dateInMillis)
-				scoresObj.add(it.totalPoints)
-				scores.add(scoresObj)
-				
-				setMappedVirtueValues(it, virtuesSummaryMap)
-
-			 	i++
-			}
-
-			println "virtues -> ${virtues}"
-			println "happiness -> ${happiness}"
+				println "happiness -> ${happiness}"
 			
-			setPercents(virtuesSummaryMap, totalEntries);
+				setPercents(virtuesSummaryMap, totalEntries);
+			
+			}//else{
+				
+			//	redirect(controller : "account", action : "noEntriesLogged")
+			
+			//}
+			
 			
 		}else{
 			
