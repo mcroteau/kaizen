@@ -40,12 +40,12 @@
 				<h2>Step Two : Create your account</h2>
 				<p>
                		<label for="username">Username</label>
-               		<g:textField name="username" value="${accountInstance?.username}" id="username" value="mikec" />
+               		<g:textField name="username" id="username" value="${accountInstance?.username}" />
                	</p>
                
 			   	<p>
                		<label for="email">Email</label>
-               		<g:textField name="email" value="${accountInstance?.email}" id="email" value="croteau.mike+test@gmail.com"/>
+               		<g:textField name="email" value="${accountInstance?.email}" id="email"/>
 			   	</p>
 			   
 			   

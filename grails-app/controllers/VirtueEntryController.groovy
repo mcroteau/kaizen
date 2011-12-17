@@ -91,7 +91,8 @@ class VirtueEntryController {
 			
 		}else{
 		
-			redirect(controller : "account", action : "noEntriesLogged")
+			flash.message = "You must have an account to log your days virtues"
+			redirect controller: "auth", action:"login"
 		
 		}
 		

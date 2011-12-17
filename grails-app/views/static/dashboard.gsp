@@ -35,7 +35,7 @@
 		<h2>Dashboard</h2>
 		
 		<p class="large">How does your progress look?  Do you see a trend?</p>
-	 	<div id="progress" style="width:100%; height:200px;"></div>
+	 	<div id="progress" style="width:100%; height:270px;"></div>
 
 		<h2>Stats</h2>
 		<h3 style="text-align:center">Total Score : ${session.totalScore}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total Entries : ${session.totalEntries}</h3>
@@ -160,13 +160,13 @@
 				grid: {
 			    	show: true,
 			    	aboveData: false,
-			    	color: "#777",
+			    	color: "#ddd",
 			    	backgroundColor: "#fff",
 			    	labelMargin: 10,
 			    	axisMargin: 10,
 			    	//markings: array of markings or (fn: axes -> array of markings)
 			    	borderWidth: 1,
-			    	borderColor: "#e3e3e3",
+			    	borderColor: "#efefef",
 			    	minBorderMargin: 10,
 			    	clickable: true,
 			    	hoverable: true,
@@ -176,7 +176,7 @@
 
 				legend: {
 			    	show: false,
-			    	labelBoxBorderColor: "#efefef",
+			    	labelBoxBorderColor: "#f8f8f8",
 			    	//noColumns: number
 			    	position: "ne",
 			    	margin: [10, 10],
@@ -188,8 +188,8 @@
 				    show: true,
 				    position: "bottom",
 
-					color: "#ddd",
-				    tickColor: "#e3e3e3",
+					color: "#f8f8f8",
+				    tickColor: "#f8f8f8",
 
 
 				    tickSize: 1,

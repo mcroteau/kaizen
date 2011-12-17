@@ -281,52 +281,68 @@ class AccountController {
 	
 	def register = {
 	
-		def subject = SecurityUtils.getSubject();
-	
-		if(!subject.authenticated){
+		if(Account.count() < 22){
 		
-			def accountInstance = new Account(params)
+			def shiroSubject = SecurityUtils.getSubject();
+	    	
+			if(!shiroSubject.authenticated){
 			
-			def passwordHash = new Sha256Hash(params.passwordHash).toHex()
-			accountInstance.passwordHash = passwordHash
-			
-			def simpleRole = Role.findByName("ROLE_SIMPLE_USER")
-			accountInstance.addToRoles(simpleRole)
-			
-			println 'pass -> ' + params.passwordHash + '  hash->' + passwordHash 
-			println 'params -> ' + params
-			
-			
-    		if (accountInstance.save(flush: true)) {
-    			
+				def accountInstance = new Account(params)
+				
+				def passwordHash = new Sha256Hash(params.passwordHash).toHex()
+				accountInstance.passwordHash = passwordHash
+				
+				def simpleRole = Role.findByName("ROLE_SIMPLE_USER")
+				accountInstance.addToRoles(simpleRole)
+				
+				println 'pass -> ' + params.passwordHash + '  hash->' + passwordHash 
 				println 'params -> ' + params
-				println "email -> ${accountInstance.email}"
 				
-				try{
-					mailService.sendMail {
-					   to accountInstance.email
-					   from "franklins13app@gmail.com"
-					   subject "Thank You for Joining"
-					   body "Thank you for joining Franklins13app.com"
+				
+    			if (accountInstance.save(flush: true)) {
+    				
+					println 'params -> ' + params
+					println "email -> ${accountInstance.email}"
+					
+					try{
+						mailService.sendMail {
+						   to "${accountInstance.email}"
+						   from "franklins13app@gmail.com"
+						   subject "Thank You for Joining"
+						   body "Thank you for joining Franklins13app.com"
+						}
+						
+						println "\n\n\nSent Mail\n\n\n"
+						
+					}catch (Exception e){
+						println e.printStackTrace();
 					}
-				}catch (Exception e){
-					println e.printStackTrace();
-				}
-				
-				accountInstance.addToPermissions("account:show,edit,update:" + accountInstance.id)
-				accountInstance.save(flush:true)
-				
-    			redirect(controller : 'auth', action: 'signIn', params : [accountInstance: accountInstance, username : params.username, password : params.passwordHash, newRegistration : true])
-        	
-        	
-    		} else {
-    			flash.message = "something went wrong while trying to save the user"
-				render(view: "registrationPage", model: [accountInstance: accountInstance])
-    		}
-    	
-		}else{
-			redirect(controller : 'static', action : 'welcome' )
-		}		
+					
+					println "account id -> ${accountInstance.id}"
+					
+					accountInstance.addToPermissions("account:show,edit,update:${accountInstance.id}")
+					accountInstance.save(flush:true)
+					
+					
+    				redirect(controller : 'auth', action: 'signIn', params : [accountInstance: accountInstance, username : params.username, password : params.passwordHash, newRegistration : true])
+        		
+        		
+    			} else {
+    				flash.message = "something went wrong while trying to save the user"
+					render(view: "registrationPage", model: [accountInstance: accountInstance])
+    			}
+    		
+			}else{
+				redirect(controller : 'static', action : 'welcome' )
+			}	
+		
+		} else {
+			
+			flash.message = "We have hit our limit.  Stay tuned, depending on user feedback, the site may be opened up to more users."
+			redirect controller:"static", action:"welcome"
+			
+		}
+			
 	}
 	
 	

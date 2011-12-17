@@ -17,7 +17,7 @@
 	<p class="medium">Franklin's 13 might help us answer that question... lets make a game of it</p>
 	
 	
-	<div id="basechart" style="width:100%; height:200px; position:relative"></div>
+	<div id="basechart" style="width:100%; height:300px; position:relative"></div>
 	
 	<div class="left">
 	
