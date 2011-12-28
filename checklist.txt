@@ -25,3 +25,9 @@ Dashboard
 
 Thoughts
 what if you gathered happiness, points, leaders of the site and displayed on a map to show geographic locations of users.  It might be interesting to see where users are located, their level of satisfaction.. and really, if there are areas in the country (or world) where people are more interested in self improvement... and if so, why?  what are some factors?  are these areas nicer areas?  on the coast? in the midwest?  small town or large city? 
+
+
+
+1-5 followed - sum all happiness / total entries = average happiness rating  
+6-10 followed - sum all happiness / (total entries x 10)
+11-14 followed - sum all happiness / (total entries x 10)
