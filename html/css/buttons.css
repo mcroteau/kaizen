@@ -1,205 +1,140 @@
-a.button{
-	text-indent:-10000px;
-	display:inline-block;
-	vertical-align:middle;
-	background:url('../images/alertingsprite.png') top left no-repeat;
+.buttons {
+  margin: 30px auto;
+  text-align: center; }
+
+.button {
+  color: #fff;
+  line-height: 1;
+  font-weight: normal;
+  letter-spacing: 0.02em;
+  display: inline-block;
+  text-decoration: none;
+  -moz-box-shadow: 0 1px 3px #999;
+  -webkit-box-shadow: 0 1px 3px #999;
+  position: relative;
+  cursor: pointer;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px; }
+
+.button.large {
+  font-size: 16px;
+  margin: 40px 10px;
+  padding: 10px 15px 10px 15px; }
+
+.button.small {
+  font-size: 10px;
+  margin: 0px 7px;
+  padding: 3px 7px; }
+
+.button.green {
+  text-shadow: 1px 1px 1px #367b27;
+  border-bottom: 1px solid #367b27;
+  background: #4e983d;
+  /* Old browsers */
+  background: -moz-linear-gradient(bottom, #4e983d 0%, #58ab3c 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4e983d), color-stop(100%, #58ab3c));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #4e983d 0%, #58ab3c 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #4e983d 0%, #58ab3c 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #4e983d 0%, #58ab3c 100%);
+  /* IE10+ */
+  background: linear-gradient(top, #4e983d 0%, #58ab3c 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$green-top', endColorstr='$green-bottom',GradientType=0 );
+  /* IE6-9 */ }
+
+.button.blue {
+  text-shadow: 1px 1px 1px #01488a;
+  border-bottom: 1px solid #01488a;
+  background: #1f70bb;
+  /* Old browsers */
+  background: -moz-linear-gradient(bottom, #1f70bb 0%, #2e81cc 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1f70bb), color-stop(100%, #2e81cc));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #1f70bb 0%, #2e81cc 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #1f70bb 0%, #2e81cc 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #1f70bb 0%, #2e81cc 100%);
+  /* IE10+ */
+  background: linear-gradient(top, #1f70bb 0%, #2e81cc 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$blue-top', endColorstr='$blue-bottom',GradientType=0 );
+  /* IE6-9 */ }
+
+.button.red {
+  text-shadow: 1px 1px 1px #a73601;
+  border-bottom: 1px solid #a73601;
+  background: #cb4101;
+  /* Old browsers */
+  background: -moz-linear-gradient(bottom, #cb4101 0%, #da5517 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cb4101), color-stop(100%, #da5517));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #cb4101 0%, #da5517 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #cb4101 0%, #da5517 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #cb4101 0%, #da5517 100%);
+  /* IE10+ */
+  background: linear-gradient(top, #cb4101 0%, #da5517 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$red-top', endColorstr='$red-bottom',GradientType=0 );
+  /* IE6-9 */ }
+
+.toggle {
+  width: 15px;
+  height: 17px;
+  display: inline-block;
+  cursor: pointer;
+  background: url("../images/sprite.png") -225px -277px no-repeat; }
+
+.toggle.open {
+  background-position: -208px -277px; }
+
+/** slider toggle button **/
+.ui-slider {
+  border-radius: 3px !important;
+  -moz-border-radius: 3px !important;
+  -webkit-border-radius: 3px !important;
+  box-shadow: inset 1px 1px #01488a !important;
+  -moz-box-shadow: inset 1px 1px #01488a !important;
+  -webkit-box-shadow: inset 1px 1px #01488a !important;
+  background: #1f70bb !important;
+  /* Old browsers */
+  background: -moz-linear-gradient(bottom, #1f70bb 0%, #2e81cc 100%) !important;
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1f70bb), color-stop(100%, #2e81cc)) !important;
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #1f70bb 0%, #2e81cc 100%) !important;
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #1f70bb 0%, #2e81cc 100%) !important;
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #1f70bb 0%, #2e81cc 100%) !important;
+  /* IE10+ */
+  background: linear-gradient(top, #1f70bb 0%, #2e81cc 100%) !important;
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$blue-top', endColorstr='$blue-bottom',GradientType=0 ) !important;
+  /* IE6-9 */ }
+
+.ui-slider-handle {
+  height: 24px !important;
+  width: 8px !important;
+  border: none !important;
+  margin-top: -1px;
+  background: url("../images/sprite.png") -208px -250px no-repeat !important; }
+
+/**
+.ui-slider-handle:hover{
+	box-shadow: 0px 1px 1px 3px $highlight-dark !important;
+	-moz-box-shadow: 0px 1px 1px 3px $highlight-dark !important;
+	-webkit-box-shadow: 0px 1px 1px 3px $highlight-dark !important;
 }
-
-a.status{
-	width:30px;
-	height:16px;
-	background:url('../images/alertingsprite.png') top left no-repeat;
-}
-
-a.status.on{
-	background-position: 0px -21px;
-}
-a.status.off{
-	background-position: -31px -21px;
-}
-
-
-
-
-
-
-
-
-a.triangle{
-	height:11px;
-	width:11px;
-	background-position: -115px -2px;
-}
-a.triangle:hover{
-	background-position: -129px -2px;	
-}
-a.triangle.open{
-	background-position: -154px -2px;
-}
-a.triangle.open:hover{
-	background-position: -141px -2px;
-}
-
-
-
-
-
-
-
-a.square{
-	width:15px;
-	height:17px;
-	background-position: -94px 0px;
-}
-a.square.open{
-	background-position: -77px 0px;
-}
-
-
-
-
-
-a.mainNav{
-	float:left;
-	height:49px;
-}
-
-/** main nav link widths **/
-a.mainNav.createLink,
-a.mainNav.searchLink{
-	width:143px;
-}
-a.mainNav.dashboardLink{
-	width:164px;
-}
-
-
-/** create link **/
-a.mainNav.createLink{
-	background-position: 0px -41px;
-}
-a.mainNav.createLink:hover{
-	background-position: 0px -92px;
-}
-a.mainNav.createLink.active{
-	background-position: 0px -143px;
-}
-
-
-
-/** dashboard link **/
-a.mainNav.dashboardLink{
-	background-position: -143px -41px;
-}
-a.mainNav.dashboardLink:hover{
-	background-position: -143px -92px;
-}
-a.mainNav.dashboardLink.active{
-	background-position: -143px -143px;
-}
-
-
-
-/** search link **/
-a.mainNav.searchLink{
-	background-position: -307px -41px;
-}
-a.mainNav.searchLink:hover{
-	background-position: -307px -92px;
-}
-a.mainNav.searchLink.active{
-	background-position: -307px -143px;
-}
-
-
-
-
-
-
-
-
-a.builder{
-	width:16px;
-	height:16px;
-	margin:0px !important;
-	line-height:1.0em;
-	display:inline-block;
-	vertical-align:middle;
-	border:solid 0px #ddd;
-}
-
-
-a.remove{
-	background-position: -15px -2px;
-}
-a.add{
-	background-position: -35px -2px;
-}
-a.addBlock{
-	background-position: -55px -2px;	
-}
-
-
-
-
-
-
-
-
-/** tags **/
-a.addTag,
-a.addTagSearch{
-	width:16px;
-	height:16px;
-	margin:0px !important;
-	line-height:1.0em;	
-	vertical-align:middle;
-	background-position: -35px -2px;
-}
-
-a.tags{
-	height:13px;
-	width:13px;
-	background-position: 0px -6px;
-}
-
-
-
-
-
-
-
-/** action buttons **/
-a.save,
-a.cancel,
-a.delete{
-	height:17px;
-	width:42px;
-}
-a.save{
-	width:36px;
-	background-position: -107px -20px;
-}
-a.cancel{
-	background-position: -62px -20px;
-}
-a.delete{
-	background-position: -144px -20px;
-}
-
-
-
-
-a.subscribe,
-a.unsubscribe{
-	height:17px;
-	width:78px;
-}
-a.subscribe{
-	background-position: -230px -20px;
-}
-a.unsubscribe{
-	background-position: -308px -20px;
-}
-
-
+**/
+.ui-slider-handle.ui-state-active {
+  background-position: -218px -250px !important; }

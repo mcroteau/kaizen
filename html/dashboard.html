@@ -1,0 +1,677 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+    <meta name="author" content=""/>
+	 
+    <title>Mikec's Dashboard : Franklin's 13 App</title> 
+
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/messages.css" type="text/css" media="screen" />
+	
+    <link rel="stylesheet" href="../web-app/css/fullcalendar.css" />
+    <link rel="stylesheet" href="../web-app/css/jquery.qtip.min.css" />
+
+    <link rel="stylesheet" href="css/style-userloggedin.css" type="text/css" media="screen" />
+		
+</head>
+<body>
+
+	
+	<div class="topbar">
+		
+			
+		<div class="topcontent">
+			<a href="" class="logo micro"></a>
+			<span>Welcome back Mikec!</span>
+			<a href="#" class="logout">Logout</a>
+			<br class="clear"/>
+		</div>
+		
+	</div>
+
+	<div class="content dashboard">
+		
+		
+		<div class="header">
+			<div class="stats">
+				<span>
+					Total Score <em class="scoreWrapper"><em class="score"></em></em> points
+				</span>
+			
+				<span>
+					Rank <em class="rankWrapper"><em class="rank"></em></em> out of 55
+				</span>		
+			</div>
+			
+			<nav class="usernav">
+				<a href="dashboard.html" class="active" title="Franklins 13+ : Welcome to Franklin's 13+ App">Dashboard</a>
+				<a href="logentry.html" class="" title="Franklins 13+ : The Experiment Explained">Log Entry</a>
+				<a href="history.html" class="" title="Franklins 13+ : Ben Franklin's 13 Virtues/Principals Defined">History</a>
+			</nav>
+			
+			<br class="clear"/>
+		</div>
+		<h1>Dashboard</h1>
+		<div id="dashleft" style="">
+			<h3>Progress <span>Ideally our "Happiness/Satisfaction" will move up with the number of Virtues completed.</span></h3>
+			<div id="progress" style="width:500px; height:230px; margin:auto; position:relative;"></div>
+		</div>
+		
+		<div id="calendarWrapper" style="float:right; padding:10px; background:#f4f4f4; border:solid 1px #ebeaea;">
+			<div id="calendar" style=""></div>
+		</div>
+					
+		<br class="clear"/>
+		
+		<div class="statsWrapper">
+			
+			<div class="stats best" style="display:none">
+				<h2>Best 5</h2>
+				<p>The Top 5 Virtues you have the most success in following</p>
+				<table>
+					<tbody>
+						<tr class="even">
+							<td class="virtue">Industry</td>
+							<td class="num">44</td>
+							<td class="percent">88<em>%</em></td>
+						</tr>
+            	
+					    <tr class="">
+					    	<td class="virtue">Moderation</td>
+					    	<td class="num">38</td>
+					    	<td class="percent">80<em>%</em></td>
+					    </tr>
+					
+					    <tr class="">
+					    	<td class="virtue">Order</td>
+					    	<td class="num">32</td>
+					    	<td class="percent">77<em>%</em></td>
+					    </tr>
+					
+					    <tr class="">
+					    	<td class="virtue">Frugality</td>
+					    	<td class="num">31</td>
+					    	<td class="percent">76<em>%</em></td>
+					    </tr>
+					
+					    <tr class="">
+					    	<td class="virtue">Justice</td>
+					    	<td class="num">29</td>
+					    	<td class="percent">74<em>%</em></td>
+					    </tr>																	
+					</tbody>
+				</table>
+			</div>
+			
+			<div class="stats worst" style="display:none">
+				<h2>Worst 5</h2>
+				<p>The 5 Virtues you have the hardest time following</p>
+				<table class="stats worst">
+					<tbody>
+						<tr class="even">
+							<td class="virtue">Resolution</td>
+							<td class="num">44</td>
+							<td class="percent">88<em>%</em></td>
+						</tr>
+        		
+					    <tr class="">
+					    	<td class="virtue">Humility</td>
+					    	<td class="num">38</td>
+					    	<td class="percent">80<em>%</em></td>
+					    </tr>
+					
+					    <tr class="">
+					    	<td class="virtue">Frugality</td>
+					    	<td class="num">32</td>
+					    	<td class="percent">77<em>%</em></td>
+					    </tr>
+					
+					    <tr class="">
+					    	<td class="virtue">Silence</td>
+					    	<td class="num">31</td>
+					    	<td class="percent">76<em>%</em></td>
+					    </tr>
+					
+					    <tr class="">
+					    	<td class="virtue">Well Being</td>
+					    	<td class="num">29</td>
+					    	<td class="percent">74<em>%</em></td>
+					    </tr>																	
+					</tbody>				
+				</table>
+			</div>
+			
+			<br class="clear"/>
+		</div>
+		
+	</div>
+
+	<div class="notes" style="width:500px; margin:20px auto;">
+		<a href="logentry.html">log entry</a>&nbsp;|&nbsp;
+		<a href="dashboard.html">dashboard</a>&nbsp;|&nbsp;
+		<a href="account.html">account</a>&nbsp;|&nbsp;
+		<a href="welcome.html" class="" title="Franklins 13+ : Welcome to Franklin's 13+ App">Welcome</a>&nbsp;|&nbsp;
+		<a href="experiment.html" class="" title="Franklins 13+ : The Experiment Explained">The Experiment</a>&nbsp;|&nbsp;
+		<a href="virtues.html" class="active" title="Franklins 13+ : Ben Franklin's 13 Virtues/Principals Defined">The Virtues</a>
+	</div>
+		
+	<script type="text/javascript" src="../web-app/js/lib/jquery/jquery-1.6.1.min.js"></script>
+	<script type="text/javascript" src="../web-app/js/lib/jquery/jquery.qtip.min.js"></script>
+	<script type="text/javascript" src="../web-app/js/lib/jquery/jquery-ui-1.8.16.custom.min.js"></script>
+	<script type="text/javascript" src="../web-app/js/lib/jquery/flot/flot.js"></script>
+	<script type="text/javascript" src="../web-app/js/lib/jquery/fullcalendar/fullcalendar.min.js"></script>
+	<script type="text/javascript" src="../web-app/js/util/utilities.js"></script>
+	
+	
+	<!-- MOCK DATA -->
+	<script type="text/javascript" src="js/mockdata.js"></script>
+
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		console.log('hello -> ');
+
+		var Dashboard = function(){
+			
+			var self = this;
+			var score = 143;
+			var startScore = 0;
+
+			var startRank = 0;
+			var rank = 23;
+			
+			var scoreTimerId;
+			var rankTimerId;
+			var startRankTimerId;
+			
+			var $scoreEm = $('.stats em.score');
+			var $rankEm = $('.stats em.rank');
+			
+			self.init = function(){
+				self.hideStats();
+				//self.animatescore();
+				self.animateRanking();
+				self.startRankTimer();
+				
+				var dashGraph = new DashboardGraph($('#progress'));
+				dashGraph.init();
+				
+				var dashCal = new DashboardCalendar($('#calendar'));
+				dashCal.init();
+				
+				var dashStats = new DashboardStats($('.statsWrapper'));
+				dashStats.animate();
+				
+			};
+			
+			self.hideStats = function(){
+				$scoreEm.css({"height":"0px", "opacity" : "0"});		
+				$rankEm.css({"height":"0px", "opacity" : "0"});		
+			};
+			
+			self.startRankTimer = function(){
+				startRankTimerId = window.setInterval(function(){
+					//self.animateRanking();			
+					self.animateScore();
+					self.stopTimer(startRankTimerId)
+				}, 400);			
+			}
+			
+			self.animateRanking = function(){
+				$rankEm.animate({ height: '28', opacity: '1.0' }, 700);
+				rankTimerId = window.setInterval(function(){
+					self.incrementRank();	
+				}, 40);
+			}	
+				
+			self.animateScore = function(){
+				$('.stats em.score').animate({ height: '29', opacity: '1.0' }, 200);
+				scoreTimerId = window.setInterval(function(){
+					self.incrementScore();	
+				}, 10);
+			};
+
+			self.incrementScore = function(){
+				if(startScore != score){
+					startScore++;
+					$scoreEm.html(startScore);
+				}else{
+					self.stopTimer(scoreTimerId);
+				}
+			};
+						
+			self.incrementRank = function(){
+				if(startRank != rank){
+					startRank++;
+					$rankEm.html(startRank)
+				}else{
+					self.stopTimer(rankTimerId);
+				}
+			};
+			
+			self.stopTimer = function(timerId){ 
+		        clearInterval(timerId); 
+		    };
+
+			
+			
+			
+		} 
+		
+		
+		
+		
+		var DashboardGraph = function($graphDiv){
+			
+			var self = this;
+			
+			self.$graphDiv = $graphDiv;
+				
+			var happinessLabel = "Happiness/Satisfaction", 
+				scoreLabel = "Score",
+				virtuesLabel = "Virtues Followed";
+				
+			var HAPPINESS = 'happiness', 
+				SCORE = 'score', 
+				VIRTUES = 'virtues';
+			
+			var happinessObj = {}, 
+				scoreObj = {},
+				virtuesObj = {};
+				
+			self.quickDataObj = {};
+			
+			
+
+			var virtueSeries = getVirtueSeriesConfig();
+        	var happinessSeries = getHappinessSeriesConfig();
+        	var scoresSeries = getScoreSeriesConfig();
+	    	
+		    var stack = 0, bars = false, lines = true, steps = false;
+			
+			var $dashGraph;
+			var $graphContainerDiv = $('#dashleft');
+			
+			
+
+			
+			self.init = function(){
+				self.render();
+				self.fadeIn();
+				self.bindHoverEvent();
+			};
+			
+			self.render = function(){
+				console.log($graphDiv)
+				$dashGraph = $.plot(self.$graphDiv, 
+					[ 
+						virtueSeries, 
+						happinessSeries,
+						scoresSeries 
+					], 
+					{
+						series: self.getSeriesConfig(),
+						grid: self.getGridConfig(),
+						legend: self.getLegend(),
+						xaxis : self.getXAxis(),
+						xaxis: { mode: "time" },
+						yaxis: {},
+						plotclick : function(){
+							console.log('plot clicked')
+						}
+            	
+					}
+				);
+
+				self.setQuickLookupDataObj();
+				
+			};
+		
+			self.setQuickLookupDataObj = function(){
+				var rawSeriesData = $dashGraph.getData();					
+				$(rawSeriesData).each(function(index, series){	
+					switch(series.label){
+						case happinessLabel :
+							self.setSeriesObj(happinessObj, series);
+							break;
+						case scoreLabel : 
+							self.setSeriesObj(scoreObj, series);
+							break;
+						case virtuesLabel :
+							self.setSeriesObj(virtuesObj, series);
+							break;
+						default :
+							break;
+					}
+				});
+				
+				self.quickDataObj[SCORE] = scoreObj;
+				self.quickDataObj[HAPPINESS] = happinessObj;
+				self.quickDataObj[VIRTUES] = virtuesObj;
+			}
+		
+			self.setSeriesObj = function(obj, series){
+				$(series.data).each(function(index, datapoint){
+					var timestamp = datapoint[0];
+					var dataValue = datapoint[1];	
+					obj[timestamp] = dataValue;
+				});
+			};
+			
+        	function getVirtueSeriesConfig(){
+				return 	{
+		    		color: '#11eb53',
+		    		data: mockVirtues,
+		    		label: virtuesLabel,
+		    		// clickable: true,
+					points: {
+						show: true,
+					    radius: 1,
+					    symbol: "circle"
+					},
+		    		hoverable: true,
+		    		shadowSize: 0
+		  		};	
+			};
+			
+        	
+			function getHappinessSeriesConfig(){
+				return 	{
+		    		color: '#0F5D7E',
+		    		data: mockHappiness,
+		    		label: happinessLabel,
+		    		// clickable: true,
+					points: {
+						show : true,
+					    radius: 1,
+					    symbol: "circle"
+					},
+		    		hoverable: true,
+		    		shadowSize: 0
+		  		};	
+			};
+        	
+			
+			function getScoreSeriesConfig(){
+				return {
+		    		color: '#C8330F',
+		    		data: mockScores,
+		    		label: scoreLabel,
+		    		// clickable: true,
+					points: {
+						show : true,
+					    radius: 1,
+					    symbol: "circle"
+					},
+					clickable : true,
+		    		hoverable: true,
+		    		shadowSize: 0
+		  		};	
+			};
+											
+			self.getSeriesConfig = function(){
+				return {
+				    lines: { 
+						show: lines, 
+						fill: false,
+						lineWidth: 2
+					},
+					points: {
+				      radius: 1,
+				      symbol: "circle"
+				    },
+					shadowSize: 3
+				};
+			};
+		
+		
+			self.getGridConfig = function(){
+				return  {
+					show: true,
+					aboveData: false,
+					color: "#ddd",
+					backgroundColor: "#f8f8f8",
+					labelMargin: 10,
+					axisMargin: 10,
+					borderWidth: 1,
+					borderColor: "#efefef",
+					minBorderMargin: 10,
+					clickable: true,
+					hoverable: true,
+					autoHighlight: true,
+					mouseActiveRadius: 10
+				};
+			};
+			
+			
+			self.getXAxis = function(){
+				return {
+				    show: true,
+				    position: "bottom",
+					color: "#f8f8f8",
+				    tickColor: "#f8f8f8",
+				    tickSize: 1,
+				    minTickSize: 1
+				};
+			};
+			
+			
+			self.getLegend = function(){
+				return {
+					show: true,
+					labelBoxBorderColor: "#f8f8f8",
+					position: "ne",
+					margin: [10, 10],
+					backgroundColor: "#f8f8f8",
+					backgroundOpacity: 1.0
+				};
+			};
+			
+			self.$qtip;
+			
+			self.bindHoverEvent = function(){
+				
+				$('#progress').bind("plothover", function (event, pos, item) {
+					
+                	if (item) {					
+						
+					    if (previousPoint != item.dataIndex) {
+					        previousPoint = item.dataIndex;
+                	
+							//console.log(event);
+							//console.log(pos);
+							//console.log(item);
+
+							self.clearHighlighsAndQtip();
+							
+                			self.showQtip(self.formatGraphHover(item));
+							self.highlightPoints(item);
+							
+					    }
+					} else {
+					    previousPoint = null;
+						self.clearHighlighsAndQtip();
+					}
+					
+				});
+				
+			};
+			
+			self.clearHighlighsAndQtip = function(){
+				$dashGraph.unhighlight();
+				if(self.$qtip)self.$qtip.qtip('hide');
+			};
+			
+			self.highlightPoints = function(item){
+				$dashGraph.highlight(0, item.dataIndex);
+				$dashGraph.highlight(1, item.dataIndex);
+				$dashGraph.highlight(2, item.dataIndex);
+			};
+			
+			self.unhighlightPoints = function(item){
+				
+			};
+			
+			self.formatGraphHover = function(item){
+				var timestamp = item.datapoint[0]
+				var date = new Date(timestamp); 
+				date = date.getUTCMonth() + 1 + '/' + date.getUTCDate() + '/' + date.getUTCFullYear();
+
+				var title = '<em class="qtiptitle">Results for ' + date + '</em>';
+				
+				var virtuesString = '<span class="qtipstat">virtues completed : <em>' + self.quickDataObj.virtues[timestamp] + '</em></span>';
+				var happinessString = '<span class="qtipstat">happiness : <em>' + self.quickDataObj.happiness[timestamp] + '</em></span>';
+				var scoreString = '<span class="qtipstat">score : <em>' + self.quickDataObj.score[timestamp] + '</em></span>';
+				
+				return title + virtuesString + happinessString + scoreString;
+			};
+			
+			self.showQtip = function(content){
+				self.$qtip = $('#progress').qtip({
+			   		content: {
+			   			text : content
+			   		},
+			   		
+			   		position: {
+			   		   my: 'top left',
+			   		   target: 'mouse',
+			   		   //viewport: $(window), // Keep it on-screen at all times if possible
+			   		   adjust: {
+			   		      x: 10,  y: 10
+			   		   }
+			   		},
+			   		hide: {
+			   		   fixed: true // Helps to prevent the tooltip from hiding ocassionally when tracking!
+			   		},
+			   		style: {
+			   			classes: 'ui-tooltip-youtube'
+			   		}
+				});
+				self.$qtip.qtip('show');			
+				
+			};
+			
+			
+			
+			
+			
+			self.fadeIn = function(){	
+				if($graphDiv){
+					$graphContainerDiv.fadeIn();
+				}			
+			};
+			
+		}
+		
+		
+		
+		
+		
+		var DashboardCalendar = function($calendarDiv){
+			var self = this;
+			
+			self.$calendarDiv = $calendarDiv;
+			
+			
+			var $day = $('.fc-widget-content');
+			var $loading = $('#loading');
+			var $calendarWrapper = $('#calendarWrapper');
+			
+			var $calendar;
+			
+			self.mockEvents = [{"id":"2012-01-10", "title":"+15", "url":"show/1", "start":"2012-01-10"}, {"id":"2012-01-15", "title":"+4", "url":"show/1", "start":"2012-01-15"}];
+					
+					
+			self.init = function(){
+				
+				$calendar = self.$calendarDiv.fullCalendar({
+					
+					//events : "entries",
+					events : self.mockEvents,
+					disableDragging : true,
+					selectable : true,
+					select : function(start, end, allDay, jsEvent, view, onevent){
+						
+						var $cellOverlay = 	$('.fc-cell-overlay');
+						
+						var dateString = start.getFullYear() + '-' + (start.getMonth() + 1) + '-' + start.getDate();
+						var today = new Date();
+						var result = util.dates.compare(start, today);
+						
+						if(result === 1){
+							console.log('yep')
+							var message = 'Cannot log entry for the future... what are you trying to pull here...';
+							
+							$cellOverlay.qtip({
+								content: {
+									text: message
+								},
+							   	position: {
+							    	my: 'bottom center',  // Position my top left...
+							      	at: 'top center', // at the bottom right of...
+							    },
+								style: {
+									classes: 'ui-tooltip-youtube'
+								}
+							});
+							$cellOverlay.qtip().show();
+							
+						}else{
+							window.location = '/franklins13/virtueEntry/logEntry?date=' + dateString;
+						}
+						
+					},
+					loading : function(bool) {
+						if (bool){
+							$loading.show();	
+						} else {
+							$loading.hide();
+						}
+					},
+					eventRender: function(event, element) {}
+            	
+				});
+				
+			};
+
+			
+			self.zeroPad = function(num, count){
+				var numZeropad = num + '';
+				while(numZeropad.length < count) {
+					numZeropad = "0" + numZeropad;
+				}
+				return numZeropad;
+			}
+		}
+		
+		
+		var DashboardStats = function($statsDiv){
+			var self = this;
+			self.$statsDiv = $statsDiv;
+			
+			self.animate = function(){
+				
+				self.$statsDiv.find('.best').fadeIn(800);
+				self.$statsDiv.find('.worst').fadeIn(500);
+			};
+			
+		}
+			
+		console.log(Dashboard);
+		var dash = new Dashboard();
+		dash.init();
+
+		
+	});
+
+
+</script>
+	
+
+</body>
+</html>

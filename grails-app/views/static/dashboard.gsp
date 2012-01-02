@@ -88,6 +88,8 @@
 		var happiness = ${happiness};
 		var scores = ${scores};
 
+		console.log(virtues);
+		
 		if(happiness && virtues){
 		var virtueSeries = {
 	    	color: '#11eb53',

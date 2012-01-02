@@ -5,6 +5,7 @@
         <g:set var="entityName" value="${message(code: 'virtueEntry.label', default: 'VirtueEntry')}" />
 
 	    <link rel="stylesheet" href="${resource(dir:'css',file:'jquery.qtip.min.css')}" />
+	    <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar.css')}" />
 	
         <title>Franklins 13 : Progress</title>
     </head>
@@ -20,11 +21,10 @@
 		<g:link action="listview">List View</g:link>
 		
 		<div id="loading">loading....</div>
-		<div id="calendarWrapper" style="margin:auto;"></div>
+		<div id="calendarWrapper" style="margin:auto; height:270px; width:250px"></div>
 
 		<br class="clear"/>
 		
-	    <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar.css')}" />
 
 		<style type="text/css">
 			#calendarWrapper a, #calendarWrapper a span{color:#ffffff !important;font-weight:bold !important;}

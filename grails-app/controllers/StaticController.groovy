@@ -63,6 +63,21 @@ class StaticController {
 		def scores = []
 		def	virtuesSummaryMap = [:]
 			
+		virtuesSummaryMap.temperance = 0
+		virtuesSummaryMap.orderVirtue = 0
+		virtuesSummaryMap.resolution = 0
+		virtuesSummaryMap.frugality = 0	
+		virtuesSummaryMap.moderation = 0
+		virtuesSummaryMap.industry = 0
+		virtuesSummaryMap.cleanliness = 0
+		virtuesSummaryMap.tranquility = 0
+		virtuesSummaryMap.silence = 0
+		virtuesSummaryMap.sincerity = 0
+		virtuesSummaryMap.justice = 0
+		virtuesSummaryMap.chastity = 0
+		virtuesSummaryMap.humility = 0
+		virtuesSummaryMap.wellBeing = 0
+		
 		if(account){
 			
 			println 'account -> ' + account
@@ -132,6 +147,7 @@ class StaticController {
 	
 	
 	def setPercents(virtuesSummaryMap, totalEntries){
+		println virtuesSummaryMap.temperance
 		virtuesSummaryMap.temperancePercent = utilitiesService.roundTwoDecimals(virtuesSummaryMap.temperance/totalEntries)
 		virtuesSummaryMap.orderVirtuePercent = utilitiesService.roundTwoDecimals(virtuesSummaryMap.orderVirtue/totalEntries)
 		virtuesSummaryMap.resolutionPercent = utilitiesService.roundTwoDecimals(virtuesSummaryMap.resolution/totalEntries)
@@ -152,206 +168,72 @@ class StaticController {
 	def setMappedVirtueValues(entry, virtuesSummaryMap){
 	
 		if(entry.temperance){
-			if(virtuesSummaryMap.temperance){
-				println 'temperance set -> ' + virtuesSummaryMap.temperance
-				virtuesSummaryMap.temperance = virtuesSummaryMap.temperance + 1	
-			}else{
-				println 'first time setting temperance'
-				virtuesSummaryMap.temperance = 1
-			}
-			
-		}else{
-			virtuesSummaryMap.temperance = 0
+			virtuesSummaryMap.temperance = virtuesSummaryMap.temperance + 1	
 		}
-		
 		
 		
 		if(entry.orderVirtue){
-			if(virtuesSummaryMap.orderVirtue){
-				println 'orderVirtue set -> ' + virtuesSummaryMap.orderVirtue
-				virtuesSummaryMap.orderVirtue = virtuesSummaryMap.orderVirtue + 1	
-			}else{
-				println 'first time setting orderVirtue'
-				virtuesSummaryMap.orderVirtue = 1
-			}
-			
-		}else{
-			virtuesSummaryMap.orderVirtue = 0
+			virtuesSummaryMap.orderVirtue = virtuesSummaryMap.orderVirtue + 1	
 		}
 		
 		
-
-
 		if(entry.resolution){
-			if(virtuesSummaryMap.resolution){
-				println 'resolution set -> ' + virtuesSummaryMap.resolution
-				virtuesSummaryMap.resolution = virtuesSummaryMap.resolution + 1	
-			}else{
-				println 'first time setting resolution'
-				virtuesSummaryMap.resolution = 1
-			}
-			
-		}else{
-			virtuesSummaryMap.resolution = 0
+			virtuesSummaryMap.resolution = virtuesSummaryMap.resolution + 1	
 		}
 		
 		
 		if(entry.frugality){
-			if(virtuesSummaryMap.frugality){
-				println 'frugality set -> ' + virtuesSummaryMap.frugality
-				virtuesSummaryMap.frugality = virtuesSummaryMap.frugality + 1	
-			}else{
-				println 'first time setting frugality'
-				virtuesSummaryMap.frugality = 1
-			}
-			
-		}else{
-			virtuesSummaryMap.frugality = 0
+			virtuesSummaryMap.frugality = virtuesSummaryMap.frugality + 1	
 		}
 		
 		
 		if(entry.moderation){
-			if(virtuesSummaryMap.moderation){
-				println 'moderation set -> ' + virtuesSummaryMap.moderation
-				virtuesSummaryMap.moderation = virtuesSummaryMap.moderation + 1	
-			}else{
-				println 'first time setting moderation'
-				virtuesSummaryMap.moderation = 1
-			}
-			
-		}else{
-			virtuesSummaryMap.moderation = 0
+			virtuesSummaryMap.moderation = virtuesSummaryMap.moderation + 1	
 		}
 		
 		
-
-		
-		
 		if(entry.industry){
-			if(virtuesSummaryMap.industry){
-				println 'industry set -> ' + virtuesSummaryMap.industry
-				virtuesSummaryMap.industry = virtuesSummaryMap.industry + 1	
-			}else{
-				println 'first time setting industry'
-				virtuesSummaryMap.industry = 1
-			}
-			
-		}else{
-			virtuesSummaryMap.industry = 0
+			virtuesSummaryMap.industry = virtuesSummaryMap.industry + 1	
 		}
 		
 		
 		if(entry.cleanliness){
-			if(virtuesSummaryMap.cleanliness){
-				println 'cleanliness set -> ' + virtuesSummaryMap.cleanliness
-				virtuesSummaryMap.cleanliness = virtuesSummaryMap.cleanliness + 1	
-			}else{
-				println 'first time setting cleanliness'
-				virtuesSummaryMap.cleanliness = 1
-			}	
-		}else{
-			virtuesSummaryMap.cleanliness = 0
+			virtuesSummaryMap.cleanliness = virtuesSummaryMap.cleanliness + 1	
 		}
 		
 		
 		if(entry.tranquility){
-			if(virtuesSummaryMap.tranquility){
-				println 'tranquility set -> ' + virtuesSummaryMap.tranquility
-				virtuesSummaryMap.tranquility = virtuesSummaryMap.tranquility + 1	
-			}else{
-				println 'first time setting tranquility'
-				virtuesSummaryMap.tranquility = 1
-			}
-			
-		}else{
-			virtuesSummaryMap.tranquility = 0
+			virtuesSummaryMap.tranquility = virtuesSummaryMap.tranquility + 1	
 		}
 		
 
 		if(entry.silence){
-			if(virtuesSummaryMap.silence){
-				println 'silence set -> ' + virtuesSummaryMap.silence
-				virtuesSummaryMap.silence = virtuesSummaryMap.silence + 1	
-			}else{
-				println 'first time setting silence'
-				virtuesSummaryMap.silence = 1
-			}
-			
-	   	}else{
-	   		virtuesSummaryMap.silence = 0
-	   	}	
+			virtuesSummaryMap.silence = virtuesSummaryMap.silence + 1	
+		}	
 		
 		
 		if(entry.justice){
-			if(virtuesSummaryMap.justice){
-				println 'justice set -> ' + virtuesSummaryMap.justice
-				virtuesSummaryMap.justice = virtuesSummaryMap.justice + 1	
-			}else{
-				println 'first time setting justice'
-				virtuesSummaryMap.justice = 1
-			}
-			
-		}else{
-			virtuesSummaryMap.justice = 0
+			virtuesSummaryMap.justice = virtuesSummaryMap.justice + 1	
 		}
 		
 		
 		if(entry.chastity){
-			if(virtuesSummaryMap.chastity){
-				println 'chastity set -> ' + virtuesSummaryMap.chastity
-				virtuesSummaryMap.chastity = virtuesSummaryMap.chastity + 1	
-			}else{
-				println 'first time setting chastity'
-				virtuesSummaryMap.chastity = 1
-			}
-			
-		}else{
-			virtuesSummaryMap.chastity = 0
+			virtuesSummaryMap.chastity = virtuesSummaryMap.chastity + 1	
 		}
 		
 		
 		if(entry.humility){
-			if(virtuesSummaryMap.humility){
-				println 'humility set -> ' + virtuesSummaryMap.humility
-				virtuesSummaryMap.humility = virtuesSummaryMap.humility + 1	
-			}else{
-				println 'first time setting humility'
-				virtuesSummaryMap.humility = 1
-			}
-			
-		}else{
-			virtuesSummaryMap.humility = 0
+			virtuesSummaryMap.humility = virtuesSummaryMap.humility + 1	
 		}
 		
 		
-
 		if(entry.sincerity){
-			if(virtuesSummaryMap.sincerity){
-				println 'sincerity set -> ' + virtuesSummaryMap.sincerity
-				virtuesSummaryMap.sincerity = virtuesSummaryMap.sincerity + 1	
-			}else{
-				println 'first time setting sincerity'
-				virtuesSummaryMap.sincerity = 1
-			}
-			
-		}else{
-			virtuesSummaryMap.sincerity = 0
+			virtuesSummaryMap.sincerity = virtuesSummaryMap.sincerity + 1	
 		}
-		
-		
 		
 		
 		if(entry.wellBeing){
-			if(virtuesSummaryMap.wellBeing){
-				println 'wellBeing set -> ' + virtuesSummaryMap.wellBeing
-				virtuesSummaryMap.wellBeing = virtuesSummaryMap.wellBeing + 1	
-			}else{
-				println 'first time setting wellBeing'
-				virtuesSummaryMap.wellBeing = 1
-			}
-			
-		}else{
-			virtuesSummaryMap.wellBeing = 0
+			virtuesSummaryMap.wellBeing = virtuesSummaryMap.wellBeing + 1	
 		}
 		
 

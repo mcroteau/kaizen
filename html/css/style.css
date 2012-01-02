@@ -96,12 +96,12 @@ p.large.welcome {
   height: 215px;
   width: 205px;
   margin-left: 30px;
-  background: url("../images/sprite.png") 0px -100px no-repeat; }
+  background: url("../images/sprite.png") 0px -120px no-repeat; }
 
 .notes {
   padding: 15px;
   margin-bottom: 20px;
-  background: #f8f8f8;
+  background: #f4f4f4;
   border: solid 1px #efefef; }
 
 .notes li {
@@ -119,6 +119,7 @@ p.large.welcome {
   display: inline-block;
   text-decoration: none;
   font-size: 16px;
+	box-shadow: 0 1px 3px #999;
   -moz-box-shadow: 0 1px 3px #999;
   -webkit-box-shadow: 0 1px 3px #999;
   position: relative;

@@ -608,6 +608,7 @@ class VirtueEntryController {
 		
 		}
 		
+		println entries
 		
 		render entries as JSON 
 		
