@@ -24,47 +24,52 @@
 	
 	<div class="topbar">
 		
-			
 		<div class="topcontent">
 			<a href="" class="logo micro"></a>
-			<span>Welcome back Mikec!</span>
 			<a href="#" class="logout">Logout</a>
 			<br class="clear"/>
 		</div>
 		
+	</div>	
+	
+	<div class="header">
+		<span class="welcome">Welcome back mikec!</span>
+		<nav class="usernav">
+			<a href="dashboard.html" class="active" title="Franklins 13+ : Welcome to Franklin's 13+ App">Dashboard</a>
+			<a href="logentry.html" class="" title="Franklins 13+ : The Experiment Explained">Log Entry</a>
+			<a href="history.html" class="" title="Franklins 13+ : Ben Franklin's 13 Virtues/Principals Defined">History</a>
+		</nav>
+		
+		<br class="clear"/>
 	</div>
-
+	
+	
 	<div class="content dashboard">
+
 		
+		<h1>Dashboard <span>Detailed Graphs and Progress Stats</h1>
+		<div class="userstats">
+			<span>
+				Total Score <em class="scoreWrapper"><em class="score"></em></em> points
+			</span>
 		
-		<div class="header">
-			<div class="stats">
-				<span>
-					Total Score <em class="scoreWrapper"><em class="score"></em></em> points
-				</span>
-			
-				<span>
-					Rank <em class="rankWrapper"><em class="rank"></em></em> out of 55
-				</span>		
-			</div>
-			
-			<nav class="usernav">
-				<a href="dashboard.html" class="active" title="Franklins 13+ : Welcome to Franklin's 13+ App">Dashboard</a>
-				<a href="logentry.html" class="" title="Franklins 13+ : The Experiment Explained">Log Entry</a>
-				<a href="history.html" class="" title="Franklins 13+ : Ben Franklin's 13 Virtues/Principals Defined">History</a>
-			</nav>
-			
-			<br class="clear"/>
-		</div>
-		<h1>Dashboard</h1>
-		<div id="dashleft" style="">
-			<h3>Progress <span>Ideally our "Happiness/Satisfaction" will move up with the number of Virtues completed.</span></h3>
-			<div id="progress" style="width:500px; height:230px; margin:auto; position:relative;"></div>
+			<span>
+				Rank <em class="rankWrapper"><em class="rank"></em></em> out of 55
+			</span>		
 		</div>
 		
+		<br class="clear"/>
+		
+		<div id="dashleft"  style="display:none;">
+			<h3>Progress <span>Do you see any trends?  Ideally our "Happiness/Satisfaction" will move up with the number of Virtues completed.</span></h3>
+			<div id="progress" style=""></div>
+		</div>
+		
+		<!--
 		<div id="calendarWrapper" style="float:right; padding:10px; background:#f4f4f4; border:solid 1px #ebeaea;">
 			<div id="calendar" style=""></div>
 		</div>
+		-->	
 					
 		<br class="clear"/>
 		
@@ -174,8 +179,7 @@
 <script type="text/javascript">
 
 	$(document).ready(function(){
-		console.log('hello -> ');
-
+		
 		var Dashboard = function(){
 			
 			var self = this;
@@ -189,8 +193,8 @@
 			var rankTimerId;
 			var startRankTimerId;
 			
-			var $scoreEm = $('.stats em.score');
-			var $rankEm = $('.stats em.rank');
+			var $scoreEm = $('.userstats em.score');
+			var $rankEm = $('.userstats em.rank');
 			
 			self.init = function(){
 				self.hideStats();
@@ -201,8 +205,10 @@
 				var dashGraph = new DashboardGraph($('#progress'));
 				dashGraph.init();
 				
+				/**
 				var dashCal = new DashboardCalendar($('#calendar'));
 				dashCal.init();
+				**/
 				
 				var dashStats = new DashboardStats($('.statsWrapper'));
 				dashStats.animate();
@@ -210,8 +216,8 @@
 			};
 			
 			self.hideStats = function(){
-				$scoreEm.css({"height":"0px", "opacity" : "0"});		
-				$rankEm.css({"height":"0px", "opacity" : "0"});		
+				// $scoreEm.css({"height":"0px", "opacity" : "0"});		
+				// $rankEm.css({"height":"0px", "opacity" : "0"});		
 			};
 			
 			self.startRankTimer = function(){
@@ -223,23 +229,56 @@
 			}
 			
 			self.animateRanking = function(){
-				$rankEm.animate({ height: '28', opacity: '1.0' }, 700);
+				// $rankEm.animate({ height: '28', opacity: '1.0' }, 700);
 				rankTimerId = window.setInterval(function(){
 					self.incrementRank();	
 				}, 40);
 			}	
 				
 			self.animateScore = function(){
-				$('.stats em.score').animate({ height: '29', opacity: '1.0' }, 200);
+				// $scoreEm.animate({ height: '29', opacity: '1.0' }, 200);
 				scoreTimerId = window.setInterval(function(){
 					self.incrementScore();	
 				}, 10);
 			};
 
 			self.incrementScore = function(){
-				if(startScore != score){
+				if(startScore != score && startScore < score){
 					startScore++;
-					$scoreEm.html(startScore);
+					
+					if(score < 51){
+						startScore++;
+					}
+					if(score > 50 && score < 151){
+						startScore = startScore+2;
+					}
+					
+					if(score > 150 && score < 251){
+						startScore = startScore+5;
+					}
+					
+					if(score > 250 && score < 1001){
+						startScore = startScore+10;
+					}
+					
+					if(score > 1000 && score < 2001){
+						startScore = startScore+20;
+					}
+					
+					if(score > 2000 && score < 10001){
+						startScore = startScore+100;
+					}
+					
+					if(score > 10000){
+						startScore = startScore+550;
+					}
+					
+					if(startScore > score){
+						$scoreEm.html(score);
+					}else{
+						$scoreEm.html(startScore);
+					}
+					
 				}else{
 					self.stopTimer(scoreTimerId);
 				}
@@ -286,7 +325,6 @@
 				
 			self.quickDataObj = {};
 			
-			
 
 			var virtueSeries = getVirtueSeriesConfig();
         	var happinessSeries = getHappinessSeriesConfig();
@@ -296,10 +334,7 @@
 			
 			var $dashGraph;
 			var $graphContainerDiv = $('#dashleft');
-			
-			
 
-			
 			self.init = function(){
 				self.render();
 				self.fadeIn();
@@ -307,7 +342,7 @@
 			};
 			
 			self.render = function(){
-				console.log($graphDiv)
+				
 				$dashGraph = $.plot(self.$graphDiv, 
 					[ 
 						virtueSeries, 
@@ -320,7 +355,7 @@
 						legend: self.getLegend(),
 						xaxis : self.getXAxis(),
 						xaxis: { mode: "time" },
-						yaxis: {},
+						yaxis: { min : -5, max:16 },
 						plotclick : function(){
 							console.log('plot clicked')
 						}
@@ -459,7 +494,7 @@
 				    minTickSize: 1
 				};
 			};
-			
+		
 			
 			self.getLegend = function(){
 				return {
@@ -588,7 +623,12 @@
 					
 					
 			self.init = function(){
-				
+				self.render();
+				self.bindQtipOnEvents();
+			};
+
+
+			self.render = function(){
 				$calendar = self.$calendarDiv.fullCalendar({
 					
 					//events : "entries",
@@ -604,7 +644,7 @@
 						var result = util.dates.compare(start, today);
 						
 						if(result === 1){
-							console.log('yep')
+							
 							var message = 'Cannot log entry for the future... what are you trying to pull here...';
 							
 							$cellOverlay.qtip({
@@ -635,10 +675,24 @@
 					},
 					eventRender: function(event, element) {}
             	
-				});
-				
+				});				
 			};
-
+			
+			self.bindQtipOnEvents = function(){
+				$('.fc-event').qtip({
+					content: {
+						text: "View Details"
+					},
+					position: {
+						my: 'bottom center',  // Position my top left...
+					  	at: 'top center', // at the bottom right of...
+					},
+					style: {
+						classes: 'ui-tooltip-youtube'
+					}
+					
+				});
+			};
 			
 			self.zeroPad = function(num, count){
 				var numZeropad = num + '';
@@ -662,7 +716,6 @@
 			
 		}
 			
-		console.log(Dashboard);
 		var dash = new Dashboard();
 		dash.init();
 

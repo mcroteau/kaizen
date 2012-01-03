@@ -179,11 +179,11 @@ p.large.welcome{
 	
 	background: $green-bottom; /* Old browsers */
 	background: -moz-linear-gradient(bottom,  $green-bottom 0%, $green-top 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$green-bottom), color-stop(100%,$green-top)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, $green-bottom 0%,$green-top 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  $green-bottom 0%,$green-top 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  $green-bottom 0%,$green-top 100%); /* IE10+ */
-	background: linear-gradient(top,  $green-bottom 0%,$green-top 100%); /* W3C */
+	background: -webkit-gradient(linear, left bottom, left top, color-stop(0%,$green-bottom), color-stop(100%,$green-top)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(bottom, $green-bottom 0%,$green-top 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(bottom,  $green-bottom 0%,$green-top 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(bottom,  $green-bottom 0%,$green-top 100%); /* IE10+ */
+	background: linear-gradient(bottom,  $green-bottom 0%,$green-top 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$green-top', endColorstr='$green-bottom',GradientType=0 ); /* IE6-9 */
 	
 }
@@ -196,11 +196,11 @@ p.large.welcome{
 	
 	background: $blue-bottom; /* Old browsers */
 	background: -moz-linear-gradient(bottom,  $blue-bottom 0%, $blue-top 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$blue-bottom), color-stop(100%,$blue-top)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, $blue-bottom 0%,$blue-top 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  $blue-bottom 0%,$blue-top 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  $blue-bottom 0%,$blue-top 100%); /* IE10+ */
-	background: linear-gradient(top,  $blue-bottom 0%,$blue-top 100%); /* W3C */
+	background: -webkit-gradient(linear, left bottom, left top, color-stop(0%,$blue-bottom), color-stop(100%,$blue-top)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(bottom, $blue-bottom 0%,$blue-top 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(bottom,  $blue-bottom 0%,$blue-top 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(bottom,  $blue-bottom 0%,$blue-top 100%); /* IE10+ */
+	background: linear-gradient(bottom,  $blue-bottom 0%,$blue-top 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$blue-top', endColorstr='$blue-bottom',GradientType=0 ); /* IE6-9 */
 	
 }
@@ -214,11 +214,11 @@ p.large.welcome{
 	
 	background: $red-bottom; /* Old browsers */
 	background: -moz-linear-gradient(bottom,  $red-bottom 0%, $red-top 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$red-bottom), color-stop(100%,$red-top)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, $red-bottom 0%,$red-top 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  $red-bottom 0%,$red-top 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  $red-bottom 0%,$red-top 100%); /* IE10+ */
-	background: linear-gradient(top,  $red-bottom 0%,$red-top 100%); /* W3C */
+	background: -webkit-gradient(linear, left bottom, left top, color-stop(0%,$red-bottom), color-stop(100%,$red-top)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(bottom, $red-bottom 0%,$red-top 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(bottom,  $red-bottom 0%,$red-top 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(bottom,  $red-bottom 0%,$red-top 100%); /* IE10+ */
+	background: linear-gradient(bottom,  $red-bottom 0%,$red-top 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$red-top', endColorstr='$red-bottom',GradientType=0 ); /* IE6-9 */
 	
 }

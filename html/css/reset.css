@@ -34,6 +34,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
+	text-align:center;
 	line-height: 1.3;
 }
 ol, ul {
@@ -64,6 +65,10 @@ a span{
 h1{
 	font-weight:normal;
 	font-size:32px;
+	margin:0px;
+	line-height:1.0em;
+	padding:0px;
+	border:solid 1px ddd !important;
 }
 h2{
 	font-weight:bold;

@@ -7,11 +7,6 @@
   margin: auto;
   text-align: center; }
 
-.topcontent span {
-  font-size: 20px;
-  font-weight: bold;
-  color: #333; }
-
 .topcontent a {
   font-size: 9px;
   font-weight: bold;
@@ -40,53 +35,23 @@
   position: relative; }
 
 .header {
-  text-align: center;
+  text-align: left;
   border-bottom: dashed 1px #ddd;
   width: 800px;
   position: relative;
-  height: 35px; }
+  margin: 0px auto 5px auto; }
 
-.header .stats {
+.welcome {
   float: left;
-  text-align: left;
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  padding: 0px;
-  margin-bottom: 0px; }
-
-.header .stats span {
-  font-size: 14px;
-  color: #555;
-  display: inline-block;
-  margin: 0px 10px 0px 0px; }
-
-.header .stats em {
-  background: #fefee4;
+  font-size: 20px;
   font-weight: bold;
-  font-size: 24px;
-  color: #333; }
-
-.header .stats em.scoreWrapper {
-  width: 50px;
-  text-align: center;
-  display: inline-block;
-  height: 100%; }
-
-.header .stats em.rankWrapper {
-  width: 50px;
-  text-align: center;
+  color: #333;
   display: inline-block; }
-
-.header em em {
-  margin: auto; }
 
 .header nav {
   float: right;
   text-align: right;
-  position: absolute;
-  right: 0px;
-  bottom: 0px; }
+  display: inline-block; }
 
 .header .usernav a {
   color: #555;
@@ -191,9 +156,6 @@ p.large.welcome {
   font-size: 18px;
   margin-bottom: 10px; }
 
-.dashboard h1 {
-  margin: 5px 0px; }
-
 .logentry h1 em {
   font-size: 18px;
   font-weight: bold; }
@@ -294,6 +256,45 @@ p.large.welcome {
   **/ }
 
 /** dashboard styles **/
+.dashboard h1 {
+  float: left;
+  margin: 10px 0px 0px 0px;
+  vertical-align: middle;
+  border: dotted 0px #ddd; }
+
+.dashboard h1 span {
+  color: #777;
+  font-style: italic;
+  font-family: Gill Sans; }
+
+.userstats {
+  float: right;
+  padding: 0px;
+  margin: 10px 0px 0px 0px;
+  border: dotted 0px #ddd; }
+
+.userstats span {
+  font-size: 14px;
+  color: #555;
+  display: inline-block;
+  margin: 0px 0px 0px 30px;
+  vertical-align: bottom; }
+
+.userstats em {
+  background: #fefee4;
+  font-weight: bold;
+  font-size: 24px;
+  color: #333; }
+
+.userstats em.scoreWrapper,
+.userstats em.rankWrapper {
+  width: 100px;
+  text-align: center;
+  display: inline-block; }
+
+.userstats em em {
+  margin: auto; }
+
 .yAxis.y1Axis .tickLabel {
   border: solid 0px #da5517;
   margin-right: 5px !important; }
@@ -311,21 +312,36 @@ p.large.welcome {
   height: 0 !important;
   border-width: 2px !important; }
 
-.dashboard .fc-day-number {
+.fc-day-number {
   font-size: 9px !important;
   color: #777 !important; }
 
-.dashboard .fc-widget-header {
+.fc-widget-header {
   font-size: 9px !important;
   font-weight: bold !important;
   color: #555 !important; }
 
 #dashleft {
   width: 510px;
-  height: 260px;
-  display: none;
+  width: 800px;
+  height: 280px;
   float: left;
   padding: 10px;
+  background: #f4f4f4;
+  border: solid 1px #ebeaea;
+  margin: 10px 0px 0px 0px; }
+
+#progress {
+  width: 500px;
+  width: 790px !important;
+  height: 250px;
+  margin: auto;
+  position: relative; }
+
+#calendarWrapper {
+  float: right;
+  padding: 10px;
+  margin: 10px 0px 0px 0px;
   background: #f4f4f4;
   border: solid 1px #ebeaea; }
 
@@ -395,7 +411,7 @@ p.large.welcome {
   color: #777;
   margin: 2px 0px 0px 5px; }
 
-.dashboard .fc-button-content {
+.fc-button-content {
   font-size: 8px !important;
   text-transform: uppercase;
   letter-spacing: 0.03m; }
@@ -403,10 +419,10 @@ p.large.welcome {
 .fc-state-down .fc-button-content {
   color: #fff !important; }
 
-.dashboard .fc-event-inner {
+.fc-event-inner {
   text-align: center; }
 
-.dashboard .fc-event-inner span {
+.fc-event-inner span {
   font-size: 10px;
   font-weight: bold;
   text-shadow: 0px 1px 1px #01488a;
@@ -453,3 +469,112 @@ h3 span {
   margin-left: 10px;
   font-weight: normal;
   display: inline-block !important; }
+
+/** history **/
+.history h1 {
+  margin: 10px 0px 0px 0px;
+  vertical-align: middle;
+  border: dotted 0px #ddd; }
+
+.history h1 span {
+  color: #777;
+  font-style: italic;
+  font-family: Gill Sans; }
+
+#entriesListWrapper {
+  width: 510px;
+  float: left;
+  padding: 10px;
+  height: auto;
+  background: #f4f4f4;
+  border: solid 1px #ebeaea;
+  margin: 10px 0px 0px 0px; }
+
+table.entries {
+  width: 100%; }
+
+table.entries th {
+  padding: 3px;
+  text-align: center;
+  font-size: 9px;
+  color: #777;
+  font-weight: bold;
+  background: #efefef; }
+
+table.entries tr {
+  background: #f4f4f4;
+  width: 100%;
+  margin: 0px;
+  padding: 0px; }
+
+table.entries tr.even {
+  background: #f8f8f8; }
+
+table.entries td {
+  text-align: center;
+  font-size: 11px;
+  vertical-align: top;
+  padding: 8px 0px; }
+
+table.entries td em {
+  font-size: 17px;
+  font-weight: bold; }
+
+table.entries td a {
+  font-size: 9px;
+  letter-spacing: 0.04em; }
+
+table.entries td.entryNotes {
+  width: 200px;
+  text-align: left; }
+
+.history #calendar {
+  /**width:300px !important; **/
+  height: auto !important; }
+
+.paginateButtons {
+  margin: 15px;
+  text-align: right; }
+
+.paginateButtons a {
+  color: #777;
+  display: inline-block;
+  padding: 2px 5px;
+  margin: 0px 3px;
+  border: dotted 1px #ddd;
+  font-size: 9px; }
+
+.paginateButtons .currentStep {
+  padding: 2px 5px;
+  margin: 5px;
+  background: #f8f8f8;
+  border: solid 1px #ddd;
+  font-size: 9px;
+  font-weight: bold; }
+
+/** calendar **/
+.calendar h1 {
+  margin: 10px 0px 0px 0px;
+  vertical-align: middle;
+  border: dotted 0px #ddd; }
+
+.calendar h1 span {
+  color: #777;
+  font-style: italic;
+  font-family: Gill Sans; }
+
+#calendarFullWrapper {
+  padding: 10px;
+  margin: 10px 0px 0px 0px;
+  background: #f4f4f4;
+  border: solid 1px #ebeaea;
+  text-align: center;
+  height: auto; }
+
+#calendarFull {
+  width: 750px !important;
+  height: auto !important;
+  background: #f8f8f8;
+  padding: 10px;
+  border: solid 0px #fff;
+  margin: 0px auto; }

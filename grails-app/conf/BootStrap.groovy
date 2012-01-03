@@ -85,7 +85,7 @@ class BootStrap {
 			println 'create mock virtue entry data -> '
 			
 			def account = Account.findByUsername("man")
-			def totalMockEntries = 30
+			def totalMockEntries = 100
 			
 			def minusDays = 0;
 			for(def i = 0; i < totalMockEntries; i++){

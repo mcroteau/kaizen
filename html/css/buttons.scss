@@ -28,8 +28,8 @@ $highlight-dark : #ffffcc;
 	display: inline-block;
 	text-decoration: none;
 	
-	-moz-box-shadow: 0 1px 3px #999;
-	-webkit-box-shadow: 0 1px 3px #999;
+	-moz-box-shadow: 0 0px 3px #e9e9e9;
+	-webkit-box-shadow: 0 0px 3px #e9e9e9;
 	
 	position: relative;
 	cursor: pointer;
@@ -102,15 +102,34 @@ $highlight-dark : #ffffcc;
 }
 
 
+.button.grey{
+	
+	color:#333;
+	
+	text-shadow: 1px 1px 1px #efefef;
+	border-bottom: 1px solid #ddd;
+	
+	background: #edf5f5;
+	background: -moz-linear-gradient(bottom, #edf5f5 0%, #fefefe 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fefefe), color-stop(100%, #edf5f5));
+	background: -webkit-linear-gradient(top, #fefefe 0%, #edf5f5 100%);
+	background: -o-linear-gradient(top, #fefefe 0%, #edf5f5 100%);
+	background: -ms-linear-gradient(top, #fefefe 0%, #edf5f5 100%);
+	background: linear-gradient(top, #fefefe 0%, #edf5f5 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fefefe', endColorstr='#edf5f5',GradientType=0 );
+	
+}
+
+
 .toggle{
 	width:15px;
 	height:17px;
 	display:inline-block;
 	cursor: pointer;
-	background:url('../images/sprite.png') -225px -277px no-repeat;
+	background:url('../images/sprite.png') -225px -287px no-repeat;
 }
 .toggle.open{
-	background-position: -208px -277px;
+	background-position: -208px -287px;
 }
 
 
@@ -140,7 +159,7 @@ $highlight-dark : #ffffcc;
 	width:8px !important;
 	border:none !important;
 	margin-top:-1px;
-	background:url('../images/sprite.png') -208px -250px no-repeat !important;
+	background:url('../images/sprite.png') -208px -260px no-repeat !important;
 }
 
 /**
@@ -152,7 +171,7 @@ $highlight-dark : #ffffcc;
 **/
 
 .ui-slider-handle.ui-state-active{
-	background-position: -218px -250px !important;
+	background-position: -218px -260px !important;
 }
 
 

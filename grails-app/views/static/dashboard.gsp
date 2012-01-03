@@ -198,7 +198,7 @@
 				    minTickSize: 1
 				},
 				xaxis: { mode: "time" },
-				yaxis: {},
+				yaxis: { min : -4, max:15 },
 				plotclick : function(){
 					console.log('plot clicked')
 				}

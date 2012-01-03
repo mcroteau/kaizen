@@ -37,7 +37,6 @@
                     <thead>
                         <tr>
          
-						
                             <g:sortableColumn property="entryDate" title="Entry Date" />
 
                             <th>Notes</th>
