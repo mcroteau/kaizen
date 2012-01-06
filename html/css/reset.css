@@ -120,4 +120,10 @@ input[type="password"]:focus{
 }
 
 
+.error,
+p.large .error{
+	font-size:10px;
+	margin-left:0px;
+	color:#a73601;
+}
 
