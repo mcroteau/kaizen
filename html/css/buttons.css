@@ -2,6 +2,9 @@
   margin: 30px auto;
   text-align: center; }
 
+.buttons span {
+  display: inline-block; }
+
 .button {
   color: #fff;
   line-height: 1;
@@ -23,7 +26,9 @@
   padding: 10px 15px 10px 15px; }
 
 .button.small {
-  font-size: 10px;
+  font-size: 9px !important;
+  font-weight: bold;
+  letter-spacing: 0.04em;
   margin: 0px 7px;
   padding: 3px 7px; }
 
@@ -100,12 +105,15 @@
   background: linear-gradient(top, #fefefe 0%, #edf5f5 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fefefe', endColorstr='#edf5f5',GradientType=0 ); }
 
+.toggle, .closeButton {
+  background: url("../images/sprite.png") no-repeat; }
+
 .toggle {
   width: 15px;
   height: 17px;
   display: inline-block;
   cursor: pointer;
-  background: url("../images/sprite.png") -225px -287px no-repeat; }
+  background-position: -225px -287px; }
 
 .toggle.open {
   background-position: -208px -287px; }

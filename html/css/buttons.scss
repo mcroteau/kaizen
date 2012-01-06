@@ -1,6 +1,7 @@
 $blue-top : #2e81cc;
 $blue-bottom : #1f70bb;
 $blue-dark : #01488a;
+$blue-link : #2071bc;
 
 $green-bottom : #4e983d;
 $green-top : #58ab3c;
@@ -17,6 +18,10 @@ $highlight-dark : #ffffcc;
 .buttons{
 	margin:30px auto;
 	text-align:center;
+}
+
+.buttons span{
+	display:inline-block;
 }
 
 .button{
@@ -46,10 +51,13 @@ $highlight-dark : #ffffcc;
 	padding: 10px 15px 10px 15px;
 }
 .button.small{
-	font-size:10px;
+	font-size:9px !important;
+	font-weight:bold;
+	letter-spacing:0.04em;
 	margin: 0px 7px;
 	padding: 3px 7px;
 }
+
 .button.green{
 	
 	text-shadow: 1px 1px 1px $green-dark;
@@ -120,13 +128,16 @@ $highlight-dark : #ffffcc;
 	
 }
 
+.toggle, .closeButton{
+	background:url('../images/sprite.png') no-repeat;
+}
 
 .toggle{
 	width:15px;
 	height:17px;
 	display:inline-block;
 	cursor: pointer;
-	background:url('../images/sprite.png') -225px -287px no-repeat;
+	background-position: -225px -287px;
 }
 .toggle.open{
 	background-position: -208px -287px;

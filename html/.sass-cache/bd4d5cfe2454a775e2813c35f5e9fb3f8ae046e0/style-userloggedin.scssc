@@ -1,5 +1,5 @@
 3.0.25 (Classy Cassidy)
-37930c0b78c7c734aae4f7e246282b62eceaad2f
+b73cf48df4e65f824a00311223329557c812ea1d
 o:Sass::Tree::RootNode
 :@has_childrenT:@template"+$blue-top : #2e81cc;
 $blue-bottom : #1f70bb;
@@ -424,7 +424,7 @@ p.large.welcome{
 
 #dashleft{
 	width:510px; 
-	width:800px;
+	width:780px;
 	height:280px; 
 	float:left; 
 	padding:10px; 
@@ -436,7 +436,7 @@ p.large.welcome{
 
 #progress{
 	width:500px; 
-	width: 790px !important;
+	width: 770px !important;
 	height:250px; 
 	margin:auto; 
 	position:relative;
@@ -905,13 +905,13 @@ color;@;iœ;[ ;/;0o;(;T;)i ;@;*[".fc-widget-header;iŸ;[o;+;o;,
 color;@;i¢;[ ;/;0o;(;T;)i ;@;*["#dashleft;i¦;[o;+;o;,;"
 510px;-;.;$;%;)i ;&["
 width;@;i§;[ ;/;0o;+;o;,;"
-800px;-;.;$;%;)i ;&["
+780px;-;.;$;%;)i ;&["
 width;@;i¨;[ ;/;0o;+;o;,;"
 280px;-;.;$;%;)i ;&["height;@;i©;[ ;/;0o;+;o;,;"	left;-;.;$;%;)i ;&["
 float;@;iª;[ ;/;0o;+;o;,;"	10px;-;.;$;%;)i ;&["padding;@;i«;[ ;/;0o;+;o;,;"#f4f4f4;-;.;$;%;)i ;&["background;@;i¬;[ ;/;0o;+;o;,;"solid 1px #ebeaea;-;.;$;%;)i ;&["border;@;i­;[ ;/;0o;+;o;,;"10px 0px 0px 0px;-;.;$;%;)i ;&["margin;@;i®;[ ;/;0o;(;T;)i ;@;*["#progress;i²;[
 o;+;o;,;"
 500px;-;.;$;%;)i ;&["
-width;@;i³;[ ;/;0o;+;o;,;"790px !important;-;.;$;%;)i ;&["
+width;@;i³;[ ;/;0o;+;o;,;"770px !important;-;.;$;%;)i ;&["
 width;@;i´;[ ;/;0o;+;o;,;"
 250px;-;.;$;%;)i ;&["height;@;iµ;[ ;/;0o;+;o;,;"	auto;-;.;$;%;)i ;&["margin;@;i¶;[ ;/;0o;+;o;,;"relative;-;.;$;%;)i ;&["position;@;i·;[ ;/;0o;(;T;)i ;@;*["#calendarWrapper;iº;[
 o;+;o;,;"

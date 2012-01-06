@@ -1,6 +1,7 @@
 $blue-top : #2e81cc;
 $blue-bottom : #1f70bb;
 $blue-dark : #01488a;
+$blue-link : #2071bc;
 
 $green-bottom : #4e983d;
 $green-top : #58ab3c;
@@ -9,6 +10,9 @@ $green-dark : #367b27;
 $red-bottom : #cb4101;
 $red-top  : #da5517;
 $red-dark : #a73601;
+
+$highlight : #FEFEE4;
+$highlight-dark : #ffffcc;
 
 .topbar{
 	text-align:right;
@@ -244,4 +248,80 @@ dl dt em{
 dl dd{
 	line-height:1.7em;
 }
+
+
+
+/** Login styles **/
+
+.loginContainer{
+	width:600px
+}
+
+
+.loginContainer .buttons span a{
+	color:$blue-link;
+	font-size:9px;
+}
+
+.loginWrapper.notes{
+	margin-top:20px !important;
+	width:600px;
+}
+
+.loginWrapper .message{
+	width:350px;
+	margin:0px;
+}
+
+.loginForm{
+	width:350px;
+	padding:15px;
+	margin:5px 20px 0px 0px;	
+}
+.loginForm label{
+	display:inline-block;
+	width:100px;
+	text-align:right;
+	font-size:14px;
+}
+
+.loginForm p{
+	margin:10px 0px 20px 0px;
+}
+
+
+.loginContainer .buttons{
+	text-align:right;
+ 	width:330px !important;
+	border:solid 0px #ddd;
+	margin:0px;
+}
+
+.loginContainer .buttons span{
+	font-size:9px;
+	color:#777;
+	font-weight:bold;
+}
+
+
+/** base styles for inputs **/
+input[type="text"],
+input[type="password"]{
+	padding:3px;
+	font-size:14px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus{
+	background: $highlight;
+	border:solid 2px #777
+}
+
+
+
+
+
+
+
+
 
