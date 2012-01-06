@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+    <meta name="author" content=""/>
+	 
+    <title>Franklin's 13+  Account Login -> Based on Ben Franklin's 13 Virtues</title> 
+
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/messages.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/buttons.css" type="text/css" media="screen" />
+	
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+		
+</head>
+<body>
+
+
+	<div class="topbar">
+		
+		<div class="topcontent">
+			<a href="register.html" class="openings">18 Openings Left,  + Join</a>
+			<a href="login.html" class="login">Login</a>
+		</div>
+		
+	</div>
+
+	<div class="content registrationContainer">
+		
+		<div class="header">
+			<a href="" class="logo large"></a>
+				
+			<nav class="menu">
+				<a href="welcome.html" class="" title="Franklins 13+ : Welcome to Franklin's 13+ App">Welcome</a>
+				<a href="experiment.html" class="" title="Franklins 13+ : The Experiment Explained">The Experiment</a>
+				<a href="virtues.html" class="" title="Franklins 13+ : Ben Franklin's 13 Virtues/Principals Defined">The Virtues</a>
+			</nav>
+		</div>
+		
+		
+		<h1>Join the Experiment</h1>
+		
+		<div class="franklin"></div>
+		
+		<div class="registrationWrapper notes">
+
+			<form id="registrationForm" name="registrationForm">
+				
+			<div class="registrationForm" name="registrationForm">
+				<p class="large">
+					<em>Step One : Vow to be honest</em><br/>
+					I will be honest when using this app
+					<input type="checkbox" value="" name="promise" id="promise" class=""/>
+				</p>
+				<p class="large">
+					<em>Step Two : Create your Account</em><br/>
+					<label for="username">username</label>
+					<input type="username" value="" class="largeInput" id="username" name="username"/>
+				</p>
+				<p class="">
+					<label for="password">password</label>
+					<input type="password" value="" id="passwordHash" name="passwordHash"/>
+				</p>
+				<p class="">
+					<label for="password">confirm password</label>
+					<input type="password" value="" id="confirmPassword" name="confirmPassword"/>
+				</p>
+				<p class="">
+					<label for="isMale">gender</label>
+					<select name="isMale" id="isMale" class="valid">
+						<option value="true">Gentleman</option>
+						<option value="false">Lovely Lady</option>
+					</select>
+				</p>
+					
+			</div>
+			</form>
+			
+			<div class="buttons large">
+				<em>Step Three : Make it happen</em>
+				<a href="#" class="button blue small" id="register">Register</a>
+			</div>
+			
+		</div>
+		
+		<br class="clear"/>
+		
+	</div>
+	
+	
+	<div class="notes" style="width:500px; margin:20px auto;">
+		<a href="logentry.html">log entry</a>&nbsp;|&nbsp;
+		<a href="dashboard.html">dashboard</a>&nbsp;|&nbsp;
+		<a href="account.html">account</a>&nbsp;|&nbsp;
+		<a href="welcome.html" class="" title="Franklins 13+ : Welcome to Franklin's 13+ App">Welcome</a>&nbsp;|&nbsp;
+		<a href="experiment.html" class="" title="Franklins 13+ : The Experiment Explained">The Experiment</a>&nbsp;|&nbsp;
+		<a href="virtues.html" class="active" title="Franklins 13+ : Ben Franklin's 13 Virtues/Principals Defined">The Virtues</a>
+	</div>
+	
+		
+	<script type="text/javascript" src="../web-app/js/lib/jquery/jquery-1.6.1.min.js"></script>
+	<script type="text/javascript" src="../web-app/js/lib/jquery/jquery.qtip.min.js"></script>
+	<script type="text/javascript" src="../web-app/js/lib/jquery/jquery-ui-1.8.16.custom.min.js"></script>
+	<script type="text/javascript" src="../web-app/js/lib/jquery/jquery-validation.min.js"></script>
+
+<script type="text/javascript">
+
+	// this one requires the value to be the same as the first parameter
+	$.validator.methods.equal = function(value, element, param) {
+		return value == param;
+	};
+	$.validator.methods.confirm = function(value, element){
+		return ($('#passwordHash').val() === value)
+	};
+		
+	
+	
+	var processing = false;
+	$(document).ready(function(){
+		
+		
+		$("#registrationForm").validate({
+			debug: true,
+			errorElement: "em",
+			errorContainer: $("#validationSummary"),
+			errorPlacement: function(error, element) {
+				error.appendTo( element.parent() );
+			},
+			success: function(label) {
+				label.text("ok!").addClass("valid");
+			},
+			rules: {
+				username : {
+					required : true
+				},
+				email: {
+					required : true,
+					email : true
+				},
+				fullName : {
+					required : false
+				},
+				passwordHash : {
+					minlength : 5,
+					required : true,
+				},
+				confirmPassword : {
+					required : true,
+					minlength : 5,
+					confirm : true
+				},
+				promise : {
+					required : true,
+				}
+			},
+			messages : {
+				passwordHash : 'password must be at least 5 characters',
+				username : 'please enter a username',
+				email : 'enter a valid email address',
+				confirmPassword : 'your passwords must match',
+				promise : 'you have a problem being honest?'
+			}
+			
+		});
+    	
+	
+		$('#register').click(function(){
+			if($('#registrationForm').valid()){
+				document.registrationForm.submit();					
+			}
+		});
+		
+	});
+
+</script>
+	
+
+</body>
+</html>

@@ -89,10 +89,6 @@ em{font-weight:bold;}
 .clear{clear:both;}
 
 
-input{background:#fff; border:solid 1px #ddd;}
-input:focus{border:solid 1px #3B80EE;}
-
-
 
 .clear{clear:both; line-height:1.0em; padding:0px; margin:0px; display:block;}
 
@@ -103,3 +99,25 @@ input:focus{border:solid 1px #3B80EE;}
 p{
 	font-size:14px;
 }
+
+p input[type="text"],
+p input[type="password"],
+p.large input[type="text"],
+p.large input[type="password"],
+input.largeInput,
+input.largeInput{
+	background:#fff; 
+	border:solid 1px #ddd;
+	padding:3px !important;
+	font-size:14px !important;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus{
+	border:solid 1px #3B80EE;
+	background: #FEFEE4 !important;
+	border:solid 2px #777 !important;
+}
+
+
+
