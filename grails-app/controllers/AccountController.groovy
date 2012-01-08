@@ -1,3 +1,5 @@
+import groovy.text.Template
+import groovy.text.SimpleTemplateEngine
 
 import org.apache.shiro.authc.UsernamePasswordToken
 import org.apache.shiro.crypto.hash.Sha512Hash
@@ -359,21 +361,45 @@ class AccountController {
 		def recoveryUUID = UUID.randomUUID();
 		
 		
+		
+		
+		
 		if(account){
-			def url = "http://localhost:8080/franklins13/account/resetPage?username=${account?.username}&recoveryUUID=${recoveryUUID}"
 			
+			def host = "localhost:8080"
+			def url = "http://${host}/franklins13/account/resetPage?username=${account?.username}&recoveryUUID=${recoveryUUID}"		
 			account.recoveryUUID = recoveryUUID
 			if(account.save(flush:true)){
 				try{
+				
+				
+					File templateFile = grailsAttributes.getApplicationContext().getResource( File.separator + "emailTemplates" + File.separator + "confirmEmail.gtpl").getFile();
+					
+					def binding = ["url": url, "imageLocation" : "http://${host}/franklins13/images/logo.jpg"]
+			        def engine = new SimpleTemplateEngine()
+			        def template = engine.createTemplate(templateFile).make(binding)
+			        def bodyString = template.toString()
+			
+			
+					print 'send email'
+					
+					print bodyString
+					
 					mailService.sendMail {
 					   to account.email
 					   from "franklins13app@gmail.com"
-					   subject "[Franklins 13 App] Reset Password"
-					   body "<a href=\"${url}\">Click to confirm reset password</a>"
+					   subject "[Franklins 13 App] Reset Password Process"
+					   html bodyString
 					}
+					
 					flash.message = "Successfully sent recovery email.  Please check email for instructions on how to reset."
-					render view: "confirmation"					
+					
+					print 'show confirmation'
+					render view: "confirmation"	
+									
+				
 				}catch (Exception e){
+					
 					println e.printStackTrace();
 					flash.message = "there was a problem trying to send reset email, please try again or contact the administrator"
 					 view: 'beginResetPage'

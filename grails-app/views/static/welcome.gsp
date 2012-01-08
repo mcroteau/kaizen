@@ -6,47 +6,49 @@
 </head>
 
 <body>
+
 	
+<div class="content welcome">
+		
 	<g:if test="${flash.message}">
 		<p class="message error">${flash.message}</p>
 	</g:if>
 	
-	<p class="large">Will doing what is "right" make us happy?</p>
-	<p class="medium">Will we be happier if we follow principles that are simple yet require us to be thoughtful, disciplined & hard working?</p>
+	<h1>Does living the "right" way make a difference?</h1>
 	
-	<p class="medium">Franklin's 13 might help us answer that question... lets make a game of it</p>
+	<div class="franklin"></div>
 	
+	
+	<p class="large welcome">
+		Will we be happier or more satisfied if we follow principles that are simple yet require us to be thoughtful, disciplined & hard working?
+	</p>
+	
+	<p class="large welcome">
+		Based on Ben Franklin's 13 Virtues, Franklin's 13+ might help us answer that question...
+	</p>
+	
+	<h1>Leaderboard</h1>
+	
+	<ul>
+	<g:each in="${leaderBoard}" status="i" var="user">
+		<g:if test="${user.totalScore != 0}">
+			<li>${user.username} -> ${user.totalScore}</li>		
+		</g:if>	
+	</g:each>
+	</ul>
+	
+	<div class="welcomelinks">
+		<a href="#" class="button blue large" title="Franklins 13+ : About the Experiment">About the Experiment</a>
+		<a href="#" class="button green large" title="Franklins 13+ : Join the Experiment">Join the Experiment</a>			
+	</div>	
 	
 	<div id="basechart" style="width:100%; height:300px; position:relative"></div>
 	
-	<div class="left">
 	
-	<p class="large">What are we looking for here?</p>
 	
-	<p class="medium">Total Virtues Followed/Completed vs how the person felt on a daily basis</p>
 	
-	<p>If there is a correlation between doing whats "right" and our overall happiness/satisfaction with our day, then both lines plotted should follow a similar path.  </p>
+</div>
 
-	</div>
-	
-	<div class="right">
-		
-		<h1>Leaderboard</h1>
-		
-		<ul>
-		<g:each in="${leaderBoard}" status="i" var="user">
-			<g:if test="${user.totalScore != 0}">
-				<li>${user.username} -> ${user.totalScore}</li>		
-			</g:if>	
-		</g:each>
-		
-	</div>
-
-
-	<style type="text/css">
-		.tickLabel{color:#777 !important;}	
-		.legend table{width:200px; text-align:left; font-weight:bold; color:#777;}
-	</style>
 	
 	<script type="text/javascript" src="${resource(dir:'js/lib/jquery/', 'jquery-1.6.1.min.js')}"></script>
 	<script type="text/javascript" src="${resource(dir:'js/lib/jquery/flot/', 'flot.js')}"></script>

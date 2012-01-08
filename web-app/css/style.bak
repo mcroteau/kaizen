@@ -1,0 +1,103 @@
+html,body{
+	text-align:center;
+	background:#f8f8f8;
+}
+html, body, div, p, td, strong, em, span, a{font-size:11px; }
+
+#container{
+	width:800px;
+	padding:20px;
+	margin:0px auto;
+	background:#fff;
+	border:solid 2px #efefef;
+}
+
+#logo, #logo span{
+	color:#222;
+	font-size:22px;
+	font-weight:bold;
+}
+
+
+#menu{
+	margin:3px auto 10px auto;
+	border-bottom:solid 2px #f8f8f8;
+}
+#menu a{
+	padding:5px !important;
+	margin:2px 15px;
+	font-size:11px;
+	font-weight:normal;
+	display:inline-block;
+}
+
+
+#maincontent{
+	padding:10px 0px;
+	text-align:left;
+}
+
+p{
+	line-height:1.7em;
+	margin:5px auto 5px auto;
+	text-align:left;
+}
+
+p.large{
+	text-align:center;
+	font-size:22px !important;
+	margin:5px 0px 8px 0px !important;
+	line-height:1.0em !important;
+}
+p.medium{
+	text-align:center;
+	font-size:15px !important;
+	margin:5px 0px 5px 0px !important;
+}
+
+
+
+
+#footer{
+	padding:5px;
+	text-align:left;
+	background:#f8f8f8;
+	border:solid 1px #efefef;
+}
+
+
+
+
+.wrapper.centeralign{
+	text-align:center;
+}
+.wrapper.centeralign div{
+	margin:auto;
+	text-align:left;
+}
+
+.loginForm{	
+	width:300px;
+	padding:15px;
+	background:#f8f8f8;
+	border:solid 1px #efefef;
+}
+
+.fourhundred{
+	width:400px;
+}
+
+
+
+
+
+
+
+
+.slider{}
+.slider span{display:inline-block; margin:4px; font-size:8px; color:#955; font-weight:bold;}
+.slider span#happinessScaleValue{color:#434343; font-size:14px;}
+
+
+
+

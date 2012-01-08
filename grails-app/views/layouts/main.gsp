@@ -1,99 +1,86 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html>
 <head>
-    <title><g:layoutTitle default="Franklins 13" /></title>
-    <link rel="stylesheet" href="${resource(dir:'css',file:'reset.css')}" />
-    <link rel="stylesheet" href="${resource(dir:'css',file:'style.css')}" />
-    <link rel="stylesheet" href="${resource(dir:'css',file:'messages.css')}" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+    <meta name="author" content=""/>
+	 
+    <title>Welcome to Franklin's 13+ App : Based on Ben Franklin's 13 Virtues</title> 
+
     <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
+
+    <link rel="stylesheet" href="${resource(dir:'css',file:'reset.css')}" />
+    <link rel="stylesheet" href="${resource(dir:'css',file:'buttons.css')}" />
+    <link rel="stylesheet" href="${resource(dir:'css',file:'messages.css')}" />
+    <link rel="stylesheet" href="${resource(dir:'css',file:'style.css')}" />
+
     <g:layoutHead />
+
+		
 </head>
 <body>
+
+
+	<div class="topbar">
 		
-	<div id="outer-wrapper">
-		
-		<div id="container">
-		
-			<div id="top">
-				
-				<a href="/franklins13" id="logo">Franklin's <span>13</span></a>
-				
-				<div id="menu">
-					
-					<g:link controller="static" action="welcome">Welcome</g:link>
-					<g:link controller="static" action="experiment">The Experiment</g:link>
-					<g:link controller="static" action="definitions">13 Principles Defined</g:link>
-					
-				</div>
-				
-			</div>
-			
-			<style type="text/css">
-				#userMenu{background:#f8f8f8; border:dotted 1px #ddd; padding:4px; color:#999;}
-				#userMenu span{color:#333;}
-				#userMenu a{display:inline-block; margin:5px;}				
-			</style>
-			
-			<shiro:isLoggedIn>
-				<div id="stats">
-					<span>score : ${session.totalScore} </span>        
-					<span>total entries : ${session.totalEntries}</span>
-				</div>
-				
-				<div id="userMenu" style="text-align:left;">
-				
-					<span class="right">
-						<g:link controller="virtueEntry" action="logEntry">Todays Entry</g:link>| 
-						<g:link controller="static" action="dashboard">Dashboard</g:link>|
-						<g:link controller="virtueEntry" action="calendar">Calendar</g:link>|
-						<g:link controller="virtueEntry" action="listview">All Progress</g:link>|
-						<g:link controller="account" action="info">Account</g:link>
-					</span>
-					
-					<br class="clear"/>
-				</div>
-			</shiro:isLoggedIn>
-			
-			
-			<div id="maincontent">
-				<g:layoutBody />
-			</div>
-			
-			<div id="footer">
-				
-				
-				<shiro:isLoggedIn>
-					<div id="">
-						welcome back <shiro:principal/>&nbsp;&nbsp;|&nbsp;&nbsp;<g:link controller="auth" action="signOut">logout</g:link>
-					</div>
-				</shiro:isLoggedIn>
-				<shiro:notAuthenticated>
-					<g:link controller="auth" action="login">login</g:link>
-				</shiro:notAuthenticated>
-				
-			</div>
-			
-			
+		<div class="topcontent">
+			<g:link controller="account" action="registrationPage" class="openings">${session.openings} Openings Left,  + Join</g:link>
+			<g:link controller="auth" action="login" class="login">Login</g:link>
 		</div>
 		
 	</div>
 	
-	
-	
-	<shiro:hasRole name="ROLE_ADMIN">
-		<div id="adminpanel">
+	<div class="header">
+		<a href="" class="logo large"></a>
+			
+		<nav class="menu">
+			
+			<g:link controller="static" class="" action="welcome" title="Franklins 13+ : Welcome to Franklin's 13+ App">Welcome</g:link>
+			<g:link controller="static" class="" action="experiment" title="Franklins 13+ : The Experiment Explained">The Experiment</g:link>
+			<g:link controller="static" class="" action="definitions" title="Franklins 13+ : Ben Franklin's 13 Virtues/Principals Defined">The Principles</g:link>
+			
+		</nav>
+	</div>
 		
-		    <ul>
-                <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-                    <li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>
-                </g:each>
-            </ul>
-		
-		</div>
-	</shiro:hasRole>
+	<div id="stats">
+		<span>score : ${session.totalScore} </span>        
+		<span>total entries : ${session.totalEntries}</span>
+	</div>
+
 	
-	<g:link controller="virtueEntry" action="calendar">Calendar Dev</g:link>
-	<g:link controller="account" action="registrationPage">Register</g:link>
+	<g:layoutBody />
+			
+	<br class="clear"/>
+		
+			
+	<div class="notes" style="width:500px; margin:20px auto;">
+		<a href="logentry.html">log entry</a>&nbsp;|&nbsp;
+		<a href="dashboard.html">dashboard</a>&nbsp;|&nbsp;
+		<a href="account.html">account</a>&nbsp;|&nbsp;
+		<a href="welcome.html" class="" title="Franklins 13+ : Welcome to Franklin's 13+ App">Welcome</a>&nbsp;|&nbsp;
+		<a href="experiment.html" class="" title="Franklins 13+ : The Experiment Explained">The Experiment</a>&nbsp;|&nbsp;
+		<a href="virtues.html" class="active" title="Franklins 13+ : Ben Franklin's 13 Virtues/Principals Defined">The Virtues</a>
+		
+		<g:link controller="virtueEntry" action="logEntry">Todays Entry</g:link>| 
+		<g:link controller="static" action="dashboard">Dashboard</g:link>|
+		<g:link controller="virtueEntry" action="calendar">Calendar</g:link>|
+		<g:link controller="virtueEntry" action="listview">All Progress</g:link>|
+		<g:link controller="account" action="info">Account</g:link>
+		<shiro:hasRole name="ROLE_ADMIN">
+			<div id="adminpanel">
+
+			    <ul>
+	                <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
+	                    <li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>
+	                </g:each>
+	            </ul>
+
+			</div>
+		</shiro:hasRole>		
+	</div>
+
+
 	
 	<script type="text/javascript">
 
@@ -107,8 +94,8 @@
 	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 	  })();
 
-	</script>
-
+	</script>	
 	
+
 </body>
-</html>
+</html>	

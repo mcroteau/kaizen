@@ -1,3 +1,4 @@
+
 .messagesWrapper{
 	text-align:center;
 	padding:0px 15px;
@@ -14,10 +15,11 @@
 	top:5px;
 	right:5px;
 	position:absolute;
-	background-position: 0px -6px;
+	background-position: -242px -288px;
 }
 
-.message{
+.message .header{
+	text-align:left;
 	display:block;
 	font-weight:bold;
 }
@@ -28,7 +30,7 @@
 	background:#ceeece;
 	border:solid 1px #a7d5a7;
 }
-.message.success{
+.message.success span{
 	color:#286228;
 }
 
@@ -39,7 +41,7 @@
 	background:#cde6f3;
 	border:solid 1px #5ab6dd;
 }
-.message.info{
+.message.info span{
 	color:#04638f;
 }
 
@@ -50,7 +52,7 @@
 	background:#ffd6d6;
 	border:solid 1px #e5a4a4;
 }
-.message.error{
+.message.error span{
 	color:#681414;
 }
 
@@ -62,7 +64,7 @@
 	background:#fffff0;
 	border:solid 1px #e7e7c9;
 }
-.message.warn{
+.message.warn span{
 	color:#69695b;
 }
 
@@ -74,7 +76,7 @@
 	background:#ebe8e8;
 	border:solid 1px #c4c1c1;
 }
-.message.note{
+.message.note span{
 	color:#5c5c5c;
 }
 

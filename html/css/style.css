@@ -271,7 +271,7 @@ input[type="password"]:focus {
 
 /** registration styles **/
 .registrationContainer {
-  width: 800px; }
+  width: 500px; }
 
 .registrationContainer .franklin {
   margin-top: 20px !important; }
@@ -293,11 +293,11 @@ input[type="password"]:focus {
 
 .registrationWrapper.notes {
   margin-top: 0px !important;
-  width: 800px;
+  width: 550px;
   background: #f4f4f4 !important; }
 
 .registrationWrapper .message {
-  width: 550px;
+  width: 450px;
   margin: 0px; }
 
 .registrationForm {
@@ -325,8 +325,64 @@ input[type="password"]:focus {
   color: #777;
   font-weight: bold; }
 
-.error,
-p.large .error {
-  font-size: 10px;
-  margin-left: 0px;
-  color: #a73601; }
+/** reset styles **/
+.resetContainer {
+  width: 550px; }
+
+.resetContainer .franklin {
+  margin-top: 20px !important; }
+
+.resetContainer h1 {
+  margin-bottom: 0px;
+  padding: 0px; }
+
+.resetContainer p.large {
+  margin-top: 0px;
+  border: dashed 0px #ddd; }
+
+.resetContainer .buttons {
+  padding-bottom: 15px; }
+
+.resetContainer .buttons span a {
+  color: #2071bc;
+  font-size: 9px; }
+
+.resetWrapper.notes {
+  margin-top: 0px !important;
+  width: 550px;
+  background: #f4f4f4 !important; }
+
+.resetWrapper .message {
+  width: 550px;
+  margin: 0px; }
+
+.resetForm {
+  width: 550px;
+  padding: 0px 15px 15px 15px;
+  margin: 5px 20px 0px 0px; }
+
+.resetForm label {
+  display: inline-block;
+  width: 120px;
+  text-align: right;
+  font-size: 14px; }
+
+.resetForm p {
+  margin: 10px 0px 20px 0px; }
+
+.resetContainer .buttons {
+  text-align: right;
+  width: 330px !important;
+  border: solid 0px #ddd;
+  margin: 0px; }
+
+.resetContainer .buttons span {
+  font-size: 9px;
+  color: #777;
+  font-weight: bold; }
+
+.inactive em, .inactive span {
+  color: #777 !important; }
+
+em.highlight {
+  background: #fefee4 !important; }
