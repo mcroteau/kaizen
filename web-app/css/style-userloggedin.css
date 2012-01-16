@@ -394,6 +394,13 @@ p.large.welcome {
   border-bottom: solid 1px #f1f1f1;
   border-top: solid 1px #f1f1f1; }
 
+.stats table th {
+  font-size: 8px;
+  color: #777;
+  font-weight: bold;
+  letter-spacing: 0.03em;
+  text-align: center; }
+
 .stats table td.virtue {
   font-size: 15px;
   padding: 4px; }
@@ -631,3 +638,35 @@ table.entries td.entryNotes {
   padding: 10px;
   border: solid 0px #fff;
   margin: 0px auto; }
+
+.confirmation {
+  width: 400px;
+  height: 270px !important;
+  min-height: 270px !important;
+  margin: 20px auto;
+  padding: 20px;
+  text-align: center; }
+
+.confirmation h1 {
+  text-align: center; }
+
+.confirmation h1 span {
+  font-size: 30px;
+  font-weight: bold; }
+
+.confirmationStat span {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333; }
+
+.confirmation span.highlight {
+  font-size: 22px; }
+
+.alignLeft {
+  text-align: left !important; }
+
+.alignRight {
+  text-align: right !important; }
+
+.alignCenter {
+  text-align: center !important; }

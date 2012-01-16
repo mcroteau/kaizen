@@ -9,7 +9,7 @@ class VirtueEntryController {
 	def utilitiesService
 	
     def index = {
-        redirect(action: "list", params: params)
+        redirect(action: "history", params: params)
     }
 
     def list = {
@@ -39,6 +39,38 @@ class VirtueEntryController {
 		}
 	
 	}
+	
+	
+	def history = {
+	
+		def account
+		params.max = Math.min(params.max ? params.int('max') : 10, 100)
+		
+		def subject = SecurityUtils.getSubject();
+		if(subject?.getPrincipal()){
+			account = Account.findByUsername(subject?.getPrincipal())
+		}
+		
+		if(account){
+			
+			
+			println 'account -> ' + account
+			def virtueEntryInstanceList = VirtueEntry.findAllByAccount(account, params)
+			def virtueEntryInstanceTotal = VirtueEntry.countByAccount(account)
+			
+			[virtueEntryInstanceList: virtueEntryInstanceList, virtueEntryInstanceTotal: virtueEntryInstanceTotal]
+			
+		}else{
+		
+			flash.message = "No entries logged yet"
+			redirect action:"logEntry"
+		
+		}	
+	
+	
+	}
+	
+	
 	
 	def listmobile = {
 		def account
@@ -242,7 +274,7 @@ class VirtueEntryController {
 
 	def getTotalPoints(int totalCompleted){
 	
-	    def points = 5
+	    def points = 0
 	    switch (totalCompleted) {
 	        case 0:
 	            points = points - 4
@@ -300,6 +332,9 @@ class VirtueEntryController {
 		println 'confirmation'
 	}
 
+	def mockConfirmation = {
+		println "mockConfirmation ->"
+	}
 
 	def getTotalVirtuesFollowed(params){
 		def totalCompleted = 0
@@ -349,7 +384,7 @@ class VirtueEntryController {
         def virtueEntryInstance = VirtueEntry.get(params.id)
         if (!virtueEntryInstance) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'virtueEntry.label', default: 'VirtueEntry'), params.id])}"
-            redirect(action: "list")
+            redirect(action: "history")
         }
         else {
             [virtueEntryInstance: virtueEntryInstance]
@@ -360,7 +395,7 @@ class VirtueEntryController {
         def virtueEntryInstance = VirtueEntry.get(params.id)
         if (!virtueEntryInstance) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'virtueEntry.label', default: 'VirtueEntry'), params.id])}"
-            redirect(action: "list")
+            redirect(action: "history")
         }
         else {
             [virtueEntryInstance: virtueEntryInstance]
@@ -376,7 +411,7 @@ class VirtueEntryController {
         	def virtueEntryInstance = VirtueEntry.get(params.id)
         	if (!virtueEntryInstance) {
         	    flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'virtueEntry.label', default: 'VirtueEntry'), params.id])}"
-        	    redirect(action: "list")
+        	    redirect(action: "history")
         	}
         	else {
         	    return [virtueEntryInstance: virtueEntryInstance]
@@ -457,7 +492,7 @@ class VirtueEntryController {
     	   		}
     	   		else {
     	   		    flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'virtueEntry.label', default: 'VirtueEntry'), params.id])}"
-    	   		    redirect(action: "list")
+    	   		    redirect(action: "history")
     	   		}
 			
 			}else{
@@ -509,7 +544,7 @@ class VirtueEntryController {
 					
 					
         	        flash.message = "Successfully deleted entry for ${utilitiesService.getFormattedDateNoTimeOption1(date)}"
-        	        redirect(action: "list")
+        	        redirect(action: "history")
         	    }
         	    catch (org.springframework.dao.DataIntegrityViolationException e) {
         	        flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'virtueEntry.label', default: 'VirtueEntry'), params.id])}"
@@ -518,7 +553,7 @@ class VirtueEntryController {
         	}
         	else {
         	    flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'virtueEntry.label', default: 'VirtueEntry'), params.id])}"
-        	    redirect(action: "list")
+        	    redirect(action: "history")
         	}
 
 
@@ -592,13 +627,12 @@ class VirtueEntryController {
 					def month = it.entryDate.getAt(Calendar.MONTH) +1
 					def year = it.entryDate.getAt(Calendar.YEAR)
 					
-					//println "entryDate -> ${it.entryDate}  :   ${year + '-' + month + '-' + String.format("%02d", day)}"
-					
+
 					def entry = [
 						id:  year + '-' + month + '-' + day,
 						title : it.totalCompleted.toString() + " completed, \n" + it.happinessScale + " happiness \n" + it.totalPoints + " points" ,
 						url : 'show/' + it.id,
-						start : year + '-' + month + '-' + String.format("%02d", day)
+						start : year + '-' + String.format("%02d", month) + '-' + String.format("%02d", day)
 					]
         		
 					entries.add(entry)
@@ -613,7 +647,62 @@ class VirtueEntryController {
 		render entries as JSON 
 		
 	}	
+
+
+
+
+	def entriesPoints = {
+		
+		//println 'retrieving events ->'
+		def entries = []
+				
+		def subject = SecurityUtils.getSubject();
+		
+		if(subject.authenticated){	
+		
+			def account = Account.findByUsername(subject?.getPrincipal())
 	
+			if(account){
+				def allEntries = VirtueEntry.findAllByAccount(account)
+
+        		//println 'allEntries -> ' + allEntries
+
+				allEntries.each{ 
+				
+				
+					
+					def day = it.entryDate.getAt(Calendar.DAY_OF_MONTH)
+					def month = it.entryDate.getAt(Calendar.MONTH) +1
+					def year = it.entryDate.getAt(Calendar.YEAR)
+					
+					
+					def entry = [
+						id:  year + '-' + month + '-' + day,
+						title : addPlusMinusSign(it.totalPoints),
+						url : 'show/' + it.id,
+						start : year + '-' + String.format("%02d", month) + '-' + String.format("%02d", day)
+					]
+        		
+					entries.add(entry)
+				}
+			
+			}
+		
+		}
+		
+		println entries
+		
+		render entries as JSON 
+		
+	}
+	
+		
+	def addPlusMinusSign(num){
+		if(num < 0){
+			return "${num}"
+		}
+		return "+${num}"	
+	}	
 	
 	def setSessionStats(){
 		def account

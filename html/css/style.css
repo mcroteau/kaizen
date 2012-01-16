@@ -271,7 +271,7 @@ input[type="password"]:focus {
 
 /** registration styles **/
 .registrationContainer {
-  width: 500px; }
+  width: 700px; }
 
 .registrationContainer .franklin {
   margin-top: 20px !important; }
@@ -293,11 +293,11 @@ input[type="password"]:focus {
 
 .registrationWrapper.notes {
   margin-top: 0px !important;
-  width: 550px;
+  width: 700px;
   background: #f4f4f4 !important; }
 
 .registrationWrapper .message {
-  width: 450px;
+  width: 550px;
   margin: 0px; }
 
 .registrationForm {

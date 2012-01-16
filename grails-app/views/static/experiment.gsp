@@ -45,7 +45,7 @@
 		
 	<h2>A few notes about this app</h2>
 	<ol class="notes">
-		<li>This is free developed by 1 person who plans on using himself, so bugs will exist.  Please be kind.  If you discover a bug please send an email to franklinsapp@gmail.com.</li>
+		<li>This app is free to use, developed by 1 person who plans on using himself, so bugs will exist.  Please be kind.  If you discover a bug please send an email to franklinsapp@gmail.com.</li>
 		<li>Lets be honest here.  Why?   It's simple... do good, be good, work hard, be honest, laugh, make others laugh... and hope for the best, for yourself and those around you. </li>  
 		<li>Given #3, how many people do you see doing this?</li>
 		<li>Thanks for visiting, wish you the best.</li>			

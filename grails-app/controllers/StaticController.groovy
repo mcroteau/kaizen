@@ -7,7 +7,11 @@ class StaticController {
 	def utilitiesService
 	
     def index = { }
-
+	
+	//more info about experiment -> some stats
+	def experiment = {}
+	def definitions = {}
+	
 	def welcome = {
 	
 		println 'index -> '
@@ -63,20 +67,17 @@ class StaticController {
 		def scores = []
 		def	virtuesSummaryMap = [:]
 			
-		virtuesSummaryMap.temperance = 0
-		virtuesSummaryMap.orderVirtue = 0
-		virtuesSummaryMap.resolution = 0
-		virtuesSummaryMap.frugality = 0	
-		virtuesSummaryMap.moderation = 0
-		virtuesSummaryMap.industry = 0
-		virtuesSummaryMap.cleanliness = 0
-		virtuesSummaryMap.tranquility = 0
-		virtuesSummaryMap.silence = 0
-		virtuesSummaryMap.sincerity = 0
-		virtuesSummaryMap.justice = 0
-		virtuesSummaryMap.chastity = 0
-		virtuesSummaryMap.humility = 0
-		virtuesSummaryMap.wellBeing = 0
+		def virtuesArray = ["temperance", "orderVirtue", "resolution", "frugality", "moderation", "industry", "cleanliness", "tranquility", "silence", "sincerity", "justice", "chastity", "humility", "wellBeing"]	
+
+		virtuesArray.each(){
+			virtuesSummaryMap[it] = [:]
+			virtuesSummaryMap[it]["value"] = 0
+			virtuesSummaryMap[it]["percent"] = 0
+			virtuesSummaryMap[it]["name"] = it.capitalize() 
+		}
+		
+		println virtuesSummaryMap
+		
 		
 		if(account){
 			
@@ -112,11 +113,12 @@ class StaticController {
             	
 				 	i++
 				}
-				println "virtues -> ${virtues}"
+				//println "virtues -> ${virtues}"
 				
-				println "happiness -> ${happiness}"
+				//println "happiness -> ${happiness}"
 			
-				println "map -> ${virtuesSummaryMap}    totalEntries -> ${totalEntries}"
+				// println "map -> ${virtuesSummaryMap}    totalEntries -> ${totalEntries}"
+				
 				setPercents(virtuesSummaryMap, totalEntries);
 			
 			}else{
@@ -140,105 +142,132 @@ class StaticController {
 		request.happiness = happiness
 		request.virtues = virtues
 		request.scores = scores
+	
 		
+		def sortedVirtuesMapWorst = virtuesSummaryMap.sort{it.value.value}
+		request.sortedVirtuesMapWorst = sortedVirtuesMapWorst
+
+
+		def sortedVirtuesMapBest = reverseSortMap(virtuesSummaryMap)
+		request.sortedVirtuesMapBest = sortedVirtuesMapBest
+
+				
 		request.virtuesSummaryMap = virtuesSummaryMap
 			
 	}
 	
 	
 	def setPercents(virtuesSummaryMap, totalEntries){
-		println virtuesSummaryMap.temperance
-		virtuesSummaryMap.temperancePercent = utilitiesService.roundTwoDecimals(virtuesSummaryMap.temperance/totalEntries)
-		virtuesSummaryMap.orderVirtuePercent = utilitiesService.roundTwoDecimals(virtuesSummaryMap.orderVirtue/totalEntries)
-		virtuesSummaryMap.resolutionPercent = utilitiesService.roundTwoDecimals(virtuesSummaryMap.resolution/totalEntries)
-		virtuesSummaryMap.frugalityPercent = utilitiesService.roundTwoDecimals(virtuesSummaryMap.frugality/totalEntries)
-		virtuesSummaryMap.moderationPercent = utilitiesService.roundTwoDecimals(virtuesSummaryMap.moderation/totalEntries)
-		virtuesSummaryMap.industryPercent = utilitiesService.roundTwoDecimals(virtuesSummaryMap.industry/totalEntries)
-		virtuesSummaryMap.cleanlinessPercent = utilitiesService.roundTwoDecimals(virtuesSummaryMap.cleanliness/totalEntries)
-		virtuesSummaryMap.tranquilityPercent = utilitiesService.roundTwoDecimals(virtuesSummaryMap.tranquility/totalEntries)
-		virtuesSummaryMap.silencePercent = utilitiesService.roundTwoDecimals(virtuesSummaryMap.silence/totalEntries)
-		virtuesSummaryMap.sincerityPercent = utilitiesService.roundTwoDecimals(virtuesSummaryMap.sincerity/totalEntries)
-		virtuesSummaryMap.justicePercent = utilitiesService.roundTwoDecimals(virtuesSummaryMap.justice/totalEntries)
-		virtuesSummaryMap.chastityPercent = utilitiesService.roundTwoDecimals(virtuesSummaryMap.chastity/totalEntries)
-		virtuesSummaryMap.humilityPercent = utilitiesService.roundTwoDecimals(virtuesSummaryMap.humility/totalEntries)
-		virtuesSummaryMap.wellBeingPercent = utilitiesService.roundTwoDecimals(virtuesSummaryMap.wellBeing/totalEntries)
+		virtuesSummaryMap.temperance.percent = round(virtuesSummaryMap.temperance.value/totalEntries)
+		virtuesSummaryMap.orderVirtue.percent = round(virtuesSummaryMap.orderVirtue.value/totalEntries)
+		virtuesSummaryMap.resolution.percent = round(virtuesSummaryMap.resolution.value/totalEntries)
+		virtuesSummaryMap.frugality.percent = round(virtuesSummaryMap.frugality.value/totalEntries)
+		virtuesSummaryMap.moderation.percent = round(virtuesSummaryMap.moderation.value/totalEntries)
+		virtuesSummaryMap.industry.percent = round(virtuesSummaryMap.industry.value/totalEntries)
+		virtuesSummaryMap.cleanliness.percent = round(virtuesSummaryMap.cleanliness.value/totalEntries)
+		virtuesSummaryMap.tranquility.percent = round(virtuesSummaryMap.tranquility.value/totalEntries)
+		virtuesSummaryMap.silence.percent = round(virtuesSummaryMap.silence.value/totalEntries)
+		virtuesSummaryMap.sincerity.percent = round(virtuesSummaryMap.sincerity.value/totalEntries)
+		virtuesSummaryMap.justice.percent = round(virtuesSummaryMap.justice.value/totalEntries)
+		virtuesSummaryMap.chastity.percent = round(virtuesSummaryMap.chastity.value/totalEntries)
+		virtuesSummaryMap.humility.percent = round(virtuesSummaryMap.humility.value/totalEntries)
+		virtuesSummaryMap.wellBeing.percent = round(virtuesSummaryMap.wellBeing.value/totalEntries)	
+	}
+	
+	def Map reverseSortMap(Map unsortedMap) {
+
+	    // 3. Reverse Sort by a particular field of Value(Date Of Birth):
+	    Comparator comparator = [compare: {a , b -> unsortedMap.get(b).value.compareTo(unsortedMap.get(a).value)  }] as Comparator
+
+	    Map sortedMap = new TreeMap(comparator)
+	    sortedMap.putAll(unsortedMap)
+
+	    return sortedMap
+	}
+	
+	def round(num){
+		println 'number -> ' + num
+		DecimalFormat twoDForm = new DecimalFormat("#.##");
+		def formattedDecimal = Double.valueOf(twoDForm.format(num))*100;
+	    return (int)formattedDecimal
+		
 	}
 
 
 	def setMappedVirtueValues(entry, virtuesSummaryMap){
 	
 		if(entry.temperance){
-			virtuesSummaryMap.temperance = virtuesSummaryMap.temperance + 1	
+			virtuesSummaryMap.temperance.value = virtuesSummaryMap.temperance.value + 1	
 		}
 		
 		
 		if(entry.orderVirtue){
-			virtuesSummaryMap.orderVirtue = virtuesSummaryMap.orderVirtue + 1	
+			virtuesSummaryMap.orderVirtue.value = virtuesSummaryMap.orderVirtue.value + 1	
 		}
 		
 		
 		if(entry.resolution){
-			virtuesSummaryMap.resolution = virtuesSummaryMap.resolution + 1	
+			virtuesSummaryMap.resolution.value = virtuesSummaryMap.resolution.value + 1	
 		}
 		
 		
 		if(entry.frugality){
-			virtuesSummaryMap.frugality = virtuesSummaryMap.frugality + 1	
+			virtuesSummaryMap.frugality.value = virtuesSummaryMap.frugality.value + 1	
 		}
 		
 		
 		if(entry.moderation){
-			virtuesSummaryMap.moderation = virtuesSummaryMap.moderation + 1	
+			virtuesSummaryMap.moderation.value = virtuesSummaryMap.moderation.value + 1	
 		}
 		
 		
 		if(entry.industry){
-			virtuesSummaryMap.industry = virtuesSummaryMap.industry + 1	
+			virtuesSummaryMap.industry.value = virtuesSummaryMap.industry.value + 1	
 		}
 		
 		
 		if(entry.cleanliness){
-			virtuesSummaryMap.cleanliness = virtuesSummaryMap.cleanliness + 1	
+			virtuesSummaryMap.cleanliness.value = virtuesSummaryMap.cleanliness.value + 1	
 		}
 		
 		
 		if(entry.tranquility){
-			virtuesSummaryMap.tranquility = virtuesSummaryMap.tranquility + 1	
+			virtuesSummaryMap.tranquility.value = virtuesSummaryMap.tranquility.value + 1	
 		}
 		
 
 		if(entry.silence){
-			virtuesSummaryMap.silence = virtuesSummaryMap.silence + 1	
+			virtuesSummaryMap.silence.value = virtuesSummaryMap.silence.value + 1	
 		}	
 		
 		
 		if(entry.justice){
-			virtuesSummaryMap.justice = virtuesSummaryMap.justice + 1	
+			virtuesSummaryMap.justice.value = virtuesSummaryMap.justice.value + 1	
 		}
 		
 		
 		if(entry.chastity){
-			virtuesSummaryMap.chastity = virtuesSummaryMap.chastity + 1	
+			virtuesSummaryMap.chastity.value = virtuesSummaryMap.chastity.value + 1	
 		}
 		
 		
 		if(entry.humility){
-			virtuesSummaryMap.humility = virtuesSummaryMap.humility + 1	
+			virtuesSummaryMap.humility.value = virtuesSummaryMap.humility.value + 1	
 		}
 		
 		
 		if(entry.sincerity){
-			virtuesSummaryMap.sincerity = virtuesSummaryMap.sincerity + 1	
+			virtuesSummaryMap.sincerity.value = virtuesSummaryMap.sincerity.value + 1	
 		}
 		
 		
 		if(entry.wellBeing){
-			virtuesSummaryMap.wellBeing = virtuesSummaryMap.wellBeing + 1	
+			virtuesSummaryMap.wellBeing.value = virtuesSummaryMap.wellBeing.value + 1	
 		}
 		
 
 		
-		println 'set mapped virtues -> '
+		// println 'set mapped virtues -> '
 	}
 	
 	def getTotalPrinciplesFollowed(entry){
@@ -264,10 +293,6 @@ class StaticController {
 		return totalCompleted
 	}
 	
-	
-	//more info about experiment -> some stats
-	def experiment = {}
-	def definitions = {}
 	
 	
 

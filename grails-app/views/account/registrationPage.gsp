@@ -35,7 +35,7 @@
 	
 	<div class="registrationWrapper notes">
 	
-		<form id="registrationForm" name="registrationForm">
+		<form id="registrationForm" name="registrationForm" action="register" method="post">
 			
 		<div class="registrationForm">
 			<p class="large">
@@ -150,7 +150,8 @@
 		});
     	
 	
-		$('#register').click(function(){
+		$('#register').click(function(event){
+			event.preventDefault();
 			if($('#registrationForm').valid()){
 				document.registrationForm.submit();					
 			}

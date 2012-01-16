@@ -39,7 +39,8 @@
 			
 			<div class="buttons">
 				<span>Forgot <g:link controller="account" action="beginResetPage">Password</g:link>?</span>
-				<a href="#" class="button blue small">Login</a>
+				<!-- <a href="#" class="button blue small">Login</a> -->
+				<g:submitButton name="Login" class="button blue small" value="Login"/>
 			</div>
 			
   			</g:form>

@@ -48,11 +48,23 @@ class UtilitiesService {
 	}
 	
 	def roundTwoDecimals(number){
-		DecimalFormat percent = new DecimalFormat("0%");	
+		DecimalFormat percent = new DecimalFormat("00");	
 		return percent.format(number);
 	}
 
 	def getSupportLink(){
 		return '<a href="mailto:franklins13app@gmail.com" title="Email Support at franklins13app@gmail.com">franklins13app@gmail.com</a>'
 	}
+	
+	def Map reverseSortMap(Map unsortedMap) {
+
+	    // 3. Reverse Sort by a particular field of Value(Date Of Birth):
+	    Comparator comparator = [compare: {a , b -> unsortedMap.get(b).value.compareTo(unsortedMap.get(a).value)  }] as Comparator
+
+	    Map sortedMap = new TreeMap(comparator)
+	    sortedMap.putAll(unsortedMap)
+
+	    return sortedMap
+	}
+	
 }

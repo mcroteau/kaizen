@@ -46,7 +46,7 @@ class AuthController {
 			
 			if(targetUri == '/'){
 				//add in hook to send to users welcome screen
-				targetUri = '/account/userWelcome'
+				targetUri = '/static/dashboard'
 			}
 
 			if(params.newRegistration){
@@ -113,11 +113,26 @@ class AuthController {
 		if(account){
 			session.totalScore = account.totalScore
 			session.totalEntries = account.totalEntries
+			session.rank = getUserRank(account.username)
 			
-			println "sessions stats ->  score : ${session.totalScore}  /  entries : ${session.totalEntries}"
+			println "sessions stats -> rank: ${session.rank}   /   score : ${session.totalScore}  /  entries : ${session.totalEntries} "
 		
 		}
 		
+	}
+	
+	def getUserRank(username){
+		def accounts = Account.findAll()
+		// def sortedAccounts = utilitiesService.reverseSortMap(accounts)
+		def sorted = accounts.sort()
+		def rank = 0;
+		sorted.eachWithIndex(){obj, i -> 
+			if(obj.username == username){
+				println " ${i}: ${obj.username}"
+				rank = i
+			}
+		}
+		return rank
 	}
 	
 }
