@@ -123,10 +123,10 @@
 				</div>
 
 
-				<div class="virtue">
+				<div class="virtue toggleCheckbox">
 					<g:checkBox name="humility" value="${virtueEntryInstance?.humility}"  />
 					<em>Humility</em>
-					<span>Imitate Jesus and Socrates</span>		
+					<span class="toggleCheckbox">Imitate Jesus and Socrates</span>		
 				</div>
 
 
@@ -198,12 +198,37 @@
 			};
 			
 			self.bindClickHandler = function(){
-				$toggle.click(function(event){
-					event.preventDefault();
-					self.toggleNotes();
+				// $toggle.click(function(event){
+				// 					event.preventDefault();
+				// 					self.toggleNotes();
+				// 				});
+				
+				$('.logentry').click(function(event){
+					self.delegateClickEvent(event);
 				});
 			};
 
+
+			self.delegateClickEvent = function(event){
+				var $target = $(event.target);
+				if($target.hasClass('toggle')){
+					event.preventDefault();
+					self.toggleNotes();
+				}
+					
+				if($target.hasClass('virtue')){
+					var $checkbox = $target.find(':checkbox');
+					$checkbox.attr('checked', !$checkbox.attr('checked'));
+				}
+				
+				if($target.parent().hasClass('virtue')){
+					var $checkbox = $target.parent().find(':checkbox');
+					$checkbox.attr('checked', !$checkbox.attr('checked'));
+				}
+				
+			}
+			
+			
 			self.toggleNotes = function(){
 				$toggle.toggleClass('open');
 				$notesWrapper.slideToggle(50);

@@ -76,8 +76,6 @@ class StaticController {
 			virtuesSummaryMap[it]["name"] = it.capitalize() 
 		}
 		
-		println virtuesSummaryMap
-		
 		
 		if(account){
 			
@@ -86,7 +84,7 @@ class StaticController {
     		
 			def totalEntries = VirtueEntry.countByAccount(account)
 
-			if(totalEntries && totalEntries > 1){
+			if(totalEntries && totalEntries >= 1){
 				def i = 1;
 				virtueEntryInstanceList.each(){
 					
@@ -154,6 +152,7 @@ class StaticController {
 				
 		request.virtuesSummaryMap = virtuesSummaryMap
 			
+		request.dashboardActive = "active"	
 	}
 	
 	
@@ -186,7 +185,6 @@ class StaticController {
 	}
 	
 	def round(num){
-		println 'number -> ' + num
 		DecimalFormat twoDForm = new DecimalFormat("#.##");
 		def formattedDecimal = Double.valueOf(twoDForm.format(num))*100;
 	    return (int)formattedDecimal

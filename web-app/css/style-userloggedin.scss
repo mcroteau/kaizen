@@ -13,6 +13,10 @@ $red-dark : #a73601;
 
 $highlight : #FEFEE4;
 
+body, html{
+	background:#f8f8f8
+}
+
 .topbar{
 	text-align:right;
 	border-top:solid 3px #757575;			
@@ -186,7 +190,15 @@ p.large.welcome{
 }
 
 .virtue{
+	border:solid 1px #f8f8f8;
 	margin:0px 0px 10px 0px
+}
+
+.virtue:hover{
+	cursor:hand;
+	cursor:pointer;
+	border:solid 1px #ecebeb;
+	background:#f4f4f4;
 }
 
 .virtue em{
@@ -203,6 +215,31 @@ p.large.welcome{
 .logentry h1{
 	font-size:18px;
 	margin-bottom:10px;
+}
+
+			
+.entryHeader{
+	float:left;
+}
+
+.entryRecap{
+	text-align:center;
+	width:auto;
+}
+.entryRecap .notes{
+	padding:10px;
+}
+.entryRecap h2{
+	font-size:11px;
+}
+.entryRecap h2 span{
+	font-size:22px;
+	font-weight:bold;
+	line-height:1.0;				
+}
+
+.entryRecap{
+	float:right;
 }
 
 
@@ -358,7 +395,7 @@ p.large.welcome{
 }
 
 .userstats span{
-	font-size:14px;
+	font-size:11px;
 	color:#555;
 	display:inline-block;
 	margin:0px 0px 0px 30px;
@@ -368,15 +405,27 @@ p.large.welcome{
 .userstats em{
 	background:$highlight;
 	font-weight:bold;
-	font-size:24px;
+	font-size:20px;
 	color:#333;
+	vertical-align:baseline;
 }
 
 .userstats em.scoreWrapper,
-.userstats em.rankWrapper{
-	width:100px;
+.userstats em.rankWrapper,
+.userstats em.entriesWrapper{
 	text-align:center;
 	display:inline-block;
+}
+.userstats em.scoreWrapper{
+	width:100px;
+	text-align:right
+}
+.userstats em.entriesWrapper{
+	width:40px
+}
+
+.userstats em.rankWrapper{
+	width:40px;
 }
 
 .userstats em em{
@@ -492,15 +541,16 @@ p.large.welcome{
 
 .stats p{
 	font-size:10px;
-	color:#777
+	color:#777;
+	margin:0px;
 }
 
 .stats table{
 	width:100%;
-	margin-top:10px;
+	margin:5px;
 }
 
-.stats table tr{
+.stats table tbody tr{
 	border-bottom:solid 1px #f1f1f1;
 	border-top:solid 1px #f1f1f1;
 }
@@ -727,7 +777,7 @@ table.entries td.entryNotes{
 
 .accountWrapper.notes{
 	margin-top:0px !important;
-	width:800px;
+	width:700px;
 	background:#f4f4f4 !important;
 }
 
@@ -856,6 +906,9 @@ table.entries td.entryNotes{
 	font-size:22px;
 }
 
+.confirmation h1 .highlight{
+	font-size:30px;
+}
 
 
 .alignLeft{text-align:left !important}

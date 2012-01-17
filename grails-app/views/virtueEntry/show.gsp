@@ -24,13 +24,16 @@
         	</div>
         </g:hasErrors>
 
-
-		<h1>Logged Virtues Entry for <g:formatDate date="${virtueEntryInstance?.entryDate}" format="dd MMM yyyy"/></h1>
+		<div class="entryHeader">
+			<h1>Logged Virtues Entry for <g:formatDate date="${virtueEntryInstance?.entryDate}" format="dd MMM yyyy"/></h1>			
+			<p>You can edit this entry by clicking edit below</p>
+		</div>
 		
-		<h2>${virtueEntryInstance.performanceDescription}</h2>
+		<div class="entryRecap">
+			<h2 class="notes"><span class="highlight"><g:if test="${virtueEntryInstance.totalPoints > 0}">+</g:if> ${virtueEntryInstance.totalPoints}</span><br/> points earned</h2>
+		</div>
 		
-		<h2>+ ${virtueEntryInstance.totalPoints} points earned</h2>
-		
+		<br class="clear"/>
 		
 		<div class="virtues left">
 		

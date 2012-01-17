@@ -44,12 +44,15 @@ class AuthController {
 
 			println "Redirecting to '${targetUri}'."
 			
+			def params = [activeLink : "dashboard"]
+			
 			if(targetUri == '/'){
 				//add in hook to send to users welcome screen
 				targetUri = '/static/dashboard'
 			}
 
 			if(params.newRegistration){
+				params = ""
 				targetUri = '/account/newMember'
 			}
 			
@@ -113,7 +116,7 @@ class AuthController {
 		if(account){
 			session.totalScore = account.totalScore
 			session.totalEntries = account.totalEntries
-			session.rank = getUserRank(account.username)
+			session.rank = getUserRank(subject?.getPrincipal())
 			
 			println "sessions stats -> rank: ${session.rank}   /   score : ${session.totalScore}  /  entries : ${session.totalEntries} "
 		

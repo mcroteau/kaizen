@@ -23,7 +23,6 @@
 
 	
 	<div class="topbar">
-		
 		<div class="topcontent">
 			<a href="" class="logo micro"></a>
 			<g:link controller="auth" action="signOut" class="logout">Logout</g:link>
@@ -33,12 +32,13 @@
 	</div>	
 	
 	<div class="header">
-		<span class="welcome">Welcome back <shiro:principal/></span>
+		
+		<span class="welcome">Welcome back <shiro:principal/> <g:link controller="account" action="edit">edit</g:link></span>
 		<nav class="usernav">
 			
-			<g:link controller="static" class="" action="dashboard" title="Franklins 13+ Dashboard">Dashboard</g:link>
-			<g:link controller="virtueEntry" class="" action="logEntry" title="Franklins 13+ : Log Entry">Log Entry</g:link>
-			<g:link controller="virtueEntry" class="" action="history" title="Franklins 13+ : Entry History">History</g:link>
+			<g:link controller="static" class="${dashboardActive}" action="dashboard" title="Franklins 13+ Dashboard" params="[activeLink: 'dashboard']">Dashboard</g:link>
+			<g:link controller="virtueEntry" class="${logentryActive}" action="logEntry" title="Franklins 13+ : Log Entry" params="[activeLink: 'logentry']">Log Entry</g:link>
+			<g:link controller="virtueEntry" class="${historyActive}" action="history" title="Franklins 13+ : Entry History" params="[activeLink: 'history']">History</g:link>
 		
 		</nav>
 		

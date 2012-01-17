@@ -29,6 +29,11 @@
 		<em>Why create this app?</em><br/>
 		Really, a personal experiment that I thought I might share with others who might think is valuable. 
 	</p>
+
+	<p class="large">
+		<em>Isn't this kind of corny?</em><br/>
+		Yes!  This is kind of corny.  I realize that, but it's available to those who want to use none the less.
+	</p>
 	
 	
 	<p class="large">

@@ -24,7 +24,7 @@
 			</div>
 		</g:hasErrors> 
 			
-		<h1><span><g:if test="${virtueEntryInstance.totalPoints > 0}">+</g:if> ${virtueEntryInstance.totalPoints}</span> Points Earned</h1>
+		<h1><span class="highlight"><g:if test="${virtueEntryInstance.totalPoints > 0}">+</g:if> ${virtueEntryInstance.totalPoints}</span> Points Earned</h1>
 		<h2>${virtueEntryInstance.performanceDescription}</h2>
 		
 		<p class="confirmationStat"><span class=" highlight">${virtueEntryInstance.totalCompleted}</span> out of <span>13</span> completed.</p>	
@@ -32,7 +32,8 @@
 		<p class="confirmationStat">You were <span class=" highlight">${virtueEntryInstance.happinessScale}</span> out of <span>10</span> on a Satisfaction/Happiness Scale</p>
 		
 		<div class="buttons">
-			<g:link controller="virtueEntry" action="show" id="${virtueEntryInstance.id}" class="button small blue">View Entry</g:link>				
+			<g:link controller="virtueEntry" action="show" id="${virtueEntryInstance.id}" class="button small blue">View Entry</g:link>		
+			<g:link controller="static" action="dashboard" class="button small red">View Dashboard</g:link>		
 		</div>
 	</div>
 

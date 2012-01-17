@@ -39,7 +39,7 @@ class VirtueEntry {
 	
 	
     static constraints = {
-		entryDate(unique:true)
+		entryDate(unique:false)
 		notes(nullable:true)
     }
  	

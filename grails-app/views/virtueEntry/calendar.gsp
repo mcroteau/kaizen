@@ -16,7 +16,7 @@
 
 		<h1 style="float:left">Calendar <span>A historical look at all your entries in Calendar format</span></h1>
 		<div style="text-align:right; margin:15px 0px 5px 0px; float:right">
-			<g:link controller="virtueEntry" action="history" class="button small blue">Back to List View</g:link>
+			<g:link controller="virtueEntry" action="history" class="button small blue" params="[activeLink: 'history']">Back to List View</g:link>
 		</div>
 
 		<br class="clear"/>
@@ -24,7 +24,7 @@
 		<div id="calendarFullWrapper" style="">
 			<div id="calendarFull" style=""></div>
 			<div style="text-align:right; margin:15px 0px 5px 0px;">
-				<g:link controller="virtueEntry" action="history" class="button small blue">Back to List View</g:link>
+				<g:link controller="virtueEntry" action="history" class="button small blue" params="[activeLink: 'history']">Back to List View</g:link>
 			</div>
 		</div>
 

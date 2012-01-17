@@ -30,13 +30,16 @@
         <g:form action="update" >
 
 			<input type="hidden" name="id" value="${virtueEntryInstance.id}"/>
-        	
-			<h1>Edit Virtues Entry for <g:datePicker name="entryDate" value="${virtueEntryInstance?.entryDate}" precision="day" years="[2011,2012, 2013]"/></h1>
-	    	
-			<h2>${virtueEntryInstance.performanceDescription}</h2>
-	    	
-			<h2>+ ${virtueEntryInstance.totalPoints} points earned</h2>
-	    	
+			
+			<div class="entryHeader">
+				<h1>Edit Virtues Entry for <g:datePicker name="entryDate" value="${virtueEntryInstance?.entryDate}" precision="day" years="[2011,2012, 2013]"/></h1>		
+				<h2>You can now edit this entry</h2>
+			</div>
+
+			<div class="entryRecap">
+				<h2 class="notes"><span class="highlight"><g:if test="${virtueEntryInstance.totalPoints > 0}">+</g:if> ${virtueEntryInstance.totalPoints}</span><br/> points earned</h2>
+			</div>
+			
 	    	
 			<div class="virtues left">
 	    	
@@ -205,11 +208,35 @@ $(document).ready(function(){
 		};
 
 		self.bindClickHandler = function(){
-			$toggle.click(function(event){
-				event.preventDefault();
-				self.toggleNotes();
+			// $toggle.click(function(event){
+			// 					event.preventDefault();
+			// 					self.toggleNotes();
+			// 				});
+			
+			$('.logentry').click(function(event){
+				self.delegateClickEvent(event);
 			});
 		};
+
+
+		self.delegateClickEvent = function(event){
+			var $target = $(event.target);
+			if($target.hasClass('toggle')){
+				event.preventDefault();
+				self.toggleNotes();
+			}
+				
+			if($target.hasClass('virtue')){
+				var $checkbox = $target.find(':checkbox');
+				$checkbox.attr('checked', !$checkbox.attr('checked'));
+			}
+			
+			if($target.parent().hasClass('virtue')){
+				var $checkbox = $target.parent().find(':checkbox');
+				$checkbox.attr('checked', !$checkbox.attr('checked'));
+			}
+			
+		}
 
 		self.toggleNotes = function(){
 			$toggle.toggleClass('open');

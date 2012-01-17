@@ -21,7 +21,7 @@
 		<h1>Dashboard <span>Detailed Graphs and Progress Stats</h1>
 		<div class="userstats">
 			<span>
-				<em class="scoreWrapper"><em class="score"></em></em> points
+				<em class="scoreWrapper"><g:if test="${session.totalScore < 0}">-</g:if><em class="score"></em></em> points
 			</span>
 	
 			<span>
@@ -128,10 +128,11 @@ function roundNumber(num, dec) {
 
 	$(document).ready(function(){
 
+		
 		var Dashboard = function(){
 
 			var self = this;
-			var score = ${session.totalScore};
+			var score = Math.abs(${session.totalScore});
 			var startScore = 0;
 
 			var startRank = 0;

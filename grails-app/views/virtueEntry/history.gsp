@@ -23,47 +23,53 @@
 	<h1>History <span>A historical look at all your entries sorted by entry date, displaying most recent entries first</span></h1>
 	
 	<div id="entriesListWrapper" class="entrieslistWrapper" style="">
-		<h3>List View <span>All entries listed</span></h3>
-		<table class="entries">
-			<thead>
-				<tr>
-					<th nowrap>Entry Date</th>
-					<th>Completed</th>
-					<th>Satisfaction</th>
-					<th>Points<th>
-				</tr>
-			</thead>
-			<tbody>
-				
-                <g:each in="${virtueEntryInstanceList}" status="i" var="virtueEntryInstance">
-					<g:if test="${i % 2 == 0}">
-						<tr class="even">
-					</g:if>
-					<g:else>
-						<tr class="">
-					</g:else>
-					
-							<td class="entryDate" style="vertical-align:middle"><g:formatDate format="dd MMM yyyy" date="${virtueEntryInstance.entryDate}"/></td>
-							<td><em class="highlight">${virtueEntryInstance.totalCompleted}</em> out of 14</td>
-							<td><em class="highlight">${virtueEntryInstance.happinessScale}</em></td>
-							<td><em class="highlight">${virtueEntryInstance.totalPoints}</em> Points</td>
-							<td><g:link controller="virtueEntry" action="show" id="${virtueEntryInstance.id}" class="button small grey">Edit</g:link></td>
-					</tr>
-				</g:each>
-																								        											
-			</tbody>
-		</table>
-
-        <div class="paginateButtons">
-            <g:paginate total="${virtueEntryInstanceTotal}" />
-        </div>
 		
+		
+		<g:if test="${virtueEntryInstanceList}">
+			<h3>List View <span>All entries listed</span></h3>
+			<table class="entries">
+				<thead>
+					<tr>
+						<th nowrap>Entry Date</th>
+						<th>Completed</th>
+						<th>Satisfaction</th>
+						<th>Points<th>
+					</tr>
+				</thead>
+				<tbody>
+					
+        	        <g:each in="${virtueEntryInstanceList}" status="i" var="virtueEntryInstance">
+						<g:if test="${i % 2 == 0}">
+							<tr class="even">
+						</g:if>
+						<g:else>
+							<tr class="">
+						</g:else>
+						
+								<td class="entryDate" style="vertical-align:middle"><g:formatDate format="dd MMM yyyy" date="${virtueEntryInstance.entryDate}"/></td>
+								<td><em class="highlight">${virtueEntryInstance.totalCompleted}</em> out of 14</td>
+								<td><em class="highlight">${virtueEntryInstance.happinessScale}</em></td>
+								<td><em class="highlight">${virtueEntryInstance.totalPoints}</em> Points</td>
+								<td><g:link controller="virtueEntry" action="show" id="${virtueEntryInstance.id}" class="button small grey">Edit</g:link></td>
+						</tr>
+					</g:each>
+																									        											
+				</tbody>
+			</table>
+        	
+        	<div class="paginateButtons">
+        	    <g:paginate total="${virtueEntryInstanceTotal}"  params="[activeLink: 'history']"/>
+        	</div>
+		</g:if>
+		<g:else>
+			<h2>No entries logged yet  <g:link controller="virtueEntry" action="logEntry" id="" class="button small blue"  params="[activeLink: 'logentry']">Log Entry</g:link></h2>
+		</g:else>
 	</div>
 	
 	<div id="calendarWrapper" style="">
 		<div id="calendar" style="height:330px;"></div>
 		<div style="text-align:right; margin:15px 0px 5px 0px;">
-			<g:link controller="virtueEntry" action="calendar" class="button small red">View Large Calendar</g:link>
+			<g:link controller="virtueEntry" action="calendar" class="button small red" params="[activeLink: 'history']">View Large Calendar</g:link>
 		</div>
 	</div>
 				

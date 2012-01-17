@@ -58,7 +58,7 @@ class VirtueEntryController {
 			def virtueEntryInstanceList = VirtueEntry.findAllByAccount(account, params)
 			def virtueEntryInstanceTotal = VirtueEntry.countByAccount(account)
 			
-			[virtueEntryInstanceList: virtueEntryInstanceList, virtueEntryInstanceTotal: virtueEntryInstanceTotal]
+			[virtueEntryInstanceList: virtueEntryInstanceList, virtueEntryInstanceTotal: virtueEntryInstanceTotal, historyActive:"active"]
 			
 		}else{
 		
@@ -159,6 +159,8 @@ class VirtueEntryController {
     			virtueEntryInstance.properties = params
 				virtueEntryInstance.entryDate = date
 				
+				request.logentryActive = "active"
+				
     			return [virtueEntryInstance: virtueEntryInstance]
     		
 			}else{
@@ -172,6 +174,8 @@ class VirtueEntryController {
 			flash.message = "You must have an account to log your days virtues"
 			redirect controller: "auth", action:"login"
 		}
+		
+		
 	}
 
 
@@ -254,7 +258,7 @@ class VirtueEntryController {
 					return
         		
 				} else {
-					render(view: "newEntry", model: [virtueEntryInstance: virtueEntryInstance])
+					render(view: "logEntry", model: [virtueEntryInstance: virtueEntryInstance])
         		}
 			
 			}else{
@@ -347,33 +351,35 @@ class VirtueEntryController {
 		
 	
 	def getPerformanceDescription(totalCompleted, happiness, account){
-		println 'getting performanceDescription'
+	
 		def description = ''
 		def slangTerm = utilitiesService.getRandomSlangTerm(account.isMale)
-		println 'slangTerm: ' + slangTerm
+		
 		if(totalCompleted == 0 && happiness > 5){
-			description = 'You are happy with today?  Not judging but maybe you should review...' + slangTerm
+			description = 'Not judging but maybe you should review your effort today ' + slangTerm
+		}else if(totalCompleted <=2 ){
+			description = "you kidding me? what's going on ${slangTerm}? "
 		}else if(totalCompleted == 0){
 			description = 'Tomorrow is a new day ' + slangTerm
 		}else if(totalCompleted <= 5){
 			if(happiness > 7){
-				description = 'You are easily pleased... you must realize that there is no such thing as perfect. Tomorrow is a new day ' + slangTerm
+				description = 'Tomorrow is a new day ' + slangTerm
 			}
 			if(happiness < 7 && happiness > 4){
-				description = 'No Saint... but at least you are trying.  '
+				description = 'No Saint... but at least you are putting in work.  '
 			}
 			if(happiness < 4){
-				description = 'Dont beat yourself up.. no such thing as perfect ' + slangTerm
+				description = "Don't beat yourself up.. think 'kaizen'"
 			}
 		}else if(totalCompleted <= 13){
 			description = 'Franklin would approve ' + slangTerm
 			if(happiness < 9 && happiness > 7){
-				description = 'Franklin would approve!  Well done.. Doing good is Feeling Good ' + slangTerm
+				description = 'Well done.. ' + slangTerm
 			}
 			
 		}else if(totalCompleted == 14){
 			//if()
-			description = 'Franklin status! Nice work... Thats what I\'m talking about '  + slangTerm
+			description = 'Good stuff, good times... '
 		}
 		
 		return description

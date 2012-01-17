@@ -165,7 +165,7 @@ class AccountController {
     	    	        if (accountInstance.version > version) {
     	    	            
     	    	            accountInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'account.label', default: 'Account')] as Object[], "Another user has updated this Account while you were editing")
-    	    	            redirect(action: "info", params: [id: accountInstance.id])
+    	    	            redirect(action: "edit", params: [id: accountInstance.id])
     	    	            return
     	    	        }
     	    	    }
@@ -186,11 +186,11 @@ class AccountController {
     	    	    if (!accountInstance.hasErrors() && accountInstance.save(flush: true)) {
 
     	    	        flash.message = "Successfully updated account : ${accountInstance.username}"
-    	    	        render(view: "info", model: [accountInstance: accountInstance])
+    	    	        render(view: "edit", model: [accountInstance: accountInstance])
 
     	    	    } else {
 			    	    flash.message = "something went wrong while trying to update the user"
-    	    	        render(view: "info", model: [accountInstance: accountInstance])
+    	    	        render(view: "edit", model: [accountInstance: accountInstance])
     	    	    }
     	
     	    	
