@@ -1,5 +1,5 @@
 3.0.25 (Classy Cassidy)
-1f85abb5c9d98b827c5f36cb8450b4bbe9739090
+d7b203111803c097ec1b4bec6ef2c6a12638ba90
 o:Sass::Tree::RootNode
 :@template"ž$$blue-top : #2e81cc;
 $blue-bottom : #1f70bb;
@@ -348,7 +348,7 @@ input[type="password"]:focus{
 /** registration styles **/
 
 .registrationContainer{
-	width:800px
+	width:600px
 }
 
 .registrationContainer .franklin{
@@ -374,7 +374,7 @@ input[type="password"]:focus{
 
 .registrationWrapper.notes{
 	margin-top:0px !important;
-	width:800px;
+	width:600px;
 	background:#f4f4f4 !important;
 }
 
@@ -717,10 +717,10 @@ color;@;iA;[ ;&o;-;; ;.;/;&"	#777o;*;(i ;+;,;["font-weight;@;iB
 input[type="password"];iH;[o;*;(i ;+;,;["padding;@;iI;[ ;&o;-;; ;.;/;&"3pxo;*;(i ;+;,;["font-size;@;iJ;[ ;&o;-;; ;.;/;&"	14px;0To;';(i ;@;)[";input[type="text"]:focus,
 input[type="password"]:focus;iN;[o;*;(i ;+;,;["background;@;iO;[ ;&o;=	;; ;"highlight;{ ;iOo;*;(i ;+;,;["border;@;iQ;[ ;&o;-;; ;.;/;&"solid 2px #777;0To;>;?0;@;iY;[ ;@[ ;&" /** registration styles **/o;';(i ;@;)[".registrationContainer;i[;[o;*;(i ;+;,;["
 width;@;i];[ ;&o;-;; ;.;/;&"
-800px;0To;';(i ;@;)["%.registrationContainer .franklin;i_;[o;*;(i ;+;,;["margin-top;@;i`;[ ;&o;-;; ;.;/;&"20px !important;0To;';(i ;@;)[".registrationContainer h1;ib;[o;*;(i ;+;,;["margin-bottom;@;ic;[ ;&o;-;; ;.;/;&"0pxo;*;(i ;+;,;["padding;@;id;[ ;&o;-;; ;.;/;&"0px;0To;';(i ;@;)["#.registrationContainer p.large;ig;[o;*;(i ;+;,;["margin-top;@;ih;[ ;&o;-;; ;.;/;&"0pxo;*;(i ;+;,;["border;@;ii;[ ;&o;-;; ;.;/;&"dashed 0px #ddd;0To;';(i ;@;)["$.registrationContainer .buttons;il;[o;*;(i ;+;,;["padding-bottom;@;im;[ ;&o;-;; ;.;/;&"	15px;0To;';(i ;@;)["+.registrationContainer .buttons span a;io;[o;*;(i ;+;,;["
+600px;0To;';(i ;@;)["%.registrationContainer .franklin;i_;[o;*;(i ;+;,;["margin-top;@;i`;[ ;&o;-;; ;.;/;&"20px !important;0To;';(i ;@;)[".registrationContainer h1;ib;[o;*;(i ;+;,;["margin-bottom;@;ic;[ ;&o;-;; ;.;/;&"0pxo;*;(i ;+;,;["padding;@;id;[ ;&o;-;; ;.;/;&"0px;0To;';(i ;@;)["#.registrationContainer p.large;ig;[o;*;(i ;+;,;["margin-top;@;ih;[ ;&o;-;; ;.;/;&"0pxo;*;(i ;+;,;["border;@;ii;[ ;&o;-;; ;.;/;&"dashed 0px #ddd;0To;';(i ;@;)["$.registrationContainer .buttons;il;[o;*;(i ;+;,;["padding-bottom;@;im;[ ;&o;-;; ;.;/;&"	15px;0To;';(i ;@;)["+.registrationContainer .buttons span a;io;[o;*;(i ;+;,;["
 color;@;ip;[ ;&o;=	;; ;"blue-link;{ ;ipo;*;(i ;+;,;["font-size;@;iq;[ ;&o;-;; ;.;/;&"9px;0To;';(i ;@;)[".registrationWrapper.notes;it;[o;*;(i ;+;,;["margin-top;@;iu;[ ;&o;-;; ;.;/;&"0px !importanto;*;(i ;+;,;["
 width;@;iv;[ ;&o;-;; ;.;/;&"
-800pxo;*;(i ;+;,;["background;@;iw;[ ;&o;-;; ;.;/;&"#f4f4f4 !important;0To;';(i ;@;)["".registrationWrapper .message;iz;[o;*;(i ;+;,;["
+600pxo;*;(i ;+;,;["background;@;iw;[ ;&o;-;; ;.;/;&"#f4f4f4 !important;0To;';(i ;@;)["".registrationWrapper .message;iz;[o;*;(i ;+;,;["
 width;@;i{;[ ;&o;-;; ;.;/;&"
 550pxo;*;(i ;+;,;["margin;@;i|;[ ;&o;-;; ;.;/;&"0px;0To;';(i ;@;)[".registrationForm;i;[o;*;(i ;+;,;["
 width;@;i€;[ ;&o;-;; ;.;/;&"
