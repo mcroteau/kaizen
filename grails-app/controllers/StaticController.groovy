@@ -9,8 +9,8 @@ class StaticController {
     def index = { }
 	
 	//more info about experiment -> some stats
-	def experiment = {}
-	def definitions = {}
+	def experiment = {request.experimentActive = "active"}
+	def definitions = {request.definitionsActive = "active"}
 	
 	def welcome = {
 	
@@ -47,6 +47,8 @@ class StaticController {
 		
 		def leaderBoard = Account.list([max:10]);
 		request.leaderBoard = leaderBoard
+		
+		request.welcomeActive = "active"
 		
 	}
 	
@@ -293,6 +295,39 @@ class StaticController {
 	
 	
 	
-
+	def refreshSessionStats = {
+		println 'target uri -> ' + params.targetUrl
+		
+		def account
+    	
+		def subject = SecurityUtils.getSubject();
+		if(subject?.getPrincipal()){
+			account = Account.findByUsername(subject?.getPrincipal())
+		}
+		
+		if(account){
+			session.totalScore = account.totalScore
+			session.totalEntries = account.totalEntries
+			session.rank = getUserRank(subject?.getPrincipal())
+			
+			println "sessions stats -> rank: ${session.rank}   /   score : ${session.totalScore}  /  entries : ${session.totalEntries} "
+		}
+			
+		redirect(url:params.targetUrl)
+		
+	}
+	
+	def getUserRank(username){
+		def accounts = Account.findAll()
+		def sorted = accounts.sort()
+		def rank = 0;
+		sorted.eachWithIndex(){obj, i -> 
+			if(obj.username == username){
+				println " ${i}: ${obj.username}"
+				rank = i
+			}
+		}
+		return rank
+	}
 	
 }

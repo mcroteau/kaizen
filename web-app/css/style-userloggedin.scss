@@ -566,7 +566,16 @@ p.large.welcome{
 .stats table td.virtue{
 	font-size:15px;
 	padding:4px;
+	cursor:default;
+	border-bottom:solid 1px #f1f1f1;
+	border-top:solid 1px #f1f1f1;
 }
+
+.stats table td.virtue:hover{
+	background:inherit;
+	border:inherit;
+}
+
 .stats table td.percent{
 	font-size:17px;
 	color:#333;

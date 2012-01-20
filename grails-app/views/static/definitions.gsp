@@ -3,25 +3,13 @@
     <title>Franklins 13 App</title>
     <meta name="layout" content="main" />
 
-	<style type="text/css">
-	
-	.virtueDefinitions{
-		float:left;
-		width:300px;
-		margin:10px 30px;
-		padding:15px;
-		background:#f8f8f8;
-		border:solid 1px #efefef;
-	}
-	
-	</style>
 	
 </head>
 
 <body>
 	
 	
-	<div class="content">
+	<div class="content definitions">
 	
 			
 		<h1>The Virtues</h1>
@@ -121,9 +109,9 @@
 		<br class="clear"/>
 		
 		<div class="notes">
-	   		<p class=""><em>A Note About the additional "Well Being Virtue"</em><br/> In using this app for a little over a week, I found that even with the best of days I still felt like I was missing something.   Because I found days where I exercised to be more rewarding than others, it was added to the list.  
+	   		<p class=""><em>A Note About the additional "Well Being Virtue"</em><br/> In using this app for a little over a week, something was missing.   I found days where I exercised to be more rewarding than others, regardless of of my virtue performance, so it was added to the list.  
 	   		</p>
-	   		<p class="">This new virtue (if you want to call it that) overlaps with others Franklin listed. However, Franklin never mentioned exercise and I think people underestimate the value of regular exercise and eating a healthy diet.
+	   		<p class="">This new virtue (if you want to call it that) overlaps with others Franklin listed. However, Franklin never mentioned exercise. I think people underestimate the value of regular exercise and eating a healthy diet.
 	   		</p>
 	   		<p class="">This doesn't mean become a gym rat or a health nut.. use your best judgement. Remember, moderation is a virtue and should be applied to all areas of life, including the amount of effort/energy you put into being "Healthy"
 	   		</p>

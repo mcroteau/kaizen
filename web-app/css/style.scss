@@ -25,14 +25,16 @@ body{
 .topbar .topcontent{
 	width:800px;
 	margin:auto;
+	border:solid 0px #ddd;
 }
-.topcontent a{
+.topcontent a,
+.topcontent span{
 	font-size:9px;
 	font-weight:bold;
 	color: #fff;
 	display:inline-block;
 	margin:0px 2px;
-	padding:0px 7px 4px 7px!important;
+	padding:0px 7px 4px 7px !important;
 	vertical-align: top;
 	line-height: 1.0em !important;
 	-webkit-border-bottom-right-radius: 3px;
@@ -42,7 +44,7 @@ body{
 	border-bottom-right-radius: 3px;
 	border-bottom-left-radius: 3px;
 }
-.topcontent a.openings{
+.topcontent .openings{
 	background:#757575;
 	text-shadow: 1px 1px 1px #555;
 }
@@ -90,14 +92,21 @@ a.logo.small{
 
 .content.welcome{
 	width:700px;
+	border:solid 0px #ddd;
+	margin:auto;
 }
+.content.definitions,
+.content.experiment{
+	width:700px;
+}
+
 
 .franklin{
 	float:right;
 	height:260px;
 	width:210px;
 	border:solid 0px #ddd;
-	margin-top:0px;
+	margin:15px 0px 0px 50px;
 	background: url('../images/sprite.png') -205px 0px no-repeat;			
 }
 
@@ -115,6 +124,9 @@ p.large{
 }
 p.large em{
 	font-size:17px
+}
+p.large a{
+	font-size:17px;
 }
 .buttons.large em{
 	font-size:17px
@@ -486,6 +498,59 @@ input[type="password"]:focus{
 
 em.highlight{
 	background:$highlight !important;
+}
+
+
+
+
+
+/* welcome page styles continued */
+.stats h2{
+	font-size:22px;
+	margin:5px 0px;
+	padding:0px;
+	line-height:1.0em;
+}
+.stats.best h2{
+	color:$blue-dark;
+}
+.stats.worst h2{
+	color:$red-dark;
+}
+
+table.entries{
+	width:100%;
+}
+
+table.entries th{
+	padding:3px;
+	text-align:center;
+	font-size:9px;
+	color:#777;
+	font-weight:bold;
+	background:#efefef;
+}
+
+table.entries tr{
+	background:#f4f4f4;
+	width:100%;
+	margin:0px;
+	padding:0px;
+}
+table.entries tr.even{
+	background:#f8f8f8;
+}
+
+table.entries td{
+	text-align:center;
+	font-size:12px;
+	vertical-align:top;
+	padding:7px 0px;
+}
+
+table.entries td em{
+	font-size:17px;
+	font-weight:bold;
 }
 
 

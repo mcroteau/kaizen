@@ -1,5 +1,7 @@
 package franklins13
 
+import org.apache.shiro.SecurityUtils
+
 class LinkFilters {
 
     def filters = {
@@ -14,15 +16,19 @@ class LinkFilters {
 					}
 					if(params.activeLink == "history"){
 						request.historyActive = "active"
-					}					
+					}										
 				}
 				
 				println "before ->  activeLink : ${params.sort}"
             }
             after = {
+				println "request uri -> ${request.getRequestURI()}"
+				println "request url -> ${request.getRequestURL()}"
 				
-				println "after ->  activeLink : ${params.sort}"
-				println request.dashboardActive
+				def subject = SecurityUtils.getSubject();
+				if(subject?.getPrincipal() && !session?.rank){
+					redirect(controller:'static', action:'refreshSessionStats', params: [targetUrl: request.getRequestURL()])
+				}
             }
             afterView = {
                 

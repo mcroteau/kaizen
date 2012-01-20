@@ -749,6 +749,90 @@ function roundNumber(num, dec) {
 		messages.init();
 		
 		
+		
+		
+		
+		var DashboardPopup = function(){
+			var self = this;			
+			var $self = $(self);
+			
+			var $popupDiv;
+			
+			self.init = function(){
+				setPopupDiv();
+				showPopup();
+				bindClickEvent();
+			};
+			
+			function setPopupDiv(){
+				$popupDiv = $('<div id="dashboardPopupMessage"/>').css({
+					"z-index" : "100",
+					"position" : "absolute",
+					"top"      : "100px",
+					"left"     : "250px",
+					"color"    : "#fff",
+					"text-shadow" : "0px 1px 1px #000",
+					"opacity"   : "0.8",
+					"background" : "#000",
+					"border-radius" : "3px",
+					"width" : "250px",
+					"font-size" : "11px",
+					"line-height" : "1.7",
+					"-moz-box-shadow" :    "0px 0px 10px 10px #d9d8d8",
+				    "-webkit-box-shadow": "0px 0px 10px 10px #d9d8d8",
+				    "box-shadow":         "0px 0px 10px 10px #d9d8d8",
+					"padding" : "15px"
+				}).html('<h1 style="color:#fff; line-height:1.3em; font-size:14px;" >Quick Note</h1><br class="clear"/>Your stats might look a little funny in the beginning due to lack of data.  Keep at it and things should start making sense.  Remember, just one guy developing in spare time.  Thanks<div class="buttons"><a href="#" class="button small red closePopup darkbg">close</a></div>');
+				
+				$('.content').append($popupDiv);
+			};
+			
+			
+			function showPopup(){
+				console.log($popupDiv);
+				$popupDiv.animate({
+					opacity : "0.9 !important",
+					"z-index" : "10000 !important"
+				}, 200);
+			};
+			
+			function bindClickEvent(){
+				$popupDiv.click(function(event){
+					event.preventDefault();
+					delegateClick(event);
+				});
+			};
+			
+			function delegateClick(event){
+				var $target = $(event.target);
+				if($target.hasClass('closePopup')){
+					console.log('remove popup');
+					$popupDiv.animate({
+						"opacity" : "0"
+					}, 100 ,
+					function(){
+						$popupDiv.remove();
+					});
+				}
+			};
+			
+			return {
+				init : self.init
+			};
+			
+		}
+		
+		
+		var totalEntries = ${session.totalEntries}
+		console.log(totalEntries);
+		if(totalEntries < 2){			
+			console.log('less than')
+			var dashboardPopup = new DashboardPopup();
+			dashboardPopup.init();
+		}
+		
+		
+		
 	});
 
 

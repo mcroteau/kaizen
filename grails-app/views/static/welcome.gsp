@@ -27,22 +27,85 @@
 		Based on Ben Franklin's 13 Virtues, Franklin's 13+ might help us answer that question...
 	</p>
 	
-	<h1>Leaderboard</h1>
-	
-	<ul>
-	<g:each in="${leaderBoard}" status="i" var="user">
-		<g:if test="${user.totalScore != 0}">
-			<li>${user.username} -> ${user.totalScore}</li>		
-		</g:if>	
-	</g:each>
-	</ul>
 	
 	<div class="welcomelinks">
-		<a href="#" class="button blue large" title="Franklins 13+ : About the Experiment">About the Experiment</a>
-		<a href="#" class="button green large" title="Franklins 13+ : Join the Experiment">Join the Experiment</a>			
+		<g:link controller="static" action="experiment" class="button blue large">About the Experiment</g:link>
+		<g:link controller="account" action="register" class="button large green">Join the Experiment</g:link>			
 	</div>	
 	
-	<div id="basechart" style="width:100%; height:300px; position:relative"></div>
+	
+	<div style="">
+		<p class="large"><em>A few app stats</em><br/>
+				On the left is a list of top 3 scores... the right... the loserboard.  There might be incomplete or funny looking data to start.. that means there are openings.  <g:link controller="account" action="register">join</g:link>.</p>
+
+		<div class="leaderboardWrapper stats best" style="width:310px; float:left; background:#f4f4f4; padding:10px; border:solid 1px #ebeaea; ">			
+			
+			<h2>Leaderboard</h2>
+			
+			<div class="leaderBoard" style="">
+				<table class="entries">
+					<thead>
+						<tr>
+							<th nowrap>Username</th>
+							<th>Points<th>
+						</tr>
+					</thead>
+					<tbody>
+						<g:each in="${leaderBoard}" status="i" var="user">
+							<g:if test="${i < 3}">
+								<g:if test="${i % 2 == 0}">
+									<tr class="even">
+								</g:if>
+								<g:else>
+									<tr class="">
+								</g:else>
+										<td class="" style="vertical-align:middle">${user.username}</td>
+										<td><em class="highlight">${user.totalScore}</em> Points</td>
+									</tr>
+							</g:if>
+						</g:each>
+					</tbody>
+				</table>
+			</div>
+		</div>	
+			
+		<div class="leaderboardWrapper stats worst" style="width:310px; float:right; background:#f4f4f4; padding:10px; border:solid 1px #ebeaea;">			
+			
+			<h2>Loserboard</h2>
+			
+			<div class="leaderBoard" style="">
+				<table class="entries">
+					<thead>
+						<tr>
+							<th nowrap>Username</th>
+							<th>Points<th>
+						</tr>
+					</thead>
+					<tbody>
+						<g:each in="${leaderBoard}" status="i" var="user">
+							<g:if test="${i < 3}">
+								<g:if test="${i % 2 == 0}">
+									<tr class="even">
+								</g:if>
+								<g:else>
+									<tr class="">
+								</g:else>
+										<td class="" style="vertical-align:middle">${user.username}</td>
+										<td><em class="highlight">${user.totalScore}</em> Points</td>
+									</tr>
+							</g:if>
+						</g:each>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<br class="clear"/>
+	
+		<p class="large" style="margin-top:30px !important; margin-bottom:0px !important; padding:0px !important; line-height:1.0em;">Below is a simple graph showing daily virtue progress and satisfaction for all users</p>  
+	
+		<div id="basechart" style="width:100%; height:300px; padding:10px; background:#f4f4f4; border:solid 1px #ebeaea;; position:relative; margin-top:5px;"></div>
+	
+	</div>
 	
 	
 	

@@ -25,7 +25,15 @@
 	<div class="topbar">
 		
 		<div class="topcontent">
-			<g:link controller="account" action="registrationPage" class="openings">${session.openings} Openings Left,  + Join</g:link>
+			<g:set var="count" value="${Account.count()}" />
+			<g:set var="remaining" value="${20 - count}"/>
+			
+			<g:if test="${remaining > 0}">
+				<g:link controller="account" action="registrationPage" class="openings">${remaining} Openings Left,  + Join</g:link>
+			</g:if>
+			<g:else>
+				<span class="openings">Sorry, no openings Left!</span>
+			</g:else>
 			<g:link controller="auth" action="login" class="login">Login</g:link>
 		</div>
 		
@@ -36,17 +44,13 @@
 			
 		<nav class="menu">
 			
-			<g:link controller="static" class="" action="welcome" title="Franklins 13+ : Welcome to Franklin's 13+ App">Welcome</g:link>
-			<g:link controller="static" class="" action="experiment" title="Franklins 13+ : The Experiment Explained">The Experiment</g:link>
-			<g:link controller="static" class="" action="definitions" title="Franklins 13+ : Ben Franklin's 13 Virtues/Principals Defined">The Principles</g:link>
+			<g:link controller="static" class="${welcomeActive}" action="welcome" title="Franklins 13+ : Welcome to Franklin's 13+ App">Welcome</g:link>
+			<g:link controller="static" class="${experimentActive}" action="experiment" title="Franklins 13+ : The Experiment Explained">The Experiment</g:link>
+			<g:link controller="static" class="${definitionsActive}" action="definitions" title="Franklins 13+ : Ben Franklin's 13 Virtues/Principals Defined">The Principles</g:link>
 			
 		</nav>
 	</div>
-		
-	<div id="stats">
-		<span>score : ${session.totalScore} </span>        
-		<span>total entries : ${session.totalEntries}</span>
-	</div>
+	
 
 	
 	<g:layoutBody />
