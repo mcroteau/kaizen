@@ -92,9 +92,9 @@ body, html{
 
 .header nav a.active{
 	color:#fff;
-	text-shadow:0px 1px 1px $blue-dark;
-	background:$blue-top;
-	border:solid 1px $blue-bottom;
+	text-shadow:0px 1px 1px #222;
+	background:#444;
+	border:solid 1px #333;
 }
 
 
@@ -482,7 +482,7 @@ p.large.welcome{
 
 #progress{
 	width:500px; 
-	width: 770px !important;
+	width: 770px;
 	height:250px; 
 	margin:auto; 
 	position:relative;
@@ -920,6 +920,29 @@ table.entries td.entryNotes{
 }
 
 
+
+.footernav a{
+	display:inline-block;
+	margin:0px 10px
+}
+
+
 .alignLeft{text-align:left !important}
 .alignRight{text-align:right !important}
 .alignCenter{text-align:center !important}
+
+
+
+#adminpanel ul li.controller{
+	display:inline-block !important;
+	padding:0px;
+	margin:0px 5px;
+	font-size:10px;
+}
+#adminpanel a{
+	font-size:10px;
+	
+}
+
+
+

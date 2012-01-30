@@ -56,14 +56,7 @@
 	        			<input type="password" name="confirmPassword" value="${accountInstance.passwordHash}" id="confirmPassword"/>
 	        		</p>          
             		
-					<p>
-						<label for="isMale">Gender</label>
-						<g:select name="isMale"
-						          from="${['Gentleman', 'Lovely Lady']}"
-								  keys="${['true', 'false']}"
-						          value="${accountInstance.isMale}" />
-						
-					</p>
+
             		
 					<shiro:hasRole name="ROLE_ADMIN">
             			<p>
@@ -111,7 +104,6 @@
 
 	// this one requires the value to be the same as the first parameter
 	$.validator.methods.equal = function(value, element, param) {
-		console.info('value ->' + value + '    param ->'  +  param);
 		return value == param;
 	};
 	$.validator.methods.confirm = function(value, element){

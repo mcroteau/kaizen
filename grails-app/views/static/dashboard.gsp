@@ -128,6 +128,16 @@ function roundNumber(num, dec) {
 
 	$(document).ready(function(){
 
+
+
+		if($(window).width() < 600){
+			$('#progress').css({
+				"width" : "430px !important"
+			});
+			$('#progress').width(430);
+		}
+
+
 		
 		var Dashboard = function(){
 
@@ -340,6 +350,7 @@ function roundNumber(num, dec) {
 			};
 
 			self.render = function(){
+				
 
 				$dashGraph = $.plot(self.$graphDiv, 
 					[ 
@@ -355,7 +366,7 @@ function roundNumber(num, dec) {
 						xaxis: { mode: "time" },
 						yaxis: { min : -5, max:16 },
 						plotclick : function(){
-							console.log('plot clicked')
+							
 						}
 
 					}
@@ -789,7 +800,7 @@ function roundNumber(num, dec) {
 			
 			
 			function showPopup(){
-				console.log($popupDiv);
+				
 				$popupDiv.animate({
 					opacity : "0.9 !important",
 					"z-index" : "10000 !important"
@@ -806,7 +817,6 @@ function roundNumber(num, dec) {
 			function delegateClick(event){
 				var $target = $(event.target);
 				if($target.hasClass('closePopup')){
-					console.log('remove popup');
 					$popupDiv.animate({
 						"opacity" : "0"
 					}, 100 ,
@@ -824,9 +834,9 @@ function roundNumber(num, dec) {
 		
 		
 		var totalEntries = ${session.totalEntries}
-		console.log(totalEntries);
-		if(totalEntries < 2){			
-			console.log('less than')
+		
+		if(totalEntries < 2){		
+			
 			var dashboardPopup = new DashboardPopup();
 			dashboardPopup.init();
 		}

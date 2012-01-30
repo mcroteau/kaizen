@@ -85,20 +85,24 @@ class AccountController {
 
     def edit = {
 		
-		println "EDIT ACCOUNT"
+		println "EDIT ACCOUNT  ${params.id}"
 		def account
     	
+		
 		def subject = SecurityUtils.getSubject();
-		if(subject?.getPrincipal()){
+		if(params.id){
+			account = Account.get(params.id)
+		}else if(subject?.getPrincipal()){
 			account = Account.findByUsername(subject?.getPrincipal())
 		}
 		
 		if(account){
 		
 			//println 'permissions -> ' + account.hasPermission("account:edit:${account.id}")
-        	
-			if(SecurityUtils.subject.isPermitted("account:edit:${account.id}") || 
-				SecurityUtils.subject.hasRole("ROLE_ADMIN")){
+        	println "has admin role -> ${SecurityUtils.subject.hasRole("ROLE_ADMIN")}"
+
+			if(SecurityUtils.subject.hasRole("ROLE_ADMIN") 
+				|| SecurityUtils.subject.isPermitted("account:edit:${account.id}")){
 
         		    return [accountInstance: account]
 
@@ -306,31 +310,54 @@ class AccountController {
 					println 'params -> ' + params
 					println "email -> ${accountInstance.email}"
 					
-					try{
-						mailService.sendMail {
-						   to "${accountInstance.email}"
-						   from "franklins13app@gmail.com"
-						   subject "Thank You for Joining"
-						   body "Thank you for joining Franklins13app.com"
+					
+					
+					
+					
+					def host = "localhost:8080"
+						try{
+
+
+							File templateFile = grailsAttributes.getApplicationContext().getResource( File.separator + "emailTemplates" + File.separator + "registrationConfirmation.gtpl").getFile();
+
+							def binding = ["imageLocation" : "http://${host}/franklins13/images/logo.jpg"]
+					        def engine = new SimpleTemplateEngine()
+					        def template = engine.createTemplate(templateFile).make(binding)
+					        def bodyString = template.toString()
+
+
+							print 'send email'
+
+							print bodyString
+
+							mailService.sendMail {
+							   to accountInstance.email
+							   from "franklins13app@gmail.com"
+							   subject "[Franklins 13 App] Successfully Registered"
+							   html bodyString
+							}
+
+							flash.message = "You have successfully registered... "
+							
+					
+							accountInstance.addToPermissions("account:show,edit,update:${accountInstance.id}")
+							accountInstance.save(flush:true)
+							
+							
+    						redirect(controller : 'auth', action: 'signIn', params : [accountInstance: accountInstance, username : params.username, password : params.passwordHash, newRegistration : true])
+
+
+						}catch (Exception e){
+
+							println e.printStackTrace();
+							flash.message = "there was a problem with your registration, please try again or contact the administrator"
+							view: 'registrationPage'
 						}
-						
-						println "\n\n\nSent Mail\n\n\n"
-						
-					}catch (Exception e){
-						println e.printStackTrace();
-					}
-					
-					println "account id -> ${accountInstance.id}"
-					
-					accountInstance.addToPermissions("account:show,edit,update:${accountInstance.id}")
-					accountInstance.save(flush:true)
-					
-					
-    				redirect(controller : 'auth', action: 'signIn', params : [accountInstance: accountInstance, username : params.username, password : params.passwordHash, newRegistration : true])
+
         		
         		
     			} else {
-    				flash.message = "something went wrong while trying to save the user"
+    				flash.message = "something went wrong while trying to register..."
 					render(view: "registrationPage", model: [accountInstance: accountInstance])
     			}
     		

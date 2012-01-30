@@ -68,9 +68,9 @@ body, html {
 
 .header nav a.active {
   color: #fff;
-  text-shadow: 0px 1px 1px #01488a;
-  background: #2e81cc;
-  border: solid 1px #1f70bb; }
+  text-shadow: 0px 1px 1px #222;
+  background: #444;
+  border: solid 1px #333; }
 
 a.logo {
   text-indent: -10000px;
@@ -375,7 +375,7 @@ p.large.welcome {
 
 #progress {
   width: 500px;
-  width: 770px !important;
+  width: 770px;
   height: 250px;
   margin: auto;
   position: relative; }
@@ -715,6 +715,10 @@ table.entries td.entryNotes {
 .confirmation h1 .highlight {
   font-size: 30px; }
 
+.footernav a {
+  display: inline-block;
+  margin: 0px 10px; }
+
 .alignLeft {
   text-align: left !important; }
 
@@ -723,3 +727,12 @@ table.entries td.entryNotes {
 
 .alignCenter {
   text-align: center !important; }
+
+#adminpanel ul li.controller {
+  display: inline-block !important;
+  padding: 0px;
+  margin: 0px 5px;
+  font-size: 10px; }
+
+#adminpanel a {
+  font-size: 10px; }

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="${resource(dir:'css',file:'buttons.css')}" />
     <link rel="stylesheet" href="${resource(dir:'css',file:'messages.css')}" />
     <link rel="stylesheet" href="${resource(dir:'css',file:'style.css')}" />
+    <link rel="stylesheet" href="${resource(dir:'css',file:'mediaqueries.css')}" />
 
     <g:layoutHead />
 
@@ -28,13 +29,19 @@
 			<g:set var="count" value="${Account.count()}" />
 			<g:set var="remaining" value="${20 - count}"/>
 			
-			<g:if test="${remaining > 0}">
-				<g:link controller="account" action="registrationPage" class="openings">${remaining} Openings Left,  + Join</g:link>
+
+			<g:if test="${shiro.principal()}">
+				<g:link controller="auth" action="signOut" class="logout">Logout</g:link>
 			</g:if>
 			<g:else>
-				<span class="openings">Sorry, no openings Left!</span>
+				<g:if test="${remaining > 0}">
+					<g:link controller="account" action="registrationPage" class="openings">${remaining} Openings Left,  + Join</g:link>
+				</g:if>
+				<g:else>
+					<span class="openings">Sorry, no openings Left!</span>
+				</g:else>
+				<g:link controller="auth" action="login" class="login">Login</g:link>
 			</g:else>
-			<g:link controller="auth" action="login" class="login">Login</g:link>
 		</div>
 		
 	</div>
@@ -58,19 +65,14 @@
 	<br class="clear"/>
 		
 			
-	<div class="notes" style="width:500px; margin:20px auto;">
-		<a href="logentry.html">log entry</a>&nbsp;|&nbsp;
-		<a href="dashboard.html">dashboard</a>&nbsp;|&nbsp;
-		<a href="account.html">account</a>&nbsp;|&nbsp;
-		<a href="welcome.html" class="" title="Franklins 13+ : Welcome to Franklin's 13+ App">Welcome</a>&nbsp;|&nbsp;
-		<a href="experiment.html" class="" title="Franklins 13+ : The Experiment Explained">The Experiment</a>&nbsp;|&nbsp;
-		<a href="virtues.html" class="active" title="Franklins 13+ : Ben Franklin's 13 Virtues/Principals Defined">The Virtues</a>
+	<div class="notes footernav" style="width:500px; margin:20px auto;">
 		
-		<g:link controller="virtueEntry" action="logEntry">Todays Entry</g:link>| 
-		<g:link controller="static" action="dashboard">Dashboard</g:link>|
-		<g:link controller="virtueEntry" action="calendar">Calendar</g:link>|
-		<g:link controller="virtueEntry" action="listview">All Progress</g:link>|
-		<g:link controller="account" action="info">Account</g:link>
+		
+		<g:link controller="static" action="welcome">Welcome</g:link>| 
+		<g:link controller="static" action="experiment">The Experiment</g:link>|
+		<g:link controller="static" action="definitions">The Principles</g:link>|
+		<g:link controller="static" action="privacy">Privacy Policy</g:link>
+		
 		<shiro:hasRole name="ROLE_ADMIN">
 			<div id="adminpanel">
 

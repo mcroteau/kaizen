@@ -50,7 +50,7 @@
 			</p>
 			<p class="">
 				<label for="email">email</label>
-				<input type="email" value="" class="largeInput" id="email" name="email"/>
+				<input type="text" value="" class="largeInput" id="email" name="email"/>
 			</p>				
 			<p class="">
 				<label for="password">password</label>
@@ -60,14 +60,13 @@
 				<label for="password">confirm password</label>
 				<input type="password" value="" id="confirmPassword" name="confirmPassword"/>
 			</p>
-			<p class="">
+			<!-- <p class="">
 				<label for="isMale">gender</label>
 				<select name="isMale" id="isMale" class="valid">
 					<option value="true">Gentleman</option>
 					<option value="false">Lovely Lady</option>
 				</select>
-			</p>
-				
+			</p>	 -->
 				
 		
 			<div class="buttons large">

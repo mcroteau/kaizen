@@ -47,14 +47,7 @@
                             </tr>
                         
 							
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="isMale"><g:message code="account.isMale.label" default="IsMale" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: accountInstance, field: 'isMale', 'errors')}">
-                                    <g:checkBox name="isMale" value="${accountInstance?.isMale}" />
-                                </td>
-                            </tr>
+  
 							
 							
 							<input type="hidden" name="active" value="true"/>

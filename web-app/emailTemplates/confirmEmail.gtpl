@@ -242,7 +242,7 @@ p.large em{
 
 
 <br /><br/>
-Copyright (C) 2011 Franklins 13+. All rights reserved.<br />
+Copyright (C) 2012 Franklins 13+. All rights reserved.<br />
 <br />
 
 </span>

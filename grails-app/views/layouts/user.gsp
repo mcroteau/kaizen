@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="${resource(dir:'css',file:'jquery.qtip.min.css')}" />
     <link rel="stylesheet" href="${resource(dir:'css',file:'style-userloggedin.css')}" />
     <link rel="stylesheet" href="${resource(dir:'css/jquery-ui/ui-lightness/',file:'jquery-ui-1.8.16.custom.css')}" />
+    <link rel="stylesheet" href="${resource(dir:'css',file:'mediaqueries.css')}" />
 		
 </head>
 <body>
@@ -52,17 +53,14 @@
 	<br class="clear"/>
 	
 
-	<div class="notes" style="width:500px; margin:20px auto;">
+	<div class="notes footernav" style="width:500px; margin:20px auto;">
 
 		<g:link controller="static" action="welcome">Welcome</g:link>|	
 		<g:link controller="static" action="experiment">The Experiment</g:link>|
-		<g:link controller="static" action="definitions">The Virtues</g:link>|
-			
-		<g:link controller="virtueEntry" action="logEntry">Todays Entry</g:link>| 
-		<g:link controller="static" action="dashboard">Dashboard</g:link>|
-		<g:link controller="virtueEntry" action="calendar">Calendar</g:link>|
-		<g:link controller="virtueEntry" action="listview">All Progress</g:link>|
+		<g:link controller="static" action="definitions">The Principles</g:link>|
+		<g:link controller="static" action="definitions">Privacy Policy</g:link>|
 		<g:link controller="account" action="info">Account</g:link>
+		
 		<shiro:hasRole name="ROLE_ADMIN">
 			<div id="adminpanel">
 	

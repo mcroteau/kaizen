@@ -10,7 +10,7 @@
 
 	<h1>The Experiment</h1>
 	
-	<div class="icon"></div>
+	<!-- <div class="icon"></div> -->
 	
 	<p class="large experiment">
 		Will we be happier if we follow principles that are simple yet require us to be thoughtful, disciplined &amp; hard working?
@@ -29,10 +29,6 @@
 		Why not?  Franklin was a producer, someone who was not perfect but strived to be the best version of himself daily.  This is just a simple app to help those who might be interested in doing the same.  
 	</p>
 
-	<p class="large">
-		<em>Isn't this kind of corny?</em><br/>
-		Yes!  This is kind of corny.  This is realized, but it's available to those who want to use none the less.
-	</p>
 	
 	
 	<p class="large">

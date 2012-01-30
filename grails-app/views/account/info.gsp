@@ -46,11 +46,7 @@
 	        		<input type="password" name="confirmPassword" value="${accountInstance.passwordHash}" id="confirmPassword"/>
 	        	</p>          
             	
-				<p>
-					<label for="isMale">Gender</label><br />
-					<input type="radio" name="isMale" id="isMale" value="true"  /> Gentleman<br />
-					<input type="radio" name="isMale" id="isMale" value="false" /> Lovely Lady							
-				</p>
+
             	
 				<shiro:hasRole name="ROLE_ADMIN">
             		<p>
@@ -82,7 +78,6 @@
 
 		   		// this one requires the value to be the same as the first parameter
 		   		$.validator.methods.equal = function(value, element, param) {
-					console.info('value ->' + value + '    param ->'  +  param);
 		   			return value == param;
 		   		};
 				$.validator.methods.confirm = function(value, element){
@@ -93,16 +88,7 @@
 				var processing = false;
 				$(document).ready(function(){
 					
-					var isMale = ${accountInstance.isMale};
-					console.log(isMale);
 					
-				   	var $radios = $('input:radio[name=isMale]');
-				    if(isMale) {
-				        $radios.filter('[value=true]').attr('checked', true);
-				    }else{
-					 	$radios.filter('[value=false]').attr('checked', true);
-					}
-				
 					
 					var password = "${accountInstance.passwordHash}";
 					

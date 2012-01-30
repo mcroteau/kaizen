@@ -6,11 +6,12 @@ class StaticController {
 
 	def utilitiesService
 	
-    def index = { }
+    def index = { redirect(action:"welcome") }
 	
 	//more info about experiment -> some stats
 	def experiment = {request.experimentActive = "active"}
 	def definitions = {request.definitionsActive = "active"}
+	def privacy = {}
 	
 	def welcome = {
 	

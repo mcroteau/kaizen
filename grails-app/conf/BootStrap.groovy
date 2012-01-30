@@ -34,12 +34,12 @@ class BootStrap {
 	}
 	
 	
-	def user1 = [username : "mikec", password : "mikec", email : "croteau.mike+franklins@gmail.com", isMale : true, admin : true]
-	//def users = [[username : "mikec", password : "mikec", email : "croteau.mike+franklins@gmail.com", isMale : true, admin : true], [username : "joebob", password : "joebob", email : "email@email.com", isMale : true, admin : false] ,[username : "admin", password : "mikec", email : "franklins13app@gmail.com', isMale : true, admin : false], [username : "giselle", password : "giselle", email : "giselle@email.com", isMale : false, admin : false], [username : "selfimproved", password : "selfimproved", email : "selfimproved@email.com", isMale: true, admin : false],[username : "jess123", password : "jess123", email : "jess123@email.com", isMale: false, admin : false]]
+	def user1 = [username : "mikec", password : "mikec", email : "croteau.mike+franklins@gmail.com",  admin : true]
+	//def users = [[username : "mikec", password : "mikec", email : "croteau.mike+franklins@gmail.com",  admin : true], [username : "joebob", password : "joebob", email : "email@email.com", admin : false] ,[username : "admin", password : "mikec", email : "franklins13app@gmail.com',  admin : false], [username : "giselle", password : "giselle", email : "giselle@email.com", admin : false], [username : "selfimproved", password : "selfimproved", email : "selfimproved@email.com",  admin : false],[username : "jess123", password : "jess123", email : "jess123@email.com",  admin : false]]
 	
 	def users = []
 	
-	def test = [[username : "mikec", password : "mikec", email : "croteau.mike+franklins@gmail.com", isMale : true, admin : true],[username : "mikec", password : "mikec", email : "croteau.mike+franklins@gmail.com", isMale : true, admin : true]]
+	def test = [[username : "mikec", password : "mikec", email : "croteau.mike+franklins@gmail.com", admin : true],[username : "mikec", password : "mikec", email : "croteau.mike+bootstrapped@gmail.com",  admin : true]]
 
 	def createUsers = {
 		
@@ -54,18 +54,18 @@ class BootStrap {
 			}
 			
 			
-			def adminAccount = new Account(fullName : "Admin User", username : 'admin', passwordHash : adminPass, email : 'admin@franklins13app.com', active : true, isMale : true)
+			def adminAccount = new Account(fullName : "Admin User", username : 'admin', passwordHash : adminPass, email : 'admin@franklins13app.com', active : true)
 			adminAccount.addToRoles(adminRole)
 			adminAccount.addToRoles(simpleRole)
 			adminAccount.save(flush:true)
 			
 			
 			
-			def simpleAccountFemale = new Account(fullName : "Simple Woman", username : 'woman', passwordHash : simpleUserPass, email : 'woman@franklins13app.com', active : true, isMale : false)
+			def simpleAccountFemale = new Account(fullName : "Simple Woman", username : 'woman', passwordHash : simpleUserPass, email : 'woman@franklins13app.com', active : true)
 			simpleAccountFemale.addToRoles(simpleRole)
 			simpleAccountFemale.save(flush:true)
 			
-			def simpleAccountMale = new Account(fullName : "Simple Man", username : 'man', passwordHash : simpleUserPass, email : 'croteau.mike@gmail.com', active : true, isMale : true)
+			def simpleAccountMale = new Account(fullName : "Simple Man", username : 'man', passwordHash : simpleUserPass, email : 'croteau.mike@gmail.com', active : true)
 			simpleAccountMale.addToRoles(simpleRole)
 			simpleAccountMale.save(flush:true)
 			println "simpleAccountMale -> ${simpleAccountMale.id}"
