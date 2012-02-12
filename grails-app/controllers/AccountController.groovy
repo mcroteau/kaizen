@@ -26,7 +26,7 @@ class AccountController {
         	params.max = Math.min(params.max ? params.int('max') : 10, 100)
         	[accountInstanceList: Account.list(params), accountInstanceTotal: Account.count()]
 		}else{
-			flash.message = "yo, you dont have permissions to that man... what are you trying to pull here?  bad move!"
+			flash.message = "you dont have permissions to that... what are you trying to pull here?  bad move!"
 			redirect controller:"static", action:"welcome"		
 		}
     }
@@ -38,7 +38,7 @@ class AccountController {
         	accountInstance.properties = params
         	return [accountInstance: accountInstance]	
 		}else{
-			flash.message = "yo, you dont have permissions to that man... what are you trying to pull here?  bad move!"
+			flash.message = "you dont have permissions to that... what are you trying to pull here?  bad move!"
 			redirect controller:"static", action:"welcome"
 		}
 
@@ -67,7 +67,7 @@ class AccountController {
         	}
 
 		}else{
-			flash.message = "yo, you dont have permissions to that man... what are you trying to pull here?  bad move!"
+			flash.message = "you dont have permissions to that... what are you trying to pull here?  bad move!"
 			redirect controller:"static", action:"welcome"
 		}
     }
@@ -101,13 +101,14 @@ class AccountController {
 			//println 'permissions -> ' + account.hasPermission("account:edit:${account.id}")
         	println "has admin role -> ${SecurityUtils.subject.hasRole("ROLE_ADMIN")}"
 
+			println "his permitted to edit ${SecurityUtils.subject.isPermitted("account:edit:${account.id}")}"
 			if(SecurityUtils.subject.hasRole("ROLE_ADMIN") 
 				|| SecurityUtils.subject.isPermitted("account:edit:${account.id}")){
 
         		    return [accountInstance: account]
 
 			}else{
-				flash.message = "yo, you dont have permissions to that man... what are you trying to pull here?  bad move!"
+				flash.message = "you dont have permissions to that... what are you trying to pull here?  bad move!"
 				redirect controller:"static", action:"welcome"
 			}
 		
@@ -136,7 +137,7 @@ class AccountController {
         		    return [accountInstance: account]
 
 			}else{
-				flash.message = "yo, you dont have permissions to that man... what are you trying to pull here?  bad move!"
+				flash.message = "you dont have permissions to that... what are you trying to pull here?  bad move!"
 				redirect controller:"static", action:"welcome"
 			}
 		
@@ -175,12 +176,8 @@ class AccountController {
     	    	    }
 
 
-					def isMale = params.isMale
-    	    	    accountInstance.isMale = isMale
-
-    	    	    accountInstance.properties = params
+		    	    accountInstance.properties = params
     	    		
-					println "gentleman -> ${isMale}  -> ${accountInstance.isMale}"
 					def passwordHash = new Sha256Hash(params.passwordHash).toHex()
 					accountInstance.passwordHash = passwordHash
     	    	    
@@ -199,7 +196,7 @@ class AccountController {
     	
     	    	
 			}else{
-				flash.message = "yo, you dont have permissions to that man... what are you trying to pull here?  bad move!"
+				flash.message = "you dont have permissions to that... what are you trying to pull here?  bad move!"
 				redirect controller:"static", action:"welcome"
 			}
 		
@@ -238,7 +235,7 @@ class AccountController {
 
         	} else {
 
-				flash.message = "yo, you dont have permissions to that man... what are you trying to pull here?  bad move!"
+				flash.message = "you dont have permissions to that... what are you trying to pull here?  bad move!"
 				redirect controller:"static", action:"welcome"
 
         	}
@@ -330,6 +327,11 @@ class AccountController {
 
 							print bodyString
 
+							
+					
+							accountInstance.addToPermissions("account:show,edit,update:${accountInstance.id}")
+							accountInstance.save(flush:true)
+							
 							mailService.sendMail {
 							   to accountInstance.email
 							   from "franklins13app@gmail.com"
@@ -337,12 +339,9 @@ class AccountController {
 							   html bodyString
 							}
 
+							
+							
 							flash.message = "You have successfully registered... "
-							
-					
-							accountInstance.addToPermissions("account:show,edit,update:${accountInstance.id}")
-							accountInstance.save(flush:true)
-							
 							
     						redirect(controller : 'auth', action: 'signIn', params : [accountInstance: accountInstance, username : params.username, password : params.passwordHash, newRegistration : true])
 

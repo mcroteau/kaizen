@@ -353,7 +353,6 @@ class VirtueEntryController {
 	def getPerformanceDescription(totalCompleted, happiness, account){
 	
 		def description = ''
-		//def slangTerm = utilitiesService.getRandomSlangTerm(account.isMale)
 		def slangTerm = '';
 		
 		if(totalCompleted == 0 && happiness > 5){

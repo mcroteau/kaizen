@@ -15,7 +15,7 @@
 		
 		<h1>Account Login</h1>
 		
-		<div class="icon"></div>
+		<!-- <div class="icon"></div> -->
 		
 		<div class="loginWrapper notes">
 			<!--<div class="message error" id="errorMessage">

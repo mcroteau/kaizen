@@ -97,7 +97,7 @@ em{font-weight:bold;}
 }
 
 p{
-	font-size:14px;
+	font-size:12px !important;
 	line-height:1.7em !important;
 	margin:0px auto 15px auto;
 }

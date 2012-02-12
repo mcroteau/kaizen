@@ -25,7 +25,7 @@
 	</p>
 	
 	<p class="large welcome">
-		Based on Ben Franklin's 13 Virtues, Franklin's 13+ might help us answer that question...
+		Based on Ben Franklin's 13 Virtues, Franklin's 13+ might become measurable proof...
 	</p>
 	
 	
@@ -35,7 +35,6 @@
 			<g:link controller="account" action="registrationPage" class="button large blue">Join the Experiment</g:link>	
 		</g:if>		
 	</div>	
-	
 	
 	<div style="">
 		<p class="large"><em>A few app stats</em><br/>

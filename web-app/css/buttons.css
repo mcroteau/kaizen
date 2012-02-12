@@ -26,9 +26,9 @@
   -webkit-box-shadow: 0 0px 3px #000 !important; }
 
 .button.large {
-  font-size: 16px;
-  margin: 40px 10px;
-  padding: 10px 15px 10px 15px; }
+  font-size: 12px;
+  margin: 40px 0px;
+  padding: 7px 5px 7px 5px; }
 
 .button.small {
   font-size: 9px !important;
@@ -148,25 +148,21 @@
   border-radius: 3px !important;
   -moz-border-radius: 3px !important;
   -webkit-border-radius: 3px !important;
-  box-shadow: inset 1px 1px #01488a !important;
-  -moz-box-shadow: inset 1px 1px #01488a !important;
-  -webkit-box-shadow: inset 1px 1px #01488a !important;
-  background: #1f70bb !important;
-  /* Old browsers */
-  background: -moz-linear-gradient(bottom, #1f70bb 0%, #2e81cc 100%) !important;
-  /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1f70bb), color-stop(100%, #2e81cc)) !important;
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #1f70bb 0%, #2e81cc 100%) !important;
-  /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #1f70bb 0%, #2e81cc 100%) !important;
-  /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #1f70bb 0%, #2e81cc 100%) !important;
-  /* IE10+ */
-  background: linear-gradient(top, #1f70bb 0%, #2e81cc 100%) !important;
-  /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$blue-top', endColorstr='$blue-bottom',GradientType=0 ) !important;
-  /* IE6-9 */ }
+  box-shadow: inset 1px 1px #777 !important;
+  -moz-box-shadow: inset 1px 1px #777 !important;
+  -webkit-box-shadow: inset 1px 1px #777 !important;
+  color: #333;
+  text-shadow: 1px 1px 1px #999;
+  border-bottom: 1px solid #555;
+  background: #999;
+  background: -moz-linear-gradient(bottom, #999 0%, #888 100%) !important;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #999), color-stop(100%, #888));
+  background: -webkit-linear-gradient(top, #888 0%, #999 100%);
+  background: -o-linear-gradient(top, #888 0%, #999 100%);
+  background: -ms-linear-gradient(top, #888 0%, #999 100%);
+  background: linear-gradient(top, #888 0%, #999 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#888', endColorstr='#999',GradientType=0 );
+}
 
 .ui-slider-handle {
   height: 24px !important;

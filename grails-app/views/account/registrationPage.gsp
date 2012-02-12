@@ -60,13 +60,7 @@
 				<label for="password">confirm password</label>
 				<input type="password" value="" id="confirmPassword" name="confirmPassword"/>
 			</p>
-			<!-- <p class="">
-				<label for="isMale">gender</label>
-				<select name="isMale" id="isMale" class="valid">
-					<option value="true">Gentleman</option>
-					<option value="false">Lovely Lady</option>
-				</select>
-			</p>	 -->
+
 				
 		
 			<div class="buttons large">

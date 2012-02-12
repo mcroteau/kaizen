@@ -6,7 +6,6 @@ class Account {
 	String email
 	
 	boolean active
-	//boolean isMale
 	
 	int totalEntries
 	int totalScore

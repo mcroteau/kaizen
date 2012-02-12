@@ -9,9 +9,6 @@ class UtilitiesService {
 
     static transactional = true
 	
-	def womanSlangWords = ["princess", "beautiful", "angel", "gorgeous" ]
-	def manSlangWords = ["buddy", "mate", "ace", "amigo", "compadre", "friend" ]
-	
     def serviceMethod() {
 
     }
@@ -20,13 +17,7 @@ class UtilitiesService {
 		def random = new Random()
 		return random.nextInt(high-low+1)+low
 	}
-	
-	def getRandomSlangTerm(isMale){
-		if(isMale){
-			return manSlangWords[getRandomNumber(manSlangWords.size - 1, 0)]
-		}
-		return womanSlangWords[getRandomNumber(womanSlangWords.size - 1, 0)]
-	}
+
 	
 	def getTodaysDate(){
 		def date = new Date()
