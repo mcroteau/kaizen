@@ -36,9 +36,12 @@
 		</g:if>		
 	</div>	
 	
+	
+	
+	<!--
 	<div style="">
 		<p class="large"><em>A few app stats</em><br/>
-				On the left is a list of top 3 scores... the right... the loserboard.  There might be incomplete or funny looking data to start.. that just means there are openings.  <g:link controller="account" action="registrationPage">join</g:link>.</p>
+				There might be incomplete or funny looking data to start.. that just means there are openings.  <g:link controller="account" action="registrationPage">join</g:link>.</p>
 
 		<div class="leaderboardWrapper stats best" style=" ">			
 			
@@ -109,6 +112,8 @@
 		</div>
 	</div>
 	
+	
+	-->
 	
 	
 	

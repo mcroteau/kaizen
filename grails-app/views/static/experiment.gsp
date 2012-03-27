@@ -34,7 +34,7 @@
 	<p class="large">
 		<em>Why is there a limit on the number of accounts?</em><br/>			
 
-		This is a side project, so I don't have a lot of time to dedicate to fix bugs or reply to emails not to mention not sure if others will find utility in a small application like this.
+		This is a side project, so I don't have a lot of time to dedicate to fix bugs or reply to emails, in addition, not sure if others will find utility in a small application like this.
 	</p>
 		
 		
