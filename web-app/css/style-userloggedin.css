@@ -153,6 +153,12 @@ p.large.welcome {
   border: solid 1px #ecebeb;
   background: #f4f4f4; }
 
+.virtue:hover,
+.virtue:hover span,
+.virtue:hover em{
+	color:#111;
+}
+
 .virtue em {
   background: #fefee4; }
 
@@ -455,6 +461,7 @@ p.large.welcome {
 .stats table td.virtue:hover {
   background: inherit;
   border: inherit; }
+
 
 .stats table td.percent {
   font-size: 17px;

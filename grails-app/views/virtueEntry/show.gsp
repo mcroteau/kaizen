@@ -164,7 +164,7 @@
 			<a href="#" class="toggle"></a><span>Notes</span>
 		</div>
 		<div class="notes notesWrapper" style="display:none">
-			<textarea name="notes">${virtueEntryInstance?.notes}</textarea>
+			<textarea name="notes" id="entryNotes">${virtueEntryInstance?.notes}</textarea>
 		</div>
 		
 		
@@ -202,7 +202,7 @@ $(document).ready(function(){
 			self.setupSlider();
 			self.bindClickHandler();
 			self.disableElements();
-			$toggle.click();
+			if($('#entryNotes').val() !== "")$toggle.click();
 			$('.content').fadeIn(500);
 		};
 		
@@ -250,7 +250,6 @@ $(document).ready(function(){
 
 	var Messages = function(){
 		var self = this;
-		
 		
 		self.init = function(){
 			bindClickEvent();

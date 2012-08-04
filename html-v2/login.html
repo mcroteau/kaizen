@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+    <meta name="author" content=""/>
+	 
+    <title>Franklin's 13+  Account Login -> Based on Ben Franklin's 13 Virtues</title> 
+
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css" media="screen" />
+		
+</head>
+<body>
+
+
+	<div class="topbar">
+		
+		<div class="topcontent">
+			<a href="register.html" class="openings">18 Openings Left,  + Join</a>
+			<a href="login.html" class="login">Login</a>
+		</div>
+		
+	</div>
+
+		
+	<div class="header">
+		<a href="" class="logo large"></a>
+			
+		<nav class="menu">
+			<a href="welcome.html" class="" title="Franklins 13+ : Welcome to Franklin's 13+ App">Welcome</a>
+			<a href="experiment.html" class="" title="Franklins 13+ : The Experiment Explained">The Experiment</a>
+			<a href="virtues.html" class="" title="Franklins 13+ : Ben Franklin's 13 Virtues/Principals Defined">The Virtues</a>
+		</nav>
+	</div>
+
+
+	<div class="content loginContainer">
+
+		
+		<h1>Account Login</h1>
+		
+		<div class="icon"></div>
+		
+		<div class="loginWrapper notes">
+			<div class="message error" id="errorMessage">
+				<span class="header">Error performing action</span>
+				<span class="messageDetails">Sed ut perspiciatis unde omnis iste natus error sit 
+					voluptatem accusantium doloremque laudantium</span>
+				<a href="#">Link</a>
+				<a href="#" class="closeButton closeMessage"></a>
+			</div>
+			
+			<div class="loginForm">
+				<p class="">
+					<label for="username">Username</label>
+					<input type="text" value="" class=""/>
+				</p>
+				<p class="">
+					<label for="password">Password</label>
+					<input type="password" value=""/>
+				</p>
+			</div>
+			
+			<div class="buttons">
+				<span>Forgot <a href="beginReset.html" >Password</a>?</span>
+				<a href="#" class="button blue small">Login</a>
+			</div>
+			
+		</div>
+		
+		<br class="clear"/>
+		
+	</div>
+	
+	
+	<div class="notes" style="width:500px; margin:20px auto;">
+		<a href="logentry.html">log entry</a>&nbsp;|&nbsp;
+		<a href="dashboard.html">dashboard</a>&nbsp;|&nbsp;
+		<a href="account.html">account</a>&nbsp;|&nbsp;
+		<a href="welcome.html" class="" title="Franklins 13+ : Welcome to Franklin's 13+ App">Welcome</a>&nbsp;|&nbsp;
+		<a href="experiment.html" class="" title="Franklins 13+ : The Experiment Explained">The Experiment</a>&nbsp;|&nbsp;
+		<a href="virtues.html" class="active" title="Franklins 13+ : Ben Franklin's 13 Virtues/Principals Defined">The Virtues</a>
+	</div>
+	
+		
+	<script type="text/javascript" src="../web-app/js/lib/jquery/jquery-1.6.1.min.js"></script>
+	<script type="text/javascript" src="../web-app/js/lib/jquery/jquery.qtip.min.js"></script>
+	<script type="text/javascript" src="../web-app/js/lib/jquery/jquery-ui-1.8.16.custom.min.js"></script>
+
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		
+		$('.closeMessage').click(function(event){
+			$(event.target).parent().remove();
+		});
+		
+	});
+
+
+</script>
+	
+
+</body>
+</html>

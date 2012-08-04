@@ -1,4 +1,13 @@
 
+dataSource {
+    pooled = true
+    driverClassName = "org.h2.Driver"
+    username = "sa"
+    password = ""
+}
+
+
+
 hibernate {
     cache.use_second_level_cache = true
     cache.use_query_cache = true
@@ -9,8 +18,10 @@ environments {
     development {
         dataSource {
 			
-            //dbCreate = "create-drop" // one of 'create', 'create-drop','update'
-            //url = "jdbc:hsqldb:mem:devDB"
+ 
+        	dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
+        	url = "jdbc:h2:mem:devDb;MVCC=TRUE"
+
 
 			//pooled = false
 			//driverClassName = "com.mysql.jdbc.Driver"
@@ -21,18 +32,39 @@ environments {
 	        //username = "root"
 	        //password = "z23xe7rGwh"
 
+			/**
 		   	pooled = false
 			dialect = org.hibernate.dialect.PostgreSQLDialect // honestly, not sure what
 		    dbCreate = "create-drop" // one of 'create', 'create-drop','update'
-		    //url = "jdbc:postgresql://72.9.254.53:5432/franklins13_dev"
-		
 			url = "jdbc:postgresql://localhost:5432/franklins13"
 		    driverClassName = "org.postgresql.Driver"
 		    username = "postgres"
 			password = "postgres"
+			**/
 			
-		    //password = "z23xe7rGwh"
-
+			
+			/**
+			pooled = true
+			dialect = org.hibernate.dialect.PostgreSQLDialect
+		    dbCreate = "update" // one of 'create', 'create-drop','update'
+		    url = "jdbc:postgresql://66.215.159.231:5432/test_franklins"
+		    driverClassName = "org.postgresql.Driver"
+		    username = "postgres"
+		    password = "P0st_6R35_Mc"
+			
+			**/
+		
+			/**
+			pooled = true
+			dialect = org.hibernate.dialect.PostgreSQLDialect
+		    dbCreate = "create-drop" // one of 'create', 'create-drop','update'
+		    url = "jdbc:postgresql://66.215.159.231:5432/prod_franklins13"
+		    driverClassName = "org.postgresql.Driver"
+		    username = "postgres"
+		    password = "P0st_6R35_Mc"
+			
+		**/
+			
 		    // NOTE: both of these dialects have worked for me. But some people
 		    // recommend using the net.sf version and not the org.hibernate version.
 		    //dialect = org.hibernate.dialect.PostgreSQLDialect // honestly, not sure what
@@ -73,8 +105,8 @@ environments {
 			
 			pooled = true
 			dialect = org.hibernate.dialect.PostgreSQLDialect
-		    dbCreate = "create-drop" // one of 'create', 'create-drop','update'
-		    url = "jdbc:postgresql://localhost:5432/franklins13"
+		    dbCreate = "update" // one of 'create', 'create-drop','update'
+		    url = "jdbc:postgresql://localhost:5432/prod_franklins13"
 		    driverClassName = "org.postgresql.Driver"
 		    username = "postgres"
 		    password = "P0st_6R35_Mc"

@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+    <meta name="author" content=""/>
+	 
+    <title>Mikec's Dashboard : Franklin's 13 App</title> 
+	
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-mods.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-responsive-mods.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/franklins13.css" type="text/css" media="screen" />
+	
+    <link rel="stylesheet" href="css/calendar-mods.css" />
+
+    <link rel="stylesheet" href="../web-app/css/jquery.qtip.min.css" />
+		
+</head>
+<body>
+
+	
+
+
+<div class="container">
+
+	<div class="row">
+		<div class="span1 visible-desktop">&nbsp;</div>
+		<div class="span5 show-border">&nbsp;</div>
+		<div class="span5 align-right">
+			<span class="">Welcome back Mike</span>
+			<a href="login.html" class="label label-warning">Logout</a>
+		</div>
+		<div class="span1 visible-desktop">&nbsp;</div>
+	</div>
+
+
+	<div class="row">
+
+		<div class="span1 visible-desktop">&nbsp;</div>		
+		<div class="span4">
+			<div class="userstats">
+				<p class="lead">
+					Total Score <em class="scoreWrapper"><code class="score">1403</code></em> 
+
+					Rank <em class="rankWrapper"><code class="rank">10</code></em> of 20
+				</p>		
+			</div>
+		</div>
+
+		<div class="span6">
+			<div class="usernav pull-right">
+				<ul class="nav nav-pills">
+					<li><a href="account.html">Account</a></li>
+					<li class=""><a href="logentry.html">Log Entry</a></li>
+					<li class="active"><a href="calendar.html">Calendar</a></li>
+					<li class="" ><a href="history.html">History</a></li>
+					<li class=""><a href="dashboard.html">Dashboard</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="span1 visible-desktop">&nbsp;</div>
+	</div>
+
+
+	<div class="row">
+		<div class="span1 visible-desktop">&nbsp;</div>
+		<div class="span10">
+			<span class="small-note">A historical look at all your entries in Calendar format</span>
+		</div>
+		<div class="span1 visible-desktop">&nbsp;</div>
+	</div>
+
+	
+	<div class="row">
+		<div class="span1 visible-desktop">&nbsp;</div>
+		<div class="span10">
+			<div id="calendarFullWrapper" style="">
+				<div id="calendarFull" style=""></div>
+				<div style="text-align:right; margin:15px 0px 5px 0px;">
+					<a href="history.html" class="">Back to List</a>
+				</div>
+			</div>			
+		</div>
+		<div class="span1 visible-desktop">&nbsp;</div>
+	</div>
+
+
+	<div class="row">
+	 	<div class="span1 visible-desktop">&nbsp;</div>
+		<div class="span10 page-header">
+		</div>
+		<div class="span1 visible-desktop">&nbsp;</div>
+	</div>
+
+	<div class="row">
+	 	<div class="span1 visible-desktop">&nbsp;</div>
+		<div class="span10 footer">
+			<p class="pull-right">
+				<a href="welcome.html" class="" title="Franklins 13+ : Welcome to Franklin's 13+ App">Welcome</a>
+				<a href="experiment.html" class="" title="Franklins 13+ : The Experiment Explained">The Experiment</a>
+				<a href="virtues.html" class="" title="Franklins 13+ : Ben Franklin's 13 Virtues/Principals Defined">The Virtues</a>
+				<a href="privacy.html" class="" title="Franklins 13+ : Privacy Policy">Privacy Policy</a>
+			</p>
+			<p>&copy;2012  - powered by grails</p>
+		</div>
+		<div class="span1 visible-desktop">&nbsp;</div>
+	</div>
+
+
+</div>	
+
+		
+<script type="text/javascript" src="../web-app/js/lib/jquery/jquery-1.6.1.min.js"></script>
+<script type="text/javascript" src="../web-app/js/lib/jquery/jquery.qtip.min.js"></script>
+<script type="text/javascript" src="../web-app/js/lib/jquery/fullcalendar/fullcalendar.min.js"></script>
+<script type="text/javascript" src="../web-app/js/util/utilities.js"></script>
+
+
+<!-- MOCK DATA -->
+<script type="text/javascript" src="js/mockdata.js"></script>
+
+<script type="text/javascript">
+
+	$(document).ready(function(){
+	
+		
+		var Calendar = function($calendarDiv){
+			var self = this;
+			
+			self.$calendarDiv = $calendarDiv;
+			
+			
+			var $day = $('.fc-widget-content');
+			var $loading = $('#loading');
+			var $calendarWrapper = $('#calendarFullWrapper');
+			
+			var $calendar;
+			
+			self.mockEvents = [{"id":"2012-01-10", "title":"+15<br/>+5 points <br/> 8 happiness/satisfaction", "url":"show/1", "start":"2012-01-10"}, {"id":"2012-01-15", "title":"+4<br/>+5 points <br/> 8 happiness/satisfaction", "url":"show/1", "start":"2012-01-15"}];
+					
+					
+			self.init = function(){
+				self.render();
+				self.bindQtipOnEvents();
+			};
+
+
+			self.render = function(){
+				$calendar = self.$calendarDiv.fullCalendar({
+					
+					//events : "entries",
+					events : self.mockEvents,
+					disableDragging : true,
+					selectable : true,
+					select : function(start, end, allDay, jsEvent, view, onevent){
+						
+						var $cellOverlay = 	$('.fc-cell-overlay');
+						
+						var dateString = start.getFullYear() + '-' + (start.getMonth() + 1) + '-' + start.getDate();
+						var today = new Date();
+						var result = util.dates.compare(start, today);
+						
+						if(result === 1){
+							
+							var message = 'Cannot log entry for the future... what are you trying to pull here...';
+							
+							$cellOverlay.qtip({
+								content: {
+									text: message
+								},
+							   	position: {
+							    	my: 'bottom center',  // Position my top left...
+							      	at: 'top center', // at the bottom right of...
+							    },
+								style: {
+									classes: 'ui-tooltip-youtube'
+								}
+							});
+							$cellOverlay.qtip().show();
+							
+						}else{
+							window.location = '/franklins13/virtueEntry/logEntry?date=' + dateString;
+						}
+						
+					},
+					loading : function(bool) {
+						if (bool){
+							$loading.show();	
+						} else {
+							$loading.hide();
+						}
+					},
+					eventRender: function(event, element) {}
+            	
+				});				
+			};
+			
+			self.bindQtipOnEvents = function(){
+				$('.fc-event').qtip({
+					content: {
+						text: "View Details"
+					},
+					position: {
+						my: 'bottom center',  // Position my top left...
+					  	at: 'top center', // at the bottom right of...
+					},
+					style: {
+						classes: 'ui-tooltip-youtube'
+					}
+					
+				});
+			};
+			
+			self.zeroPad = function(num, count){
+				var numZeropad = num + '';
+				while(numZeropad.length < count) {
+					numZeropad = "0" + numZeropad;
+				}
+				return numZeropad;
+			}
+		}
+		
+
+		var calendar = new Calendar($('#calendarFull'));
+		calendar.init();
+
+		
+	});
+
+
+</script>
+	
+
+</body>
+</html>

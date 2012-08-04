@@ -86,8 +86,7 @@
 		<script type="text/javascript">
 		
 			$(document).ready(function() {
-				
-				console.info('truncate notes -> ');
+
 				
 			    $('.notes').jTruncate({
 			        length: 50,

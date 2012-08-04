@@ -5,7 +5,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
     <meta name="author" content=""/>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	 
+	<meta content="Franklins 13 App, Ben Franklins App, Ben Franklins 13 Virtues App, Happiness vs Virtues, Virtues, Satisfaction" name="Keywords"/>
+    <meta content="Franklins13+ App : A self-improvement application based on Benjamin Franklin's 13 Principles. " name="Description"/>
+
     <title><shiro:principal/>'s Dashboard : Franklin's 13 App</title> 
 
     <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
@@ -27,6 +32,7 @@
 		<div class="topcontent">
 			<a href="" class="logo micro"></a>
 			<g:link controller="auth" action="signOut" class="logout">Logout</g:link>
+			<g:link controller="static" action="dashboard" class="openings">My Dashboard</g:link>
 			<br class="clear"/>
 		</div>
 		

@@ -98,9 +98,7 @@
 	<script type="text/javascript">
 		$(document).bind("mobileinit", function(){
 		  	//Disable ajax link
-			console.log('here..');
 		  	$('.disable-ajax').click(function(event){
-				console.log('disable')
 		    	$.mobile.ajaxFormsEnabled = false;
 		  	});
 		});

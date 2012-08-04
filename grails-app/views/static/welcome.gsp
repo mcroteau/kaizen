@@ -438,7 +438,6 @@
 		
 		self.destroy = function(){
 			
-			console.log('reinit chart');
 			$graphContainerDiv.stop(true, true).fadeOut();
 			$dashGraph = {};
 			self.$graphDiv.stop(true, true).fadeOut();

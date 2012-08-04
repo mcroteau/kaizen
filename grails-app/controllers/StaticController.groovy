@@ -124,7 +124,7 @@ class StaticController {
 			
 			}else{
 			
-				redirect(controller:'account', action:'noEntriesLogged')
+				//render(controller:'account', action:'noEntriesLogged')
 			
 			}
 			
@@ -176,7 +176,7 @@ class StaticController {
 		virtuesSummaryMap.wellBeing.percent = round(virtuesSummaryMap.wellBeing.value/totalEntries)	
 	}
 	
-	def Map reverseSortMap(Map unsortedMap) {
+	def Map reverseSortMap(unsortedMap) {
 
 	    // 3. Reverse Sort by a particular field of Value(Date Of Birth):
 	    Comparator comparator = [compare: {a , b -> unsortedMap.get(b).value.compareTo(unsortedMap.get(a).value)  }] as Comparator

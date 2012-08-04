@@ -5,8 +5,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
     <meta name="author" content=""/>
-	 
-    <title>Welcome to Franklin's 13+ App : Based on Ben Franklin's 13 Virtues</title> 
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+	
+	<meta content="Franklins 13 App, Ben Franklins App, Ben Franklins 13 Virtues App, Happiness vs Virtues, Virtues, Satisfaction" name="Keywords"/>
+    <meta content="Franklins13+ App : A self-improvement application based on Benjamin Franklin's 13 Principles. " name="Description"/>
+
+    <title>Welcome to Franklin's 13+ App : Franklins 13+ is based on Benjamin Franklin's 13 Principles. </title> 
 
     <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
 

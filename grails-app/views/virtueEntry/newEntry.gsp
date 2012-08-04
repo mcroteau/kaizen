@@ -165,7 +165,6 @@
 		
 			
 			function failure(){
-				console.log('failure');
 			}
 			
 			function success(){

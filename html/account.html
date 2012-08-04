@@ -109,7 +109,6 @@
 
 	// this one requires the value to be the same as the first parameter
 	$.validator.methods.equal = function(value, element, param) {
-		console.info('value ->' + value + '    param ->'  +  param);
 		return value == param;
 	};
 	$.validator.methods.confirm = function(value, element){

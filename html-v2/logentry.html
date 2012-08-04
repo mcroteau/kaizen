@@ -1,0 +1,452 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+    <meta name="author" content=""/>
+	 
+    <title>Log Principles for the Day : Franklin's 13 App</title> 
+
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-mods.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-responsive-mods.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/franklins13.css" type="text/css" media="screen" />
+	
+    <link rel="stylesheet" href="../web-app/css/jquery-ui/ui-lightness/jquery-ui-1.8.16.custom.css" type="text/css" media="screen" />
+	<style type="text/css">
+		.slider.well {
+			border:none;
+			border-left:solid 5px #eee;
+			border-bottom:solid 1px #eee;
+			border-radius:0px;
+			-moz-border-radius:0px;
+			-webkit-border-radius:0px;
+			box-shadow:none;
+			-moz-box-shadow:none;
+			-webkit-box-shadow:none;
+			background:#fcfcfc;
+		}
+		.slider.well:hover {
+			background:#fff;
+			border-left:solid 5px #e3e3e3;
+			border-bottom:solid 1px #e3e3e3;
+		}
+		
+		.slider.well h4 {
+		    font-size: 16px;
+		    font-weight: 300;
+		    line-height: 22.5px;
+		    margin-bottom: 0;			
+		}
+		.slider.well input[type="text"] {
+			font-size:20px;
+			width:25px;
+		}
+		blockquote {
+			height:65px;
+			padding-top:5px;
+			padding-bottom:5px;
+			background:#fcfcfc;
+			border-bottom:solid 1px #eee;
+		}
+		blockquote:hover {
+			cursor:hand;
+			cursor:pointer;
+			border-left:5px solid #e3e3e3;
+			border-bottom:solid 1px #e3e3e3;
+			background:#fff;
+		}
+		blockquote:active {
+			border-left:5px solid #ccc;
+			border-bottom:solid 1px #ccc;
+			background:#ebebeb;
+		}		
+		blockquote small {
+			font-size:11px;
+			font-weight:normal;
+		}
+		blockquote p input {
+			vertical-align:top;
+		}
+		
+		.totalCompletedHeader{
+			margin-top:5px;
+			line-height:1.0em;
+			color:#64717e;
+		}
+		.totalCompletedHeader code{
+			font-size:22px;
+			color:#5a6774;
+			font-weight:normal;
+		}
+		.accordion-group{
+			border:none;
+		}
+		.accordion-heading{
+			padding:0px;
+			text-align:left;
+		}
+		a.accordion-toggle{
+			padding:2px;
+			text-align:left;
+		}
+		
+		.poor{
+			color:#db3501;
+		}
+		.average{
+			color:#148cd3;
+		}
+		.good{
+			color:#2ea468;
+		}
+
+	</style>	
+</head>
+<body>
+
+<div class="container">
+
+	<div class="row">
+		<div class="span1 visible-desktop">&nbsp;</div>
+		<div class="span5 show-border">&nbsp;</div>
+		<div class="span5 align-right">
+			<span class="">Welcome back Mike</span>
+			<a href="login.html" class="label label-warning">Logout</a>
+		</div>
+		<div class="span1 visible-desktop">&nbsp;</div>
+	</div>
+
+
+	<div class="row">
+
+		<div class="span1 visible-desktop">&nbsp;</div>		
+		<div class="span4">
+			<div class="userstats">
+				<p class="lead-small">
+					Total Score <em class="scoreWrapper"><code class="score">14032</code></em> 
+
+					Rank <em class="rankWrapper"><code class="rank">120</code></em> of 202
+				</p>		
+			</div>
+		</div>
+
+		<div class="span6">
+			<div class="usernav pull-right">
+				<ul class="nav nav-pills">
+					<li><a href="account.html">Account</a></li>	
+					<li class="active"><a href="logentry.html">Log Entry</a></li>
+					<li class=""><a href="calendar.html">Calendar</a></li>
+					<li class="" ><a href="history.html">History</a></li>
+					<li class=""><a href="dashboard.html">Dashboard</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="span1 visible-desktop">&nbsp;</div>
+	</div>
+
+	
+
+	<div class="row">
+		<div class="span1 visible-desktop">&nbsp;</div>
+		<div class="span5">
+			<h3>How did you do on <em>1 Jan 2012</em> ?</h3>
+		</div>
+		<div class="span5">
+			<h2 class="align-right totalCompletedHeader">
+				<code><span class="wrapper"><span class="totalCompleted">0</span>/14</span></code>
+				<br/>		
+				<span class="small-note">completed</span>
+			</h2>
+		</div>
+		<div class="span1 visible-desktop">&nbsp;</div>
+	</div>
+	
+	
+	<div class="row">	
+		
+		<div class="span1 visible-desktop">&nbsp;</div>
+		
+		<div class="span5 principles">
+				
+			<blockquote class="principle">
+				<p><input type="checkbox" name="humility">&nbsp;Temperance</p>
+				<small>Eat not to dullness; drink not to elevation</small>		
+			</blockquote>
+			        	
+			<blockquote class="principle">
+				<p><input type="checkbox" name="order">&nbsp;Order</p>
+				<small>Let all your things have their places; let each part of your business have its time</small>		
+			</blockquote>
+        	
+			<blockquote class="principle">
+				<p><input type="checkbox" name="resolution">&nbsp;Resolution</p>
+				<small>Resolve to perform what you ought; perform without fail what you resolve.</small>		
+			</blockquote>
+			        	
+			<blockquote class="principle">
+				<p><input type="checkbox" name="frugality">&nbsp;Frugality</p>
+				<small>Make no expense but to do good to others or yourself; i.e., waste nothing</small>		
+			</blockquote>
+			        	
+			<blockquote class="principle">
+				<p><input type="checkbox" name="moderation">&nbsp;Moderation</p>
+				<small>Avoid extremes; forbear resenting injuries so much as you think they deserve.</small>		
+			</blockquote>
+			        	
+			<blockquote class="principle">
+				<p><input type="checkbox" name="industry">&nbsp;Industry</p>
+				<small>Lose no time; be always employed in something useful; cut off all unnecessary actions.</small>		
+			</blockquote>
+        	
+
+			<blockquote class="principle">
+				<p><input type="checkbox" name="cleanliness">&nbsp;Cleanliness</p>
+				<small>Tolerate no uncleanliness in body, clothes, or habitation.</small>		
+			</blockquote>
+            
+
+		</div>
+		
+		
+		<div class="span5 principles">
+
+			<blockquote class="principle">
+				<p><input type="checkbox" name="silence">&nbsp;Silence</p>
+				<small>Speak not but what may benefit others or yourself; avoid trifling conversation</small>		
+			</blockquote>
+        	
+        	
+			<blockquote class="principle">
+				<p><input type="checkbox" name="sincerity">&nbsp;Sincerity</p>
+				<small>Use no hurtful deceit; think innocently and justly, and, if you speak, speak accordingly</small>		
+			</blockquote>
+        	
+        	
+			<blockquote class="principle">
+				<p><input type="checkbox" name="justice">&nbsp;Justice</p>
+				<small>Wrong none by doing injuries, or omitting the benefits that are your duty.</small>		
+			</blockquote>
+        	
+        	
+			<blockquote class="principle">
+				<p><input type="checkbox" name="chastity">&nbsp;Chastity</p>
+				<small>Rarely use venery but for health or offspring, never to dullness, weakness, or the injury of your own or another's peace or reputation</small>		
+			</blockquote>
+        	
+        	
+			<blockquote class="principle">
+				<p><input type="checkbox" name="humility">&nbsp;Humility</p>
+				<small>Imitate Jesus and Socrates</small>		
+			</blockquote>
+
+			
+			<blockquote class="principle">
+				<p><input type="checkbox" name="wellbeing">&nbsp;Well Being</p>
+				<small>Take care of your body. Exercise regularly, concentrate on consuming a healthy diet</small>		
+			</blockquote>
+        	
+
+			<blockquote class="principle">
+				<p><input type="checkbox" name="tranquility">&nbsp;Tranquility</p>
+				<small>Be not disturbed at trifles, or at accidents common or unavoidable</small>		
+			</blockquote>       	
+
+
+		</div>
+					
+		<div class="span1 visible-desktop">&nbsp;</div>
+	
+	</div>
+	
+	<div class="row">
+		
+		<div class="span1 visible-desktop">&nbsp;</div>
+
+		<div class="span5">
+			<div class="slider well">
+				<div class="accordion-group">
+					<div class="accordion-heading">
+				    	<a href="#collapseOne" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle">
+				      		Notes on Today <span class="toggle-span">+</span>
+				    	</a>
+				  	</div>
+				  	<div class="accordion-body collapse in" id="collapseOne">
+				    	<div class="accordion-inner">
+							<textarea class="input-xlarge" name="notes" id="textarea" rows="3" style="width:100%;"></textarea>
+				    	</div>
+				  	</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="span5">  			
+			<div class="slider well">
+				<h4>Satisfaction with the day?</h4>
+				<p>Use slider below to select the level of satisfaction 
+					on a scale from <code>1</code> to <code>10</code>
+				</p>	
+				<div class="align-center">
+					<input type="text" value="0" id="happinessScaleValue" name="happinessScale" class="align-center"/>
+				</div>
+				<div class="align-center">
+					<span class="sliderValue">1</span>
+					<span id="happinessScaleSlider" style="width:200px; display:inline-block; margin:20px 0px 0px 0px;"></span>
+					<span class="sliderValue">10</span>
+				</div>
+				
+			</div>
+		</div>
+		
+		<div class="span1 visible-desktop">&nbsp;</div>			
+	</div>
+	
+	
+	<div class="row">
+		<div class="span1 visible-desktop">&nbsp;</div>
+		<div class="span10 align-right">
+			<div class="well slider ">
+				<a href="#" class="btn btn-danger">Delete</a>
+				<a href="#" class="btn btn-info">Update</a>
+				<a href="#" class="btn btn-success">Save</a>
+				<br style="clear:both"/>
+				<br style="clear:both"/>
+				<h2 class="align-right totalCompletedHeader">
+					<code><span class="wrapper"><span class="totalCompleted">0</span>/14</span></code>
+					<br/>		
+					<span class="small-note">completed</span>
+				</h2>
+			</div>
+		</div>
+		<div class="span1 visible-desktop">&nbsp;</div>
+	</div>
+
+	<div class="row">
+	 	<div class="span1 visible-desktop">&nbsp;</div>
+		<div class="span10 page-header">
+		</div>
+		<div class="span1 visible-desktop">&nbsp;</div>
+	</div>
+
+	<div class="row">
+	 	<div class="span1 visible-desktop">&nbsp;</div>
+		<div class="span10 footer">
+			<p class="pull-right">
+				<a href="welcome.html" class="" title="Franklins 13+ : Welcome to Franklin's 13+ App">Welcome</a>
+				<a href="experiment.html" class="" title="Franklins 13+ : The Experiment Explained">The Experiment</a>
+				<a href="virtues.html" class="" title="Franklins 13+ : Ben Franklin's 13 Virtues/Principals Defined">The Virtues</a>
+				<a href="privacy.html" class="" title="Franklins 13+ : Privacy Policy">Privacy Policy</a>
+			</p>
+			<p>&copy;2012  - powered by grails</p>
+		</div>
+		<div class="span1 visible-desktop">&nbsp;</div>
+	</div>
+
+</div>	
+
+
+<script type="text/javascript" src="js/lib/jquery/1.7.2/jquery.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="../web-app/js/lib/jquery/jquery.qtip.min.js"></script>
+<script type="text/javascript" src="../web-app/js/lib/jquery/jquery-ui-1.8.16.custom.min.js"></script>
+
+
+
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		console.log('init -> ');
+		
+		var LogEntry = function(){
+			
+			var self = this;
+			var $principlesB = $('.principles blockquote');
+			var $totalDiv = $('.totalCompleted');
+			var $totalDivHeader = $('.totalCompletedHeader');
+			var $checkboxes = $('.principles input:checkbox');
+			
+			self.init = function(){
+				self.setupSlider();
+				self.bindClickHandler();
+				$('.content').fadeIn(500);
+				recalculateTotal();
+			};
+			
+			self.bindClickHandler = function(){
+				$principlesB.click(toggleCheckbox);
+				$checkboxes.click(recalculateTotal)
+			};
+			
+			function toggleCheckbox(event){
+				var $checkbox;
+				var $target = $(event.target);
+				
+				if($(event.target).is('p') || 
+					$(event.target).is('small')){
+					$checkbox = $target.parent().find('input:checkbox');
+				}else{
+					$checkbox = $target.find('input:checkbox');
+				}
+				if($checkbox.is(':checked')){
+					$checkbox.removeAttr('checked');
+				}else{
+					$checkbox.attr('checked', true);
+				}
+				recalculateTotal();
+			}
+			
+			
+			
+			function recalculateTotal(){
+				$totalDiv.empty();
+				var total = 0;
+				$checkboxes.each(function(index, checkbox){
+					if($(checkbox).is(':checked'))total++;
+				});
+				$totalDiv.html(total);
+				if(total < 6)$totalDiv.addClass('poor').removeClass('average').removeClass('good');
+				if(total > 6 && total < 10)$totalDiv.addClass('average').removeClass('poor').removeClass('good');
+				if(total > 10)$totalDiv.addClass('good').removeClass('average').removeClass('poor');
+				
+				if(total === 14){
+					$totalDivHeader.find('.wrapper').html('100%').addClass('average');
+					$totalDivHeader.find('.small-note').html('perfect!');
+				}else{
+					$totalDivHeader.find('.wrapper').html('<span class="totalCompleted">' + total + '</span>/14').removeClass('average');
+					$totalDivHeader.find('.small-note').html('complete');
+				}
+			}
+
+			
+			
+			self.setupSlider = function(){
+				$("#happinessScaleSlider").slider({
+					min : 0, 
+					max : 10,
+					value : 5,
+					slide : function(event, ui){
+						var value = ui.value;
+						$('#happinessScaleValue').val(value);
+					},
+					create : function(event, ui){
+						var value = $('#happinessScaleSlider').slider('value');
+						$('#happinessScaleValue').val(value);
+					} 
+				});				
+			};
+		}
+		
+		var le = new LogEntry();
+		le.init();
+		
+	});
+
+
+</script>
+	
+
+</body>
+</html>
