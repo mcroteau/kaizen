@@ -2,121 +2,80 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="layout" content="user" />
-    <link rel="stylesheet" href="${resource(dir:'css',file:'jquery.qtip.min.css')}" />
     <title>Franklins 13 : Dashboard</title>
 </head>
 
 <body>
 		
-	<div class="content dashboard">
 	
-		<g:if test="${flash.message}">
-			<div class="message info" id="">
-				<span class="header">Message : </span>
-				<span class="messageDetails">${flash.message}</span>
-				<a href="#" class="closeButton closeMessage"></a>
-			</div>
-	    </g:if>
+	<div class="row">
+		<div class="span1 visible-desktop">&nbsp;</div>
 		
-		<h1>Dashboard <span>Detailed Graphs and Progress Stats</h1>
-		<div class="userstats">
-			<span>
-				<em class="scoreWrapper"><g:if test="${session.totalScore < 0}">-</g:if><em class="score"></em></em> points
-			</span>
-	
-			<span>
-				Rank <em class="rankWrapper"><em class="rank"></em></em> out of ${Account.count()}
-			</span>	
-            
-			<span>
-				 <em class="entriesWrapper"><em class="entries"></em></em> total entries
-			</span>	
+		<div class="span10" id="progressContainer">
+			<div id="progress" style="width:800px; height:350px;"></div>
 		</div>
+		
+		<div class="span1 visible-desktop">&nbsp;</div>
+		
+	</div>
 	
-		<br class="clear"/>
 	
-		<div id="dashleft"  style="display:none;">
-			<h3>Progress <span>Do you see any trends?  Ideally our "Happiness/Satisfaction" will move up with the number of Virtues completed.</span></h3>
-			<div id="progress" style=""></div>
-		</div>
 	
-		<!--
-		<div id="calendarWrapper" style="float:right; padding:10px; background:#f4f4f4; border:solid 1px #ebeaea;">
-			<div id="calendar" style=""></div>
-		</div>
-		-->	
-	
-		<br class="clear"/>
-
-		<div class="statsWrapper">
-	
-			<div class="stats best" style="display:none">
+	<div class="row">
+		<div class="span1 visible-desktop">&nbsp;</div>
+		
+		<div class="span5">
+			<div class="stats best stats-wrapper" style="display:none">
 				<h2>Best 5</h2>
 				<p>The Top 5 Virtues you have the most success in following</p>
-				<table>
-					<thead>
-						<tr>
-							<th class="alignLeft">Virtue</th>
-							<th># times followed</th>
-							<th class="alignRight">Percent followed</th>
-						</tr>
-					</thead>
+				<table class="table table-bordered table-condensed">
 					<tbody>
 						<g:each  in="${sortedVirtuesMapBest}" status="i" var="virtue">
 							<g:if test="${i < 5}">
-								<tr class="even">
-								 	<td class="virtue alignLeft">${virtue.value.name}</td>
-								 	<td class="num alignCenter">${virtue.value.value}</td>
-								 	<td class="percent">${virtue.value.percent}<em>%</em></td>
+								<tr>
+								 	<td class="">${virtue.value.name}</td>
+								 	<td class="">${virtue.value.value}</td>
+								 	<td class="">${virtue.value.percent}<em>%</em></td>
 								 </tr>
 							</g:if>							
-						</g:each>																
+						</g:each>								
 					</tbody>
 				</table>
-			</div>
-	
-			<div class="stats worst" style="display:none">
+			</div>			
+		</div>
+		
+		<div class="span5">
+			
+			<div class="stats worst stats-wrapper" style="display:none">
 				<h2>Worst 5</h2>
 				<p>The 5 Virtues you have the hardest time following</p>
-				<table class="stats worst">
-					<thead>
-						<tr>
-							<th class="alignLeft">Virtue</th>
-							<th class="alignCenter"># times followed</th>
-							<th class="alignRight">Percent followed</th>
-						</tr>
-					</thead>
+				<table class="table table-bordered table-condensed worst">
 					<tbody>
 						<g:each  in="${sortedVirtuesMapWorst}" status="i" var="virtue">
 							<g:if test="${i < 5}">
-								<tr class="even">
-								 	<td class="virtue alignLeft">${virtue.value.name}</td>
-								 	<td class="num alignCenter">${virtue.value.value}</td>
-								 	<td class="percent">${virtue.value.percent}<em>%</em></td>
+								<tr>
+								 	<td class="align-left">${virtue.value.name}</td>
+								 	<td class="">${virtue.value.value}</td>
+								 	<td class="">${virtue.value.percent}<em>%</em></td>
 								 </tr>
 							</g:if>							
-						</g:each>																
+						</g:each>																	
 					</tbody>				
 				</table>
-			</div>
-	
-			<br class="clear"/>
+			</div>			
+			
 		</div>
-	
+		
+		<div class="span1 visible-desktop">&nbsp;</div>	
+		
 	</div>
 
 
-<script type="text/javascript" src="${resource(dir:'js/lib/jquery/', 'jquery-1.6.1.min.js')}"></script>
-<script type="text/javascript" src="${resource(dir:'js/lib/jquery/', 'jquery.qtip.min.js')}"></script>
-<!-- <script type="text/javascript" src="${resource(dir:'js/lib/jquery/', 'jquery-ui-1.8.16.custom.min.js')}"></script> -->
-<script type="text/javascript" src="${resource(dir:'js/lib/jquery/flot/', 'flot.js')}"></script>
-<script type="text/javascript" src="${resource(dir:'js/util/', 'utilities.js')}"></script>
 
 
 <!-- MOCK DATA -->
 <!--<script type="text/javascript" src="js/mockdata.js"></script>-->
 
-<!--${session.totalEntries}-->
 
 <script type="text/javascript">
 
@@ -128,7 +87,7 @@ function roundNumber(num, dec) {
 
 	$(document).ready(function(){
 
-
+		console.log('here...');
 
 		if($(window).width() < 600){
 			$('#progress').css({
@@ -156,9 +115,10 @@ function roundNumber(num, dec) {
 			var entriesTimerId;
 			var startRankTimerId;
 
-			var $scoreEm = $('.userstats em.score');
-			var $rankEm = $('.userstats em.rank');
-			var $entriesEm = $('.userstats em.entries');
+			var $scoreEm = $('.score');
+			var $rankEm = $('.rank');
+			var $entriesEm = $('.entries');
+			var $progress = $('#progress');
 
 			self.init = function(){
 				self.hideStats();
@@ -168,7 +128,7 @@ function roundNumber(num, dec) {
 				
 				self.animateEntries();
 
-				var dashGraph = new DashboardGraph($('#progress'));
+				var dashGraph = new DashboardGraph($progress);
 				dashGraph.init();
 
 				/**
@@ -176,7 +136,7 @@ function roundNumber(num, dec) {
 				dashCal.init();
 				**/
 
-				var dashStats = new DashboardStats($('.statsWrapper'));
+				var dashStats = new DashboardStats($('.stats-wrapper'));
 				dashStats.animate();
 
 			};
@@ -301,9 +261,6 @@ function roundNumber(num, dec) {
 		        clearInterval(timerId); 
 		    };
 
-
-
-
 		} 
 
 
@@ -316,27 +273,28 @@ function roundNumber(num, dec) {
 			self.$graphDiv = $graphDiv;
 
 			var happinessLabel = "Happiness/Satisfaction", 
-				scoreLabel = "Score",
-				virtuesLabel = "Virtues Followed";
+				scoreLabel     = "Score",
+				virtuesLabel   = "Virtues Followed";
 
 			var HAPPINESS = 'happiness', 
-				SCORE = 'score', 
-				VIRTUES = 'virtues';
+				SCORE     = 'score', 
+				VIRTUES   = 'virtues';
 
 			var happinessObj = {}, 
-				scoreObj = {},
-				virtuesObj = {};
+				scoreObj     = {},
+				virtuesObj   = {};
 
 			self.quickDataObj = {};
 			
-			self.virtuesData = ${virtues};
+			self.virtuesData   = ${virtues};
 			self.happinessData = ${happiness};
-			self.scoresData = ${scores};
+			self.scoresData    = ${scores};
 
 
-			var virtueSeries = getVirtueSeriesConfig();
+			var virtueSeries    = getVirtueSeriesConfig();
         	var happinessSeries = getHappinessSeriesConfig();
-        	var scoresSeries = getScoreSeriesConfig();
+        	var scoresSeries    = getScoreSeriesConfig();
+
 
 		    var stack = 0, bars = false, lines = true, steps = false;
 
@@ -351,7 +309,6 @@ function roundNumber(num, dec) {
 
 			self.render = function(){
 				
-
 				$dashGraph = $.plot(self.$graphDiv, 
 					[ 
 						virtueSeries, 
@@ -722,8 +679,8 @@ function roundNumber(num, dec) {
 
 			self.animate = function(){
 
-				self.$statsDiv.find('.best').fadeIn(800);
-				self.$statsDiv.find('.worst').fadeIn(500);
+				self.$statsDiv.fadeIn(800);
+				self.$statsDiv.fadeIn(500);
 			};
 
 		}
@@ -780,27 +737,29 @@ function roundNumber(num, dec) {
 					"z-index" : "100",
 					"position" : "absolute",
 					"top"      : "100px",
-					"left"     : "250px",
+					"left"     : "50%",
+					"margin-left" : "-125px",
 					"color"    : "#fff",
-					"text-shadow" : "0px 1px 1px #000",
-					"opacity"   : "0.8",
-					"background" : "#000",
+					"text-shadow" : "0px 1px 1px #5E6B78",
+					"opacity"   : "0.9",
+					"background" : "#5E6B78",
 					"border-radius" : "3px",
 					"width" : "250px",
-					"font-size" : "11px",
-					"line-height" : "1.7",
 					"-moz-box-shadow" :    "0px 0px 10px 10px #d9d8d8",
 				    "-webkit-box-shadow": "0px 0px 10px 10px #d9d8d8",
 				    "box-shadow":         "0px 0px 10px 10px #d9d8d8",
 					"padding" : "15px"
-				}).html('<h1 style="color:#fff; line-height:1.3em; font-size:14px;" >Quick Note</h1><br class="clear"/>Your stats might look a little funny in the beginning due to lack of data.  Keep at it and things should start making sense.  Remember, just one guy developing in spare time.  Thanks<div class="buttons"><a href="#" class="button small red closePopup darkbg">close</a></div>');
+				}).html('<h1 style="color:#fff; line-height:1.3em; font-size:14px;" >Quick Note</h1><br class="clear"/><p>Your Dashboard will look incomplete in the beginning due to a lack of entries.</p><div class="buttons"><a href="#" class="btn closePopup">close</a></div>');
 				
 				$('.content').append($popupDiv);
 			};
 			
 			
 			function showPopup(){
+				console.log($popupDiv);
+				$('body').append($popupDiv);
 				
+				$popupDiv.show();
 				$popupDiv.animate({
 					opacity : "0.9 !important",
 					"z-index" : "10000 !important"
@@ -836,7 +795,7 @@ function roundNumber(num, dec) {
 		var totalEntries = ${session.totalEntries}
 		
 		if(totalEntries < 2){		
-			
+			console.log('show popup ', totalEntries)
 			var dashboardPopup = new DashboardPopup();
 			dashboardPopup.init();
 		}

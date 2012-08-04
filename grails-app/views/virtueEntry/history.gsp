@@ -7,87 +7,72 @@
 </head>
 <body>
 
-
-<div class="content history">
-
-	<g:if test="${flash.message}">
-		<div class="message info" id="">
-			<span class="header">Message : </span>
-			<span class="messageDetails">${flash.message}</span>
-			<a href="#" class="closeButton closeMessage"></a>
-		</div>
-		
-    </g:if>
+<div class="row">
+	<div class="span1 visible-desktop">&nbsp;</div>
+	<div class="span10">
+		<span class="small-note">A historical look at all your entries sorted by entry date, displaying most recent entries first</span>
+	</div>
+	<div class="span1 visible-desktop">&nbsp;</div>
+</div>
 
 
-	<h1>History <span>A historical look at all your entries sorted by entry date, displaying most recent entries first</span></h1>
+<div class="row">
 	
-	<div id="entriesListWrapper" class="entrieslistWrapper" style="">
+	<div class="span1 visible-desktop">&nbsp;</div>
+	
+	<div class="span7">
 		
+		<h3>List View <span class="small-note">All entries listed</span></h3>
 		
 		<g:if test="${virtueEntryInstanceList}">
-			<h3>List View <span>All entries listed</span></h3>
-			<table class="entries">
+			<table class="table table-bordered table-collapsed table-striped">
 				<thead>
 					<tr>
 						<th nowrap>Entry Date</th>
 						<th>Completed</th>
 						<th>Satisfaction</th>
 						<th>Points<th>
+						<th><th>
 					</tr>
 				</thead>
 				<tbody>
-					
-        	        <g:each in="${virtueEntryInstanceList}" status="i" var="virtueEntryInstance">
-						<g:if test="${i % 2 == 0}">
-							<tr class="even">
-						</g:if>
-						<g:else>
-							<tr class="">
-						</g:else>
-						
-								<td class="entryDate" style="vertical-align:middle"><g:formatDate format="dd MMM yyyy" date="${virtueEntryInstance.entryDate}"/></td>
-								<td><em class="highlight">${virtueEntryInstance.totalCompleted}</em> out of 14</td>
-								<td><em class="highlight">${virtueEntryInstance.happinessScale}</em></td>
-								<td><em class="highlight">${virtueEntryInstance.totalPoints}</em> Points</td>
-								<td><g:link controller="virtueEntry" action="show" id="${virtueEntryInstance.id}" class="button small grey">Edit</g:link></td>
-						</tr>
-					</g:each>
-																									        											
-				</tbody>
+					<tr>
+						<td class="entryDate" style="vertical-align:middle"><g:formatDate format="dd MMM yyyy" date="${virtueEntryInstance.entryDate}"/></td>
+						<td><em class="highlight">${virtueEntryInstance.totalCompleted}</em> out of 14</td>
+						<td><em class="highlight">${virtueEntryInstance.happinessScale}</em></td>
+						<td><em class="highlight">${virtueEntryInstance.totalPoints}</em> Points</td>
+						<td><g:link controller="virtueEntry" action="show" id="${virtueEntryInstance.id}" class="btn btn-small grey">Edit</g:link></td>
+					</tr>						
+				</tbody>	
 			</table>
-        	
-        	<div class="paginateButtons">
-        	    <g:paginate total="${virtueEntryInstanceTotal}"  params="[activeLink: 'history']"/>
-        	</div>
+			<div class="pagination">				
+				<ul>		
+					<li><a href="javascript:">&#171;</a></li>
+					<li><a href="javascript:">1</a></li>
+					<li class="active"><a href="javascript:">2</a></li>
+					<li><a href="javascript:">3</a></li>	
+					<li><a href="javascript:">&#187;</a></li>		
+				</ul>
+			</div>
 		</g:if>
 		<g:else>
-			<h2>No entries logged yet  <g:link controller="virtueEntry" action="logEntry" id="" class="button small blue"  params="[activeLink: 'logentry']">Log Entry</g:link></h2>
+			<p class="lead">No entries logged yet  <g:link controller="virtueEntry" action="logEntry" id="" class="btn"  params="[activeLink: 'logentry']">Log Entry</g:link></p>
 		</g:else>
+		
 	</div>
 	
-	<div id="calendarWrapper" style="">
-		<div id="calendar" style="height:330px;"></div>
-		<div style="text-align:right; margin:15px 0px 5px 0px;">
-			<g:link controller="virtueEntry" action="calendar" class="button small red" params="[activeLink: 'history']">View Large Calendar</g:link>
+	
+	<div class="span3">		
+		<div id="calendarWrapper" >
+			<div id="calendar" style="height:330px;" class="small-calendar"></div>
+			<a href="calendar.html" class="btn">View Large Calendar</a>
 		</div>
 	</div>
-				
-	<br class="clear"/>
-	
-	
-</div>
 
+	<div class="span1 visible-desktop">&nbsp;</div>
 
-<script type="text/javascript" src="${resource(dir:'js/lib/jquery/', 'jquery-1.6.1.min.js')}"></script>
-<script type="text/javascript" src="${resource(dir:'js/lib/jquery/', 'jquery.qtip.min.js')}"></script>
-<script type="text/javascript" src="${resource(dir:'js/lib/jquery/', 'jquery-ui-1.8.16.custom.min.js')}"></script>
-<script type="text/javascript" src="${resource(dir:'js/lib/jquery/', 'jtruncate.js')}"></script>
-<script type="text/javascript" src="${resource(dir:'js/lib/jquery/fullcalendar/', 'fullcalendar.min.js')}"></script>
-<script type="text/javascript" src="${resource(dir:'js/util/', 'utilities.js')}"></script>
+</div>		
 
-
-<!-- MOCK DATA -->
 
 <script type="text/javascript">
 

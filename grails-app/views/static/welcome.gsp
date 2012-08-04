@@ -1,40 +1,60 @@
 <html>
 <head>
-    <title>Franklins 13 App</title>
+    <title>Franklins 13 App : Welcome</title>
     <meta name="layout" content="main" />
-	
-    <link rel="stylesheet" href="${resource(dir:'css',file:'jquery.qtip.min.css')}" />
 </head>
-
 <body>
-
 	
-<div class="content welcome">
-		
 	<g:if test="${flash.message}">
-		<p class="message error">${flash.message}</p>
+		<div class="row">
+			<div class="span1 visible-desktop">&nbsp;</div>
+			<div class="span10">
+				<p class="message error">${flash.message}</p>
+			</div>
+			<div class="span1 visible-desktop">&nbsp;</div>
+		</div>
 	</g:if>
 	
-	<h1>Does living the "right" way make a difference?</h1>
+
+
+
+	<div class="row">
+		<div class="span1 visible-desktop">&nbsp;</div>
+		<div class="span10 custom-hero show-border">
+			<h1>Welcome to Franklins13+</h1>
+		</div>
+		<div class="span1 visible-desktop">&nbsp;</div>
+	</div>
+
 	
-	<div class="franklin"></div>
+	<div class="row">
+	 		
+		<div class="span1 visible-desktop">&nbsp;</div>
+		
+	 	<div class="span6 custom-hero ">
+	 		<p>Will we be happier or more satisfied if we follow principles that are 
+	 			simple yet require us to be thoughtful, disciplined &amp; hard working?</p>
+             
+	 		<p>Based on Ben Franklin's 13 Virtues, Franklin's 13+ might help us answer that question...</p>
 	
+			<p>
+				<g:link controller="static" action="experiment" class="btn btn-large">About the Experiment</g:link>
+				<g:if test="${!shiro.principal()}">
+					<g:link controller="account" action="registrationPage" class="btn btn-primary btn-large">Join the Experiment</g:link>	
+				</g:if>
+			</p>
+	 	</div>
+	 	
+	 	
+	 	<div class="span4 align-center">
+	 		<span class="franklin"></span>
+	 	</div>
 	
-	<p class="large welcome">
-		Will we be happier or more satisfied if we follow principles that are simple yet require us to be thoughtful, disciplined & hard working?
-	</p>
-	
-	<p class="large welcome">
-		Based on Ben Franklin's 13 Virtues, Franklin's 13+ might become measurable proof...
-	</p>
-	
-	
-	<div class="welcomelinks">
-		<g:link controller="static" action="experiment" class="button darkgrey large">About the Experiment</g:link>
-		<g:if test="${!shiro.principal()}">
-			<g:link controller="account" action="registrationPage" class="button large blue">Join the Experiment</g:link>	
-		</g:if>		
+	 	<div class="span1 visible-desktop">&nbsp;</div>
+		 	
 	</div>	
+	
+	
 	
 	
 	
@@ -116,20 +136,15 @@
 	-->
 	
 	
-	
-</div>
+
+
+<script type="text/javascript">
 
 	
-	<script type="text/javascript" src="${resource(dir:'js/lib/jquery/', 'jquery-1.6.1.min.js')}"></script>
-	<script type="text/javascript" src="${resource(dir:'js/lib/jquery/', 'jquery.qtip.min.js')}"></script>
-	<!-- <script type="text/javascript" src="${resource(dir:'js/lib/jquery/', 'jquery-ui-1.8.16.custom.min.js')}"></script> -->
-	<script type="text/javascript" src="${resource(dir:'js/lib/jquery/flot/', 'flot.js')}"></script>
-	<script type="text/javascript" src="${resource(dir:'js/util/', 'utilities.js')}"></script>
-
-	<script type="text/javascript">
-
-	$(function () {
+	$(document).ready(function(){
 		
+		
+		/**
 		if($(window).width() < 600){
 			$('#welcomeChart').css({
 				"width" : "430px !important"
@@ -139,7 +154,7 @@
 
 		var welcomeGraph = new WelcomeGraph($('#welcomeChart'));
 		welcomeGraph.init();
-		
+		**/
 		
 		// $(window).resize(function(){
 			// if($(window).width() < 600){
@@ -163,7 +178,7 @@
 
 
 
-
+	/**
 	var WelcomeGraph = function($graphDiv){
 
 		var self = this;
@@ -446,10 +461,10 @@
 
 	}
 	
-	
+	**/
 	
 
-	</script>
+</script>
 
 
 
