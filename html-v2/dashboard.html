@@ -25,8 +25,8 @@
 		<div class="span1 visible-desktop">&nbsp;</div>
 		<div class="span5 show-border">&nbsp;</div>
 		<div class="span5 align-right">
-			<span class="">Welcome back Mike</span>
-			<a href="login.html" class="label label-warning">Logout</a>
+			<span class="welcome-message">Welcome back Mike</span>
+			<a href="login.html" class="label label-warning">Logout</a>			
 		</div>
 		<div class="span1 visible-desktop">&nbsp;</div>
 	</div>
@@ -50,7 +50,6 @@
 				<ul class="nav nav-pills">
 					<li><a href="account.html">Account</a></li>
 					<li class=""><a href="logentry.html">Log Entry</a></li>
-					<li><a href="calendar.html">Calendar</a></li>
 					<li><a href="history.html">History</a></li>
 					<li class="active"><a href="dashboard.html">Dashboard</a></li>
 				</ul>
@@ -164,49 +163,7 @@
 		<div class="span1 visible-desktop">&nbsp;</div>	
 	</div>
 	
-	<div class="row">
-		<div class="span1"></div>
-		<div class="span10">
-			<table style="width: 100%;" class="fc-header">
-				<tbody>
-					<tr>
-						<td class="fc-header-left">
-							<span class="fc-header-title"><h2>August 2012</h2></span>
-						</td>
-						<td class="fc-header-center"></td>
-						<td class="fc-header-right">
-							<span class="fc-button fc-button-today fc-state-default fc-corner-left fc-corner-right fc-state-disabled">
-								<span class="fc-button-inner">
-									<span class="fc-button-content">today</span>
-									<span class="fc-button-effect">
-										<span></span>
-									</span>
-								</span>
-							</span>
-							<span class="fc-header-space"></span>
-							<span class="fc-button fc-button-prev fc-state-default fc-corner-left">
-								<span class="fc-button-inner">
-									<span class="fc-button-content">&nbsp;◄&nbsp;</span>
-									<span class="fc-button-effect">
-										<span></span>
-									</span>
-								</span>
-							</span>
-							<span class="fc-button fc-button-next fc-state-default fc-corner-right">
-								<span class="fc-button-inner">
-									<span class="fc-button-content">&nbsp;►&nbsp;</span>
-									<span class="fc-button-effect">
-										<span></span>
-									</span>
-								</span>
-							</span>
-						</td>
-					</tr>
-				</tbody>
-			</table>	
-		</div>
-		<div class="span1"></div>
-	</div>
+
 
 	<div class="row">
 	 	<div class="span1 visible-desktop">&nbsp;</div>
@@ -309,6 +266,8 @@
 				
 				var dashStats = new DashboardStats($('.stats'));
 				dashStats.animate();
+				
+				resizeChart();
 				
 			};
 			

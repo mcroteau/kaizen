@@ -1,38 +1,8 @@
-*****  Splash Page Content  *****  
+#Franklins 13+
 
-Will doing what is "right" make us happy?  Will we be happier if we follow principles that are simple yet require us to be thoughtful, disciplined & hard working?  
+Small application to log daily principles followed.  
 
-
-Graph Happiness vs Principles Followed averaged out per
-
-
-Future will be Graphs per Principle Followed vs Happiness
-
-
-
-
-
-
-*****  The Experiment  *****
-
-Franklins 13 is a social experiment created to try to help keep us humans in focus on what's important in our life.  No religion involved here... so get over it...  Just simple principles that sometimes some of us need to be reminded of.
-
-Franklins 13 is based on Benjamin Franklin's 13 Principles.  The principles are simple and if followed will help each individual live a happy, productive and fulfilling life.... well, at least that was his goal when he created them.
-
-How do I join?  First, promise to be honest and treat this with respect.  Your account will be disabled if we believe you are being foolish or bashing the idea.  Second, download the Mobile App.  Currently only available on Android.  It is a simple app..  and very new, so there might be a few quirks.  If you run into any quirckiness, please let us know.
-
-
-
-
-*** Tagline work ***
-Will doing what is right make you feel more fulfilled?
-Social Experiment in measuring the satisfaction of doing what needs to be done
-Measuring the level of Satisfaction of following Simple Principles
-Measuring Satisfaction with Following Simple Principles (No religion involved)
-A Measurement of Satisfaction with Following Simple Principles
-
-
-
+Based on Benjamin Franklin's 13 Principles
 
 
 if((navigator.userAgent.match(/iPhone/i)) || 

@@ -5062,7 +5062,12 @@ a.badge:hover {
 
 **/
 
-form.well{	
+
+form.well,
+.form-well{	
+  margin-bottom: 20px;
+  min-height: 20px;
+  padding: 19px;	
 	border-left:solid 5px #eee;
 	border-bottom:solid 1px #eee;
 	background:#f8f8f8;
@@ -5113,3 +5118,11 @@ p.lead code{
 .align-right{
 	text-align:right;
 }
+
+.row{
+	margin-bottom:15px;
+}
+
+
+
+
