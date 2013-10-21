@@ -19,8 +19,8 @@ environments {
         dataSource {
 			
  
-        	dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-        	url = "jdbc:h2:mem:devDb;MVCC=TRUE"
+        	//dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
+        	//url = "jdbc:h2:mem:devDb;MVCC=TRUE"
 
 
 			//pooled = false
@@ -32,15 +32,14 @@ environments {
 	        //username = "root"
 	        //password = "z23xe7rGwh"
 
-			/**
 		   	pooled = false
-			dialect = org.hibernate.dialect.PostgreSQLDialect // honestly, not sure what
+			dialect = org.hibernate.dialect.PostgreSQLDialect // not sure what
 		    dbCreate = "create-drop" // one of 'create', 'create-drop','update'
 			url = "jdbc:postgresql://localhost:5432/franklins13"
 		    driverClassName = "org.postgresql.Driver"
 		    username = "postgres"
 			password = "postgres"
-			**/
+
 			
 			
 			/**
@@ -67,8 +66,8 @@ environments {
 			
 		    // NOTE: both of these dialects have worked for me. But some people
 		    // recommend using the net.sf version and not the org.hibernate version.
-		    //dialect = org.hibernate.dialect.PostgreSQLDialect // honestly, not sure what
-		    //dialect = net.sf.hibernate.dialect.PostgreSQLDialect // the difference is.
+		    //dialect = org.hibernate.dialect.PostgreSQLDialect 
+		    //dialect = net.sf.hibernate.dialect.PostgreSQLDialect 
 
 
         }
