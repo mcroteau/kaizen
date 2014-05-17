@@ -58,7 +58,7 @@ grails.spring.bean.packages = []
 // set per-environment serverURL stem for creating absolute links
 environments {
     production {
-        grails.serverURL = "http://www.changeme.com"
+        grails.serverURL = "http://www.changeme.com"]
     }
     development {
         grails.serverURL = "http://localhost:8080/${appName}"
@@ -73,7 +73,7 @@ environments {
 log4j = {
     // Example of changing the log pattern for the default console
     // appender:
-    //
+    //}
     //appenders {
     //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
     //}
